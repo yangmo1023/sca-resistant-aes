@@ -1,6 +1,7 @@
 
 #include <string.h>
 #include "bs.h"
+#include "../app.h"
 
 #if (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) ||\
         defined(__amd64__) || defined(__amd32__)|| defined(__amd16__)
@@ -196,16 +197,14 @@ void bs_sbox_rev(word_t U[8])
     P27 = P10 ^ P18;
     P28 = P11 ^ P25;
     P29 = P15 ^ P20;
-    W[7] = P13 ^ P22;
-    W[6] = P26 ^ P29;
-    W[5] = P17 ^ P28;
-    W[4] = P12 ^ P22;
-    W[3] = P23 ^ P27;
-    W[2] = P19 ^ P24;
-    W[1] = P14 ^ P23;
-    W[0] = P9 ^ P16;
-
-    memmove(U,W,sizeof(W));
+    U[7] = P13 ^ P22;
+    U[6] = P26 ^ P29;
+    U[5] = P17 ^ P28;
+    U[4] = P12 ^ P22;
+    U[3] = P23 ^ P27;
+    U[2] = P19 ^ P24;
+    U[1] = P14 ^ P23;
+    U[0] = P9 ^ P16;
 }
 
 void bs_sbox(word_t U[8])
@@ -355,16 +354,14 @@ void bs_sbox(word_t U[8])
     L27 = L8 ^ L10;
     L28 = L11 ^ L14;
     L29 = L11 ^ L17;
-    S[7] = L6 ^ L24;
-    S[6] = ~(L16 ^ L26);
-    S[5] = ~(L19 ^ L28);
-    S[4] = L6 ^ L21;
-    S[3] = L20 ^ L22;
-    S[2] = L25 ^ L29;
-    S[1] = ~(L13 ^ L27);
-    S[0] = ~(L6 ^ L23);
-
-    memmove(U,S,sizeof(S));
+    U[7] = L6 ^ L24;
+    U[6] = ~(L16 ^ L26);
+    U[5] = ~(L19 ^ L28);
+    U[4] = L6 ^ L21;
+    U[3] = L20 ^ L22;
+    U[2] = L25 ^ L29;
+    U[1] = ~(L13 ^ L27);
+    U[0] = ~(L6 ^ L23);
 }
 
 void bs_transpose(word_t * blocks)
@@ -1085,6 +1082,11 @@ void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
     int round;
     bs_transpose(state);
 
+    TRIGGER = 0xff;
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    TRIGGER = 0x0;
 
     bs_addroundkey(state,rk[0]);
     for (round = 1; round < 10; round++)
