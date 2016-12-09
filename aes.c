@@ -4,7 +4,7 @@
 #include "bs.h"
 #include "utils.h"
 
-void aes_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t * key)
+void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size_t size, uint8_t * key)
 {
     word_t input_space[BLOCK_SIZE];
     word_t rk[11][BLOCK_SIZE];
@@ -20,7 +20,7 @@ void aes_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t *
         {
             memset(input_space,0,BS_BLOCK_SIZE);
             memmove(input_space, inputb, size);
-            bs_cipher(input_space,rk);
+            bs_cipher(input_space, (word_t*)maskb,rk);
             memmove(outputb, input_space, size);
             size = 0;
             state += size;
@@ -28,7 +28,7 @@ void aes_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t *
         else
         {
             memmove(state,inputb,BS_BLOCK_SIZE);
-            bs_cipher(state,rk);
+            bs_cipher(state, (word_t*)maskb,rk);
             size -= BS_BLOCK_SIZE;
             state += BS_BLOCK_SIZE;
         }
@@ -109,8 +109,8 @@ void aes_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t *
             memmove(ctr + (i * WORDS_PER_BLOCK), iv_copy, BLOCK_SIZE/8);
             INC_CTR(iv_copy,1);
         }
-
-        bs_cipher(ctr, rk);
+        // this will fail
+        bs_cipher(ctr, NULL, rk);
         size -= chunk;
 
         uint8_t * ctr_p = (uint8_t *) ctr;

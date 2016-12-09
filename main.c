@@ -23,7 +23,8 @@ int main(int argc, char * argv[])
 #ifndef TEST_FOOTPRINT
     aes_ecb_test();
 #endif
-    aes_ctr_test();
+    // not tested for masking
+    // aes_ctr_test();
 
 #else
 

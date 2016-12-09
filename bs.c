@@ -15,6 +15,24 @@
 #error "endianness not supported"
 #endif
 
+uint8_t r1[]= {
+    222, 233, 135, 124, 158, 169, 215, 158, 188, 76, 207, 209, 133, 210, 16, 237, 
+    80, 11, 229, 185, 195, 250, 4, 139, 127, 15, 112, 218, 242, 72, 2, 214, 
+    205, 172, 39, 204, 240, 38, 186, 58, 75, 206, 238, 1, 88, 114, 158, 97, 
+    95, 167, 190, 11, 202, 208, 101, 35, 174, 206, 69, 123, 190, 80, 80, 23, 
+    61, 117, 35, 101, 107, 242, 56, 187, 110, 190, 20, 78, 233, 3, 133, 21, 
+    212, 186, 143, 198, 216, 236, 226, 32, 193, 46, 50, 89, 199, 249, 41, 109, 
+    129, 202, 123, 89, 97, 167, 181, 123, 153, 238, 151, 161, 163, 36, 105, 92, 
+    2, 192, 151, 251, 68, 232, 171, 159, 201, 31, 23, 197, 182, 181, 136, 113, 
+    198, 45, 70, 203, 34, 122, 136, 223, 89, 191, 28, 228, 43, 50, 203, 207, 
+    64, 224, 224, 241, 237, 156, 129, 107, 111, 112, 177, 13, 105, 27, 39, 152, 
+    99, 105, 25, 120, 98, 30, 109, 158, 152, 249, 59, 132, 232, 243, 147, 233, 
+    25, 181, 175, 31, 35, 254, 10, 150, 180, 192, 6, 149, 100, 136, 173, 191, 
+    241, 42, 187, 204, 19, 226, 168, 36, 107, 239, 246, 152, 178, 24, 114, 70, 
+    113, 236, 1, 159, 57, 227, 95, 251, 2, 89, 193, 34, 211, 49, 78, 114, 
+    151, 174, 209, 55, 101, 207, 78, 17, 154, 118, 24, 43, 90, 174, 223, 97, 
+    77, 23, 55, 43, 157, 67, 8, 66, 114, 57, 218, 192, 126, 133, 139, 142
+};
 
 void bs_addroundkey(word_t * B, word_t * rk)
 {
@@ -23,12 +41,12 @@ void bs_addroundkey(word_t * B, word_t * rk)
         B[i] ^= rk[i];
 }
 
-void bs_apply_sbox(word_t * input)
+void bs_apply_sbox(word_t * input, word_t * mask)
 {
     int i;
     for(i=0; i < BLOCK_SIZE; i+=8)
     {
-        bs_sbox(input+i);
+        bs_sbox(input+i, mask + i);
     }
 }
 
@@ -207,161 +225,343 @@ void bs_sbox_rev(word_t U[8])
     U[0] = P9 ^ P16;
 }
 
-void bs_sbox(word_t U[8])
+
+void SAND(word_t p1, word_t p2, word_t q1, word_t q2, word_t * z1, word_t * z2)
+{
+
+}
+
+void bs_sbox(word_t Up1[8], word_t Up2[8])
 {
     word_t S[8];
     word_t
-        T1,T2,T3,T4,T5,T6,T7,T8,
-        T9,T10,T11,T12,T13,T14,T15,T16,
-        T17,T18,T19,T20,T21,T22,T23,T24,
-        T25, T26, T27;
+        T1p1,T2p1,T3p1,T4p1,T5p1,T6p1,T7p1,T8p1,
+        T9p1,T10p1,T11p1,T12p1,T13p1,T14p1,T15p1,T16p1,
+        T17p1,T18p1,T19p1,T20p1,T21p1,T22p1,T23p1,T24p1,
+        T25p1, T26p1, T27p1;
+
 
     word_t
-        M1,M2,M3,M4,M5,M6,M7,M8,
-        M9,M10,M11,M12,M13,M14,M15,
-        M16,M17,M18,M19,M20,M21,M22,
-        M23,M24,M25,M26,M27,M28,M29,
-        M30,M31,M32,M33,M34,M35,M36,
-        M37,M38,M39,M40,M41,M42,M43,
-        M44,M45,M46,M47,M48,M49,M50,
-        M51,M52,M53,M54,M55,M56,M57,
-        M58,M59,M60,M61,M62,M63;
+        M1p1,M2p1,M3p1,M4p1,M5p1,M6p1,M7p1,M8p1,
+        M9p1,M10p1,M11p1,M12p1,M13p1,M14p1,M15p1,
+        M16p1,M17p1,M18p1,M19p1,M20p1,M21p1,M22p1,
+        M23p1,M24p1,M25p1,M26p1,M27p1,M28p1,M29p1,
+        M30p1,M31p1,M32p1,M33p1,M34p1,M35p1,M36p1,
+        M37p1,M38p1,M39p1,M40p1,M41p1,M42p1,M43p1,
+        M44p1,M45p1,M46p1,M47p1,M48p1,M49p1,M50p1,
+        M51p1,M52p1,M53p1,M54p1,M55p1,M56p1,M57p1,
+        M58p1,M59p1,M60p1,M61p1,M62p1,M63p1;
 
     word_t
-        L0,L1,L2,L3,L4,L5,L6,L7,L8,
-        L9,L10,L11,L12,L13,L14,
-        L15,L16,L17,L18,L19,L20,
-        L21,L22,L23,L24,L25,L26,
-        L27,L28,L29;
+        L0p1,L1p1,L2p1,L3p1,L4p1,L5p1,L6p1,L7p1,L8p1,
+        L9p1,L10p1,L11p1,L12p1,L13p1,L14p1,
+        L15p1,L16p1,L17p1,L18p1,L19p1,L20p1,
+        L21p1,L22p1,L23p1,L24p1,L25p1,L26p1,
+        L27p1,L28p1,L29p1;
 
-    T1 = U[7] ^ U[4];
-    T2 = U[7] ^ U[2];
-    T3 = U[7] ^ U[1];
-    T4 = U[4] ^ U[2];
-    T5 = U[3] ^ U[1];
-    T6 = T1 ^ T5;
-    T7 = U[6] ^ U[5];
-    T8 = U[0] ^ T6;
-    T9 = U[0] ^ T7;
-    T10 = T6 ^ T7;
-    T11 = U[6] ^ U[2];
-    T12 = U[5] ^ U[2];
-    T13 = T3 ^ T4;
-    T14 = T6 ^ T11;
-    T15 = T5 ^ T11;
-    T16 = T5 ^ T12;
-    T17 = T9 ^ T16;
-    T18 = U[4] ^ U[0];
-    T19 = T7 ^ T18;
-    T20 = T1 ^ T19;
-    T21 = U[1] ^ U[0];
-    T22 = T7 ^ T21;
-    T23 = T2 ^ T22;
-    T24 = T2 ^ T10;
-    T25 = T20 ^ T17;
-    T26 = T3 ^ T16;
-    T27 = T1 ^ T12;
-    M1 = T13 & T6;
-    M2 = T23 & T8;
-    M3 = T14 ^ M1;
-    M4 = T19 & U[0];
-    M5 = M4 ^ M1;
-    M6 = T3 & T16;
-    M7 = T22 & T9;
-    M8 = T26 ^ M6;
-    M9 = T20 & T17;
-    M10 = M9 ^ M6;
-    M11 = T1 & T15;
-    M12 = T4 & T27;
-    M13 = M12 ^ M11;
-    M14 = T2 & T10;
-    M15 = M14 ^ M11;
-    M16 = M3 ^ M2;
-    M17 = M5 ^ T24;
-    M18 = M8 ^ M7;
-    M19 = M10 ^ M15;
-    M20 = M16 ^ M13;
-    M21 = M17 ^ M15;
-    M22 = M18 ^ M13;
-    M23 = M19 ^ T25;
-    M24 = M22 ^ M23;
-    M25 = M22 & M20;
-    M26 = M21 ^ M25;
-    M27 = M20 ^ M21;
-    M28 = M23 ^ M25;
-    M29 = M28 & M27;
-    M30 = M26 & M24;
-    M31 = M20 & M23;
-    M32 = M27 & M31;
-    M33 = M27 ^ M25;
-    M34 = M21 & M22;
-    M35 = M24 & M34;
-    M36 = M24 ^ M25;
-    M37 = M21 ^ M29;
-    M38 = M32 ^ M33;
-    M39 = M23 ^ M30;
-    M40 = M35 ^ M36;
-    M41 = M38 ^ M40;
-    M42 = M37 ^ M39;
-    M43 = M37 ^ M38;
-    M44 = M39 ^ M40;
-    M45 = M42 ^ M41;
-    M46 = M44 & T6;
-    M47 = M40 & T8;
-    M48 = M39 & U[0];
-    M49 = M43 & T16;
-    M50 = M38 & T9;
-    M51 = M37 & T17;
-    M52 = M42 & T15;
-    M53 = M45 & T27;
-    M54 = M41 & T10;
-    M55 = M44 & T13;
-    M56 = M40 & T23;
-    M57 = M39 & T19;
-    M58 = M43 & T3;
-    M59 = M38 & T22;
-    M60 = M37 & T20;
-    M61 = M42 & T1;
-    M62 = M45 & T4;
-    M63 = M41 & T2;
-    L0 = M61 ^ M62;
-    L1 = M50 ^ M56;
-    L2 = M46 ^ M48;
-    L3 = M47 ^ M55;
-    L4 = M54 ^ M58;
-    L5 = M49 ^ M61;
-    L6 = M62 ^ L5;
-    L7 = M46 ^ L3;
-    L8 = M51 ^ M59;
-    L9 = M52 ^ M53;
-    L10 = M53 ^ L4;
-    L11 = M60 ^ L2;
-    L12 = M48 ^ M51;
-    L13 = M50 ^ L0;
-    L14 = M52 ^ M61;
-    L15 = M55 ^ L1;
-    L16 = M56 ^ L0;
-    L17 = M57 ^ L1;
-    L18 = M58 ^ L8;
-    L19 = M63 ^ L4;
-    L20 = L0 ^ L1;
-    L21 = L1 ^ L7;
-    L22 = L3 ^ L12;
-    L23 = L18 ^ L2;
-    L24 = L15 ^ L9;
-    L25 = L6 ^ L10;
-    L26 = L7 ^ L9;
-    L27 = L8 ^ L10;
-    L28 = L11 ^ L14;
-    L29 = L11 ^ L17;
-    U[7] = L6 ^ L24;
-    U[6] = ~(L16 ^ L26);
-    U[5] = ~(L19 ^ L28);
-    U[4] = L6 ^ L21;
-    U[3] = L20 ^ L22;
-    U[2] = L25 ^ L29;
-    U[1] = ~(L13 ^ L27);
-    U[0] = ~(L6 ^ L23);
+    word_t
+        T1p2,T2p2,T3p2,T4p2,T5p2,T6p2,T7p2,T8p2,
+        T9p2,T10p2,T11p2,T12p2,T13p2,T14p2,T15p2,T16p2,
+        T17p2,T18p2,T19p2,T20p2,T21p2,T22p2,T23p2,T24p2,
+        T25p2, T26p2, T27p2;
+
+
+    word_t
+        M1p2,M2p2,M3p2,M4p2,M5p2,M6p2,M7p2,M8p2,
+        M9p2,M10p2,M11p2,M12p2,M13p2,M14p2,M15p2,
+        M16p2,M17p2,M18p2,M19p2,M20p2,M21p2,M22p2,
+        M23p2,M24p2,M25p2,M26p2,M27p2,M28p2,M29p2,
+        M30p2,M31p2,M32p2,M33p2,M34p2,M35p2,M36p2,
+        M37p2,M38p2,M39p2,M40p2,M41p2,M42p2,M43p2,
+        M44p2,M45p2,M46p2,M47p2,M48p2,M49p2,M50p2,
+        M51p2,M52p2,M53p2,M54p2,M55p2,M56p2,M57p2,
+        M58p2,M59p2,M60p2,M61p2,M62p2,M63p2;
+
+    word_t
+        L0p2,L1p2,L2p2,L3p2,L4p2,L5p2,L6p2,L7p2,L8p2,
+        L9p2,L10p2,L11p2,L12p2,L13p2,L14p2,
+        L15p2,L16p2,L17p2,L18p2,L19p2,L20p2,
+        L21p2,L22p2,L23p2,L24p2,L25p2,L26p2,
+        L27p2,L28p2,L29p2;
+
+
+
+    T1p1 = Up1[7] ^ Up1[4];
+    T1p2 = Up2[7] ^ Up2[4];
+    T2p1 = Up1[7] ^ Up1[2];
+    T2p2 = Up2[7] ^ Up2[2];
+    T3p1 = Up1[7] ^ Up1[1];
+    T3p2 = Up2[7] ^ Up2[1];
+    T4p1 = Up1[4] ^ Up1[2];
+    T4p2 = Up2[4] ^ Up2[2];
+    T5p1 = Up1[3] ^ Up1[1];
+    T5p2 = Up2[3] ^ Up2[1];
+    T6p1 = T1p1 ^ T5p1;
+    T6p2 = T1p2 ^ T5p2;
+    T7p1 = Up1[6] ^ Up1[5];
+    T7p2 = Up2[6] ^ Up2[5];
+    T8p1 = Up1[0] ^ T6p1;
+    T8p2 = Up2[0] ^ T6p2;
+    T9p1 = Up1[0] ^ T7p1;
+    T9p2 = Up2[0] ^ T7p2;
+    T10p1 = T6p1 ^ T7p1;
+    T10p2 = T6p2 ^ T7p2;
+    T11p1 = Up1[6] ^ Up1[2];
+    T11p2 = Up2[6] ^ Up2[2];
+    T12p1 = Up1[5] ^ Up1[2];
+    T12p2 = Up2[5] ^ Up2[2];
+    T13p1 = T3p1 ^ T4p1;
+    T13p2 = T3p2 ^ T4p2;
+    T14p1 = T6p1 ^ T11p1;
+    T14p2 = T6p2 ^ T11p2;
+    T15p1 = T5p1 ^ T11p1;
+    T15p2 = T5p2 ^ T11p2;
+    T16p1 = T5p1 ^ T12p1;
+    T16p2 = T5p2 ^ T12p2;
+    T17p1 = T9p1 ^ T16p1;
+    T17p2 = T9p2 ^ T16p2;
+    T18p1 = Up1[4] ^ Up1[0];
+    T18p2 = Up2[4] ^ Up2[0];
+    T19p1 = T7p1 ^ T18p1;
+    T19p2 = T7p2 ^ T18p2;
+    T20p1 = T1p1 ^ T19p1;
+    T20p2 = T1p2 ^ T19p2;
+    T21p1 = Up1[1] ^ Up1[0];
+    T21p2 = Up2[1] ^ Up2[0];
+    T22p1 = T7p1 ^ T21p1;
+    T22p2 = T7p2 ^ T21p2;
+    T23p1 = T2p1 ^ T22p1;
+    T23p2 = T2p2 ^ T22p2;
+    T24p1 = T2p1 ^ T10p1;
+    T24p2 = T2p2 ^ T10p2;
+    T25p1 = T20p1 ^ T17p1;
+    T25p2 = T20p2 ^ T17p2;
+    T26p1 = T3p1 ^ T16p1;
+    T26p2 = T3p2 ^ T16p2;
+    T27p1 = T1p1 ^ T12p1;
+    T27p2 = T1p2 ^ T12p2;
+
+    M1p1 = T13p1 & T6p1;
+    M1p2 = T13p2 & T6p2;
+    M2p1 = T23p1 & T8p1;
+    M2p2 = T23p2 & T8p2;
+
+    M3p1 = T14p1 ^ M1p1;
+    M3p2 = T14p2 ^ M1p2;
+
+    M4p1 = T19p1 & Up1[0];
+    M4p2 = T19p2 & Up2[0];
+
+    M5p1 = M4p1 ^ M1p1;
+    M5p2 = M4p2 ^ M1p2;
+
+    M6p1 = T3p1 & T16p1;
+    M6p2 = T3p2 & T16p2;
+    M7p1 = T22p1 & T9p1;
+    M7p2 = T22p2 & T9p2;
+    
+    M8p1 = T26p1 ^ M6p1;
+    M8p2 = T26p2 ^ M6p2;
+
+    M9p1 = T20p1 & T17p1;
+    M9p2 = T20p2 & T17p2;
+
+    M10p1 = M9p1 ^ M6p1;
+    M10p2 = M9p2 ^ M6p2;
+
+    M11p1 = T1p1 & T15p1;
+    M11p2 = T1p2 & T15p2;
+    M12p1 = T4p1 & T27p1;
+    M12p2 = T4p2 & T27p2;
+
+    M13p1 = M12p1 ^ M11p1;
+    M13p2 = M12p2 ^ M11p2;
+
+    M14p1 = T2p1 & T10p1;
+    M14p2 = T2p2 & T10p2;
+
+    M15p1 = M14p1 ^ M11p1;
+    M15p2 = M14p2 ^ M11p2;
+    M16p1 = M3p1 ^ M2p1;
+    M16p2 = M3p2 ^ M2p2;
+    M17p1 = M5p1 ^ T24p1;
+    M17p2 = M5p2 ^ T24p2;
+    M18p1 = M8p1 ^ M7p1;
+    M18p2 = M8p2 ^ M7p2;
+    M19p1 = M10p1 ^ M15p1;
+    M19p2 = M10p2 ^ M15p2;
+    M20p1 = M16p1 ^ M13p1;
+    M20p2 = M16p2 ^ M13p2;
+    M21p1 = M17p1 ^ M15p1;
+    M21p2 = M17p2 ^ M15p2;
+    M22p1 = M18p1 ^ M13p1;
+    M22p2 = M18p2 ^ M13p2;
+    M23p1 = M19p1 ^ T25p1;
+    M23p2 = M19p2 ^ T25p2;
+    M24p1 = M22p1 ^ M23p1;
+    M24p2 = M22p2 ^ M23p2;
+
+    M25p1 = M22p1 & M20p1;
+    M25p2 = M22p2 & M20p2;
+    
+    M26p1 = M21p1 ^ M25p1;
+    M26p2 = M21p2 ^ M25p2;
+    M27p1 = M20p1 ^ M21p1;
+    M27p2 = M20p2 ^ M21p2;
+    M28p1 = M23p1 ^ M25p1;
+    M28p2 = M23p2 ^ M25p2;
+
+    M29p1 = M28p1 & M27p1;
+    M29p2 = M28p2 & M27p2;
+    M30p1 = M26p1 & M24p1;
+    M30p2 = M26p2 & M24p2;
+    M31p1 = M20p1 & M23p1;
+    M31p2 = M20p2 & M23p2;
+    M32p1 = M27p1 & M31p1;
+    M32p2 = M27p2 & M31p2;
+
+    M33p1 = M27p1 ^ M25p1;
+    M33p2 = M27p2 ^ M25p2;
+
+    M34p1 = M21p1 & M22p1;
+    M34p2 = M21p2 & M22p2;
+    M35p1 = M24p1 & M34p1;
+    M35p2 = M24p2 & M34p2;
+
+    M36p1 = M24p1 ^ M25p1;
+    M36p2 = M24p2 ^ M25p2;
+    M37p1 = M21p1 ^ M29p1;
+    M37p2 = M21p2 ^ M29p2;
+    M38p1 = M32p1 ^ M33p1;
+    M38p2 = M32p2 ^ M33p2;
+    M39p1 = M23p1 ^ M30p1;
+    M39p2 = M23p2 ^ M30p2;
+    M40p1 = M35p1 ^ M36p1;
+    M40p2 = M35p2 ^ M36p2;
+    M41p1 = M38p1 ^ M40p1;
+    M41p2 = M38p2 ^ M40p2;
+    M42p1 = M37p1 ^ M39p1;
+    M42p2 = M37p2 ^ M39p2;
+    M43p1 = M37p1 ^ M38p1;
+    M43p2 = M37p2 ^ M38p2;
+    M44p1 = M39p1 ^ M40p1;
+    M44p2 = M39p2 ^ M40p2;
+    M45p1 = M42p1 ^ M41p1;
+    M45p2 = M42p2 ^ M41p2;
+
+    M46p1 = M44p1 & T6p1;
+    M46p2 = M44p2 & T6p2;
+    M47p1 = M40p1 & T8p1;
+    M47p2 = M40p2 & T8p2;
+    M48p1 = M39p1 & Up1[0];
+    M48p2 = M39p2 & Up2[0];
+    M49p1 = M43p1 & T16p1;
+    M49p2 = M43p2 & T16p2;
+    M50p1 = M38p1 & T9p1;
+    M50p2 = M38p2 & T9p2;
+    M51p1 = M37p1 & T17p1;
+    M51p2 = M37p2 & T17p2;
+    M52p1 = M42p1 & T15p1;
+    M52p2 = M42p2 & T15p2;
+    M53p1 = M45p1 & T27p1;
+    M53p2 = M45p2 & T27p2;
+    M54p1 = M41p1 & T10p1;
+    M54p2 = M41p2 & T10p2;
+    M55p1 = M44p1 & T13p1;
+    M55p2 = M44p2 & T13p2;
+    M56p1 = M40p1 & T23p1;
+    M56p2 = M40p2 & T23p2;
+    M57p1 = M39p1 & T19p1;
+    M57p2 = M39p2 & T19p2;
+    M58p1 = M43p1 & T3p1;
+    M58p2 = M43p2 & T3p2;
+    M59p1 = M38p1 & T22p1;
+    M59p2 = M38p2 & T22p2;
+    M60p1 = M37p1 & T20p1;
+    M60p2 = M37p2 & T20p2;
+    M61p1 = M42p1 & T1p1;
+    M61p2 = M42p2 & T1p2;
+    M62p1 = M45p1 & T4p1;
+    M62p2 = M45p2 & T4p2;
+    M63p1 = M41p1 & T2p1;
+    M63p2 = M41p2 & T2p2;
+
+    L0p1 = M61p1 ^ M62p1;
+    L0p2 = M61p2 ^ M62p2;
+    L1p1 = M50p1 ^ M56p1;
+    L1p2 = M50p2 ^ M56p2;
+    L2p1 = M46p1 ^ M48p1;
+    L2p2 = M46p2 ^ M48p2;
+    L3p1 = M47p1 ^ M55p1;
+    L3p2 = M47p2 ^ M55p2;
+    L4p1 = M54p1 ^ M58p1;
+    L4p2 = M54p2 ^ M58p2;
+    L5p1 = M49p1 ^ M61p1;
+    L5p2 = M49p2 ^ M61p2;
+    L6p1 = M62p1 ^ L5p1;
+    L6p2 = M62p2 ^ L5p2;
+    L7p1 = M46p1 ^ L3p1;
+    L7p2 = M46p2 ^ L3p2;
+    L8p1 = M51p1 ^ M59p1;
+    L8p2 = M51p2 ^ M59p2;
+    L9p1 = M52p1 ^ M53p1;
+    L9p2 = M52p2 ^ M53p2;
+    L10p1 = M53p1 ^ L4p1;
+    L10p2 = M53p2 ^ L4p2;
+    L11p1 = M60p1 ^ L2p1;
+    L11p2 = M60p2 ^ L2p2;
+    L12p1 = M48p1 ^ M51p1;
+    L12p2 = M48p2 ^ M51p2;
+    L13p1 = M50p1 ^ L0p1;
+    L13p2 = M50p2 ^ L0p2;
+    L14p1 = M52p1 ^ M61p1;
+    L14p2 = M52p2 ^ M61p2;
+    L15p1 = M55p1 ^ L1p1;
+    L15p2 = M55p2 ^ L1p2;
+    L16p1 = M56p1 ^ L0p1;
+    L16p2 = M56p2 ^ L0p2;
+    L17p1 = M57p1 ^ L1p1;
+    L17p2 = M57p2 ^ L1p2;
+    L18p1 = M58p1 ^ L8p1;
+    L18p2 = M58p2 ^ L8p2;
+    L19p1 = M63p1 ^ L4p1;
+    L19p2 = M63p2 ^ L4p2;
+    L20p1 = L0p1 ^ L1p1;
+    L20p2 = L0p2 ^ L1p2;
+    L21p1 = L1p1 ^ L7p1;
+    L21p2 = L1p2 ^ L7p2;
+    L22p1 = L3p1 ^ L12p1;
+    L22p2 = L3p2 ^ L12p2;
+    L23p1 = L18p1 ^ L2p1;
+    L23p2 = L18p2 ^ L2p2;
+    L24p1 = L15p1 ^ L9p1;
+    L24p2 = L15p2 ^ L9p2;
+    L25p1 = L6p1 ^ L10p1;
+    L25p2 = L6p2 ^ L10p2;
+    L26p1 = L7p1 ^ L9p1;
+    L26p2 = L7p2 ^ L9p2;
+    L27p1 = L8p1 ^ L10p1;
+    L27p2 = L8p2 ^ L10p2;
+    L28p1 = L11p1 ^ L14p1;
+    L28p2 = L11p2 ^ L14p2;
+    L29p1 = L11p1 ^ L17p1;
+    L29p2 = L11p2 ^ L17p2;
+    Up1[7] = L6p1 ^ L24p1;
+    Up2[7] = L6p2 ^ L24p2;
+    Up1[6] = ~(L16p1 ^ L26p1);
+    Up2[6] = ~(L16p2 ^ L26p2);
+    Up1[5] = ~(L19p1 ^ L28p1);
+    Up2[5] = ~(L19p2 ^ L28p2);
+    Up1[4] = L6p1 ^ L21p1;
+    Up2[4] = L6p2 ^ L21p2;
+    Up1[3] = L20p1 ^ L22p1;
+    Up2[3] = L20p2 ^ L22p2;
+    Up1[2] = L25p1 ^ L29p1;
+    Up2[2] = L25p2 ^ L29p2;
+    Up1[1] = ~(L13p1 ^ L27p1);
+    Up2[1] = ~(L13p2 ^ L27p2);
+    Up1[0] = ~(L6p1 ^ L23p1);
+    Up2[0] = ~(L6p2 ^ L23p2);
 }
 
 void bs_transpose(word_t * blocks)
@@ -1077,7 +1277,7 @@ void bs_expand_key(word_t (* rk)[BLOCK_SIZE], uint8_t * _key)
 
 }
 
-void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
+void bs_cipher(word_t state[BLOCK_SIZE], word_t maskb[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
 {
     int round;
     bs_transpose(state);
@@ -1091,13 +1291,13 @@ void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
     bs_addroundkey(state,rk[0]);
     for (round = 1; round < 10; round++)
     {
-        bs_apply_sbox(state);
+        bs_apply_sbox(state, maskb);
         /*bs_shiftrows(state);*/
         /*bs_mixcolumns(state);*/
         bs_shiftmix(state);
         bs_addroundkey(state,rk[round]);
     }
-    bs_apply_sbox(state);
+    bs_apply_sbox(state, maskb);
     bs_shiftrows(state);
     bs_addroundkey(state,rk[10]);
     bs_transpose_rev(state);
