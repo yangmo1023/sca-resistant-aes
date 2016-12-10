@@ -15,24 +15,27 @@
 #error "endianness not supported"
 #endif
 
-uint8_t r1[]= {
-    222, 233, 135, 124, 158, 169, 215, 158, 188, 76, 207, 209, 133, 210, 16, 237, 
-    80, 11, 229, 185, 195, 250, 4, 139, 127, 15, 112, 218, 242, 72, 2, 214, 
-    205, 172, 39, 204, 240, 38, 186, 58, 75, 206, 238, 1, 88, 114, 158, 97, 
-    95, 167, 190, 11, 202, 208, 101, 35, 174, 206, 69, 123, 190, 80, 80, 23, 
-    61, 117, 35, 101, 107, 242, 56, 187, 110, 190, 20, 78, 233, 3, 133, 21, 
-    212, 186, 143, 198, 216, 236, 226, 32, 193, 46, 50, 89, 199, 249, 41, 109, 
-    129, 202, 123, 89, 97, 167, 181, 123, 153, 238, 151, 161, 163, 36, 105, 92, 
-    2, 192, 151, 251, 68, 232, 171, 159, 201, 31, 23, 197, 182, 181, 136, 113, 
-    198, 45, 70, 203, 34, 122, 136, 223, 89, 191, 28, 228, 43, 50, 203, 207, 
-    64, 224, 224, 241, 237, 156, 129, 107, 111, 112, 177, 13, 105, 27, 39, 152, 
-    99, 105, 25, 120, 98, 30, 109, 158, 152, 249, 59, 132, 232, 243, 147, 233, 
-    25, 181, 175, 31, 35, 254, 10, 150, 180, 192, 6, 149, 100, 136, 173, 191, 
-    241, 42, 187, 204, 19, 226, 168, 36, 107, 239, 246, 152, 178, 24, 114, 70, 
-    113, 236, 1, 159, 57, 227, 95, 251, 2, 89, 193, 34, 211, 49, 78, 114, 
-    151, 174, 209, 55, 101, 207, 78, 17, 154, 118, 24, 43, 90, 174, 223, 97, 
-    77, 23, 55, 43, 157, 67, 8, 66, 114, 57, 218, 192, 126, 133, 139, 142
+word_t rands[]= 
+{0xf97aee9c, 0x710a96ee, 0xb0c1264a, 0x15306359, 0x6823bb0e, 0x94f7d62e, 0x1fa8de31, 0xc7c5d251, 0xce984ee9, 0x7f3f5c56, 0xf3078d01, 0x730c33a1, 0xc7fc760b, 0xd16b7e34, 0x1c457dfa, 0x2b9e1b1d, 
+    0xd0a9ac71, 0xb1e2751a, 0xe1796abf, 0xdc25dd7e, 0x4b0bfd89, 0xe553d24f, 0x3b83ae47, 0x1ea87e2d, 0x7cd34659, 0x316cd3cd, 0x357b0592, 0xcba0217e, 0xbbb53b3e, 0x58ee9764, 0x617b2add, 0x94ce3d3e, 
+    0xa5f15189, 0x23108512, 0x3d3ea3e1, 0x1d4f05b3, 0x387a80b8, 0x1fc3c75e, 0x8abf659e, 0x45a1e634, 0x17e1be47, 0xdd2dda5f, 0x30f645da, 0xb3e07619, 0x98627f2e, 0xfccb7c68, 0x94c4dbe8, 0xbcda38a7, 
+    0xe6d6272b, 0x7de871ba, 0x5282847, 0xc287f2f2, 0x1858d421, 0xa3e20402, 0x350b1d4c, 0x20ca949f, 0x7c5f3ca0, 0x4da7675d, 0xe6ff4de1, 0x832dc32e, 0xbbc09ada, 0x6655f6d1, 0x6c431417, 0xef278ccd, 
+    0xfb6a03d0, 0xfa34230a, 0x7e9758d2, 0xa4cc8686, 0x39a40824, 0x8837a35f, 0xead7ff47, 0x75a52c1d, 0x41235de5, 0x43c5ade3, 0x9da9ad42, 0x200b2b75, 0xfe0cd133, 0x11120807, 0x88e485e1, 0x63097d7, 
+    0xf612fbe8, 0x58c13e0b, 0x73e56694, 0xb564660f, 0x763ac8e2, 0x7c2fb63a, 0x9597f423, 0xd77de499, 0xf4af5fac, 0xd9714af2, 0x5f94b2d4, 0xf8418a49, 0xfc36bd51, 0xf6e15ebb, 0xe0bde94e, 0x586e0c3a, 
+    0x84bdde62, 0x1e21497f, 0x3e0b4eef, 0xb6a6fdac, 0x143d4e8e, 0x9a6664ba, 0xff8d70d, 0x7713a350, 0x4bcc070c, 0x69fd1fb4, 0x3c2b217, 0x935ec1df, 0xd900e075, 0xd01723a5, 0xd47ecf3e, 0xc17b7a6d, 
+    0x722379c0, 0x6d7bd2d8, 0xd53df081, 0xa0434dea, 0x5cdcc3a5, 0x8469a2c6, 0x1a038c61, 0x3afa50f0, 0x466f1555, 0xbd96cb0a, 0x18210bc, 0xb7f3d321, 0x36f87572, 0xa8ef57ea, 0xbf748899, 0xbeadf5, 
+    0x193247fb, 0x7c9a47d1, 0xacf72cd5, 0x21aa3227, 0xa317d3bc, 0x936622f8, 0x4c9c5363, 0x3b5a43e6, 0x72a3f9cd, 0x8057796d, 0x81760670, 0x53b21652, 0x2f049e92, 0x8b6046ad, 0xca4af2fc, 0x193cd5fe, 
+    0x9bf9d7dc, 0x9dfb7590, 0xe1efe1c3, 0xb004731f, 0x46b2ab23, 0x88156806, 0x9d1d40c5, 0xe5bb12a1, 0x2aa64d28, 0x3d9e0ae, 0x534d4a93, 0xca430730, 0x9d7ed18a, 0xc404ccdb, 0x82d18219, 0x845c8e6a, 
+    0x5bf92f94, 0x72b65aa9, 0xb4dee515, 0x6e32da06, 0xef166883, 0x5df5eded, 0x7d95b77, 0x6a9643b6, 0xdd6ac607, 0x1875ebca, 0x956e2cda, 0xb95bffbd, 0x3f6f2dc6, 0x48961ea6, 0xe99881df, 0x3c7c3eb3, 
+    0x24ee5a54, 0x78049378, 0xa0fc632e, 0x4cf46404, 0xfe0cd0df, 0x2892e6c9, 0xd604e054, 0xc58ae080, 0x787d1b6, 0xa28341d5, 0x78f3050d, 0x9db4b0f1, 0xd95124fb, 0xaec73e14, 0x4455fb85, 0xacd66ea0, 
+    0x379287f6, 0x9100294b, 0xc48be2dd, 0x87cea4ec, 0x9e815514, 0xc4f73821, 0x866f15ec, 0x3265d874, 0x49ed7b8, 0xc36ce00a, 0x1f8f5999, 0x44328ab, 0x4305c687, 0x95e4feef, 0xa38f34a6, 0xe524f878, 
+    0x1759a00, 0x69469352, 0x8a4669c, 0x9cf2ac41, 0xd5a0f6e9, 0xc2112de7, 0xf3eea854, 0x739500e5, 0x9ea08a5f, 0xabab6b19, 0xdacc7a6a, 0xc340e801, 0x3b416c1c, 0x814e2ced, 0x5bc4fb4, 0x11b6b726, 
+    0xfc48a74, 0x1aeb9f9d, 0xcf7d852a, 0xabd96771, 0xccea39a0, 0x501f9c59, 0x71fbf780, 0x8c42a138, 0x9d36e346, 0x2d7e4e05, 0xd02f9e1c, 0x656732f4, 0xa574999e, 0xc0fd40a6, 0xebbe98cd, 0xa7e2b982, 
+    0xe2728dae, 0x7664af8f, 0xd3c232a5, 0xa24ff608, 0xa8a584de, 0xf54d0fec, 0x70d35338, 0x15507e00, 0xb2705993, 0x1c70b7f, 0xe73c690c, 0x1e5635a6, 0xc00a0c6f, 0x939cb9c7, 0x7db9b2ca, 0x2515c6c7, 
 };
+
+
+#define bs_applymask(x,y) bs_addroundkey(x,y)
 
 void bs_addroundkey(word_t * B, word_t * rk)
 {
@@ -44,10 +47,12 @@ void bs_addroundkey(word_t * B, word_t * rk)
 void bs_apply_sbox(word_t * input, word_t * mask)
 {
     int i;
+    /*bs_applymask(input, mask);*/
     for(i=0; i < BLOCK_SIZE; i+=8)
     {
         bs_sbox(input+i, mask + i);
     }
+    /*bs_applymask(input, mask);*/
 }
 
 void bs_apply_sbox_rev(word_t * input)
@@ -225,9 +230,23 @@ void bs_sbox_rev(word_t U[8])
     U[0] = P9 ^ P16;
 }
 
+static int rand_indx = 0;
 
 void SAND(word_t p1, word_t p2, word_t q1, word_t q2, word_t * z1, word_t * z2)
 {
+    //return (r1^(p2&q2)^(p2&q1)) ^ ( r1^(p1&q1)^(p1&q2))
+    word_t r1 = rands[((rand_indx++) & 0xff)];
+    word_t n1p1 = p1 & q1;
+    word_t n1p2 = p2 & q2;
+
+    word_t n2p1 = p1 & q2;
+    word_t n2p2 = p2 & q1;
+
+    word_t n3p1 = n1p1 ^ n2p1 ^ r1;
+    word_t n3p2 = n1p2 ^ n2p2 ^ r1;
+
+    *z1 = n3p1;
+    *z2 = n3p2;
 
 }
 
@@ -341,44 +360,54 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     T27p1 = T1p1 ^ T12p1;
     T27p2 = T1p2 ^ T12p2;
 
-    M1p1 = T13p1 & T6p1;
-    M1p2 = T13p2 & T6p2;
-    M2p1 = T23p1 & T8p1;
-    M2p2 = T23p2 & T8p2;
+    /*M1p1 = T13p1 & T6p1;*/
+    /*M1p2 = T13p2 & T6p2;*/
+    SAND(T13p1,T13p2,T6p1,T6p2,&M1p1,&M1p2);
+
+    /*M2p1 = T23p1 & T8p1;*/
+    /*M2p2 = T23p2 & T8p2;*/
+    SAND(T23p1,T23p2,T8p1,T8p2,&M2p1,&M2p2);
 
     M3p1 = T14p1 ^ M1p1;
     M3p2 = T14p2 ^ M1p2;
 
-    M4p1 = T19p1 & Up1[0];
-    M4p2 = T19p2 & Up2[0];
+    /*M4p1 = T19p1 & Up1[0];*/
+    /*M4p2 = T19p2 & Up2[0];*/
+    SAND(T19p1,T19p2,Up1[0],Up2[0],&M4p1,&M4p2);
 
     M5p1 = M4p1 ^ M1p1;
     M5p2 = M4p2 ^ M1p2;
 
-    M6p1 = T3p1 & T16p1;
-    M6p2 = T3p2 & T16p2;
-    M7p1 = T22p1 & T9p1;
-    M7p2 = T22p2 & T9p2;
+    /*M6p1 = T3p1 & T16p1;*/
+    /*M6p2 = T3p2 & T16p2;*/
+    SAND(T3p1,T3p2,T16p1,T16p2,&M6p1,&M6p2);
+    /*M7p1 = T22p1 & T9p1;*/
+    /*M7p2 = T22p2 & T9p2;*/
+    SAND(T22p1,T22p2,T9p1,T9p2,&M7p1,&M7p2);
     
     M8p1 = T26p1 ^ M6p1;
     M8p2 = T26p2 ^ M6p2;
 
-    M9p1 = T20p1 & T17p1;
-    M9p2 = T20p2 & T17p2;
+    /*M9p1 = T20p1 & T17p1;*/
+    /*M9p2 = T20p2 & T17p2;*/
+    SAND(T20p1,T20p2,T17p1,T17p2,&M9p1,&M9p2);
 
     M10p1 = M9p1 ^ M6p1;
     M10p2 = M9p2 ^ M6p2;
 
-    M11p1 = T1p1 & T15p1;
-    M11p2 = T1p2 & T15p2;
-    M12p1 = T4p1 & T27p1;
-    M12p2 = T4p2 & T27p2;
+    /*M11p1 = T1p1 & T15p1;*/
+    /*M11p2 = T1p2 & T15p2;*/
+    SAND(T1p1,T1p2,T15p1,T15p2,&M11p1,&M11p2);
+    /*M12p1 = T4p1 & T27p1;*/
+    /*M12p2 = T4p2 & T27p2;*/
+    SAND(T4p1,T4p2,T27p1,T27p2,&M12p1,&M12p2);
 
     M13p1 = M12p1 ^ M11p1;
     M13p2 = M12p2 ^ M11p2;
 
-    M14p1 = T2p1 & T10p1;
-    M14p2 = T2p2 & T10p2;
+    /*M14p1 = T2p1 & T10p1;*/
+    /*M14p2 = T2p2 & T10p2;*/
+    SAND(T2p1,T2p2,T10p1,T10p2,&M14p1,&M14p2);
 
     M15p1 = M14p1 ^ M11p1;
     M15p2 = M14p2 ^ M11p2;
@@ -401,8 +430,9 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     M24p1 = M22p1 ^ M23p1;
     M24p2 = M22p2 ^ M23p2;
 
-    M25p1 = M22p1 & M20p1;
-    M25p2 = M22p2 & M20p2;
+    /*M25p1 = M22p1 & M20p1;*/
+    /*M25p2 = M22p2 & M20p2;*/
+    SAND(M22p1,M22p2,M20p1,M20p2,&M25p1,&M25p2);
     
     M26p1 = M21p1 ^ M25p1;
     M26p2 = M21p2 ^ M25p2;
@@ -411,22 +441,28 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     M28p1 = M23p1 ^ M25p1;
     M28p2 = M23p2 ^ M25p2;
 
-    M29p1 = M28p1 & M27p1;
-    M29p2 = M28p2 & M27p2;
-    M30p1 = M26p1 & M24p1;
-    M30p2 = M26p2 & M24p2;
-    M31p1 = M20p1 & M23p1;
-    M31p2 = M20p2 & M23p2;
-    M32p1 = M27p1 & M31p1;
-    M32p2 = M27p2 & M31p2;
+    /*M29p1 = M28p1 & M27p1;*/
+    /*M29p2 = M28p2 & M27p2;*/
+    SAND(M28p1,M28p2,M27p1,M27p2,&M29p1,&M29p2);
+    /*M30p1 = M26p1 & M24p1;*/
+    /*M30p2 = M26p2 & M24p2;*/
+    SAND(M26p1,M26p2,M24p1,M24p2,&M30p1,&M30p2);
+    /*M31p1 = M20p1 & M23p1;*/
+    /*M31p2 = M20p2 & M23p2;*/
+    SAND(M20p1,M20p2,M23p1,M23p2,&M31p1,&M31p2);
+    /*M32p1 = M27p1 & M31p1;*/
+    /*M32p2 = M27p2 & M31p2;*/
+    SAND(M27p1,M27p2,M31p1,M31p2,&M32p1,&M32p2);
 
     M33p1 = M27p1 ^ M25p1;
     M33p2 = M27p2 ^ M25p2;
 
-    M34p1 = M21p1 & M22p1;
-    M34p2 = M21p2 & M22p2;
-    M35p1 = M24p1 & M34p1;
-    M35p2 = M24p2 & M34p2;
+    /*M34p1 = M21p1 & M22p1;*/
+    /*M34p2 = M21p2 & M22p2;*/
+    SAND(M21p1,M21p2,M22p1,M22p2,&M34p1,&M34p2);
+    /*M35p1 = M24p1 & M34p1;*/
+    /*M35p2 = M24p2 & M34p2;*/
+    SAND(M24p1,M24p2,M34p1,M34p2,&M35p1,&M35p2);
 
     M36p1 = M24p1 ^ M25p1;
     M36p2 = M24p2 ^ M25p2;
@@ -449,42 +485,60 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     M45p1 = M42p1 ^ M41p1;
     M45p2 = M42p2 ^ M41p2;
 
-    M46p1 = M44p1 & T6p1;
-    M46p2 = M44p2 & T6p2;
-    M47p1 = M40p1 & T8p1;
-    M47p2 = M40p2 & T8p2;
-    M48p1 = M39p1 & Up1[0];
-    M48p2 = M39p2 & Up2[0];
-    M49p1 = M43p1 & T16p1;
-    M49p2 = M43p2 & T16p2;
-    M50p1 = M38p1 & T9p1;
-    M50p2 = M38p2 & T9p2;
-    M51p1 = M37p1 & T17p1;
-    M51p2 = M37p2 & T17p2;
-    M52p1 = M42p1 & T15p1;
-    M52p2 = M42p2 & T15p2;
-    M53p1 = M45p1 & T27p1;
-    M53p2 = M45p2 & T27p2;
-    M54p1 = M41p1 & T10p1;
-    M54p2 = M41p2 & T10p2;
-    M55p1 = M44p1 & T13p1;
-    M55p2 = M44p2 & T13p2;
-    M56p1 = M40p1 & T23p1;
-    M56p2 = M40p2 & T23p2;
-    M57p1 = M39p1 & T19p1;
-    M57p2 = M39p2 & T19p2;
-    M58p1 = M43p1 & T3p1;
-    M58p2 = M43p2 & T3p2;
-    M59p1 = M38p1 & T22p1;
-    M59p2 = M38p2 & T22p2;
-    M60p1 = M37p1 & T20p1;
-    M60p2 = M37p2 & T20p2;
-    M61p1 = M42p1 & T1p1;
-    M61p2 = M42p2 & T1p2;
-    M62p1 = M45p1 & T4p1;
-    M62p2 = M45p2 & T4p2;
-    M63p1 = M41p1 & T2p1;
-    M63p2 = M41p2 & T2p2;
+    /*M46p1 = M44p1 & T6p1;*/
+    /*M46p2 = M44p2 & T6p2;*/
+    SAND(M44p1,M44p2,T6p1,T6p2,&M46p1,&M46p2);
+    /*M47p1 = M40p1 & T8p1;*/
+    /*M47p2 = M40p2 & T8p2;*/
+    SAND(M40p1,M40p2,T8p1,T8p2,&M47p1,&M47p2);
+    /*M48p1 = M39p1 & Up1[0];*/
+    /*M48p2 = M39p2 & Up2[0];*/
+    SAND(M39p1,M39p2,Up1[0],Up2[0],&M48p1,&M48p2);
+    /*M49p1 = M43p1 & T16p1;*/
+    /*M49p2 = M43p2 & T16p2;*/
+    SAND(M43p1,M43p2,T16p1,T16p2,&M49p1,&M49p2);
+    /*M50p1 = M38p1 & T9p1;*/
+    /*M50p2 = M38p2 & T9p2;*/
+    SAND(M38p1,M38p2,T9p1,T9p2,&M50p1,&M50p2);
+    /*M51p1 = M37p1 & T17p1;*/
+    /*M51p2 = M37p2 & T17p2;*/
+    SAND(M37p1,M37p2,T17p1,T17p2,&M51p1,&M51p2);
+    /*M52p1 = M42p1 & T15p1;*/
+    /*M52p2 = M42p2 & T15p2;*/
+    SAND(M42p1,M42p2,T15p1,T15p2,&M52p1,&M52p2);
+    /*M53p1 = M45p1 & T27p1;*/
+    /*M53p2 = M45p2 & T27p2;*/
+    SAND(M45p1,M45p2,T27p1,T27p2,&M53p1,&M53p2);
+    /*M54p1 = M41p1 & T10p1;*/
+    /*M54p2 = M41p2 & T10p2;*/
+    SAND(M41p1,M41p2,T10p1,T10p2,&M54p1,&M54p2);
+    /*M55p1 = M44p1 & T13p1;*/
+    /*M55p2 = M44p2 & T13p2;*/
+    SAND(M44p1,M44p2,T13p1,T13p2,&M55p1,&M55p2);
+    /*M56p1 = M40p1 & T23p1;*/
+    /*M56p2 = M40p2 & T23p2;*/
+    SAND(M40p1,M40p2,T23p1,T23p2,&M56p1,&M56p2);
+    /*M57p1 = M39p1 & T19p1;*/
+    /*M57p2 = M39p2 & T19p2;*/
+    SAND(M39p1,M39p2,T19p1,T19p2,&M57p1,&M57p2);
+    /*M58p1 = M43p1 & T3p1;*/
+    /*M58p2 = M43p2 & T3p2;*/
+    SAND(M43p1,M43p2,T3p1,T3p2,&M58p1,&M58p2);
+    /*M59p1 = M38p1 & T22p1;*/
+    /*M59p2 = M38p2 & T22p2;*/
+    SAND(M38p1,M38p2,T22p1,T22p2,&M59p1,&M59p2);
+    /*M60p1 = M37p1 & T20p1;*/
+    /*M60p2 = M37p2 & T20p2;*/
+    SAND(M37p1,M37p2,T20p1,T20p2,&M60p1,&M60p2);
+    /*M61p1 = M42p1 & T1p1;*/
+    /*M61p2 = M42p2 & T1p2;*/
+    SAND(M42p1,M42p2,T1p1,T1p2,&M61p1,&M61p2);
+    /*M62p1 = M45p1 & T4p1;*/
+    /*M62p2 = M45p2 & T4p2;*/
+    SAND(M45p1,M45p2,T4p1,T4p2,&M62p1,&M62p2);
+    /*M63p1 = M41p1 & T2p1;*/
+    /*M63p2 = M41p2 & T2p2;*/
+    SAND(M41p1,M41p2,T2p1,T2p2,&M63p1,&M63p2);
 
     L0p1 = M61p1 ^ M62p1;
     L0p2 = M61p2 ^ M62p2;
@@ -549,9 +603,9 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     Up1[7] = L6p1 ^ L24p1;
     Up2[7] = L6p2 ^ L24p2;
     Up1[6] = ~(L16p1 ^ L26p1);
-    Up2[6] = ~(L16p2 ^ L26p2);
+    Up2[6] =  (L16p2 ^ L26p2);
     Up1[5] = ~(L19p1 ^ L28p1);
-    Up2[5] = ~(L19p2 ^ L28p2);
+    Up2[5] =  (L19p2 ^ L28p2);
     Up1[4] = L6p1 ^ L21p1;
     Up2[4] = L6p2 ^ L21p2;
     Up1[3] = L20p1 ^ L22p1;
@@ -559,9 +613,9 @@ void bs_sbox(word_t Up1[8], word_t Up2[8])
     Up1[2] = L25p1 ^ L29p1;
     Up2[2] = L25p2 ^ L29p2;
     Up1[1] = ~(L13p1 ^ L27p1);
-    Up2[1] = ~(L13p2 ^ L27p2);
+    Up2[1] =  (L13p2 ^ L27p2);
     Up1[0] = ~(L6p1 ^ L23p1);
-    Up2[0] = ~(L6p2 ^ L23p2);
+    Up2[0] =  (L6p2 ^ L23p2);
 }
 
 void bs_transpose(word_t * blocks)
@@ -1282,6 +1336,8 @@ void bs_cipher(word_t state[BLOCK_SIZE], word_t maskb[BLOCK_SIZE], word_t (* rk)
     int round;
     bs_transpose(state);
 
+    bs_applymask(state, maskb);
+
     TRIGGER = 0xff;
     asm("nop");
     asm("nop");
@@ -1289,17 +1345,26 @@ void bs_cipher(word_t state[BLOCK_SIZE], word_t maskb[BLOCK_SIZE], word_t (* rk)
     TRIGGER = 0x0;
 
     bs_addroundkey(state,rk[0]);
+
     for (round = 1; round < 10; round++)
     {
         bs_apply_sbox(state, maskb);
+        
         /*bs_shiftrows(state);*/
         /*bs_mixcolumns(state);*/
+
         bs_shiftmix(state);
+        bs_shiftmix(maskb);
         bs_addroundkey(state,rk[round]);
     }
+
     bs_apply_sbox(state, maskb);
     bs_shiftrows(state);
+    bs_shiftrows(maskb);
     bs_addroundkey(state,rk[10]);
+
+    bs_applymask(state, maskb);
+
     bs_transpose_rev(state);
 }
 
@@ -1307,6 +1372,7 @@ void bs_cipher_rev(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
 {
     int round;
     bs_transpose(state);
+
 
     bs_addroundkey(state,rk[10]);
     for (round = 9; round > 0; round--)
