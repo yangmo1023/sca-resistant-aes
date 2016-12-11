@@ -14,23 +14,73 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
 
     bs_expand_key(rk, key);
 
+    int i,j;
+
     while (size > 0)
     {
-        if (size < BS_BLOCK_SIZE)
+        if (size < BS_BLOCK_SIZE/2)
         {
             memset(input_space,0,BS_BLOCK_SIZE);
-            memmove(input_space, inputb, size);
-            bs_cipher(input_space, (word_t*)maskb,rk);
+
+            for(i = 0; i < (size/WORD_SIZE + size % WORD_SIZE); i += 2)
+            {
+                memmove(input_space + (i * WORDS_PER_BLOCK), inputb, BLOCK_SIZE/8);
+                memmove(input_space + (i * WORDS_PER_BLOCK + WORDS_PER_BLOCK), maskb, BLOCK_SIZE/8);
+
+                maskb += BLOCK_SIZE/8;
+                inputb += BLOCK_SIZE/8;
+
+                for (j = 0; j < 4; j++)
+                {
+                    input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+                }
+
+            }
+
+            bs_cipher(input_space, rk);
+
+            for(i = 0; i < WORD_SIZE; i += 2)
+            {
+                for (j = 0; j < 4; j++)
+                {
+                    input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+                }
+            }
+
+
             memmove(outputb, input_space, size);
             size = 0;
             state += size;
         }
         else
         {
-            memmove(state,inputb,BS_BLOCK_SIZE);
-            bs_cipher(state, (word_t*)maskb,rk);
+            for(i = 0; i < WORD_SIZE; i += 2)
+            {
+                memmove(input_space + (i * WORDS_PER_BLOCK), inputb, BLOCK_SIZE/8);
+                memmove(input_space + (i * WORDS_PER_BLOCK + WORDS_PER_BLOCK), maskb, BLOCK_SIZE/8);
+
+                maskb += BLOCK_SIZE/8;
+                inputb += BLOCK_SIZE/8;
+
+                for (j = 0; j < 4; j++)
+                {
+                    input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+                }
+
+            }
+
+            bs_cipher(state, rk);
             size -= BS_BLOCK_SIZE;
             state += BS_BLOCK_SIZE;
+            for(i = 0; i < WORD_SIZE; i += 2)
+            {
+                for (j = 0; j < 4; j++)
+                {
+                    input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+                }
+            }
+
+
         }
 
     }
@@ -81,7 +131,7 @@ static void INC_CTR(uint8_t * ctr, uint8_t i)
     }
 }
 
-void aes_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t * key, uint8_t * iv)
+void aesm_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size_t size, uint8_t * key, uint8_t * iv)
 {
     word_t rk[11][BLOCK_SIZE];
     word_t ctr[BLOCK_SIZE];
@@ -96,27 +146,49 @@ void aes_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, size_t size, uint8_t *
 
     do
     {
-        int chunk = MIN(size, BS_BLOCK_SIZE);
+        int chunk = MIN(size, BS_BLOCK_SIZE/2);
         int blocks = chunk / (BLOCK_SIZE/8);
         if (chunk % (BLOCK_SIZE/8))
         {
             blocks++;
         }
 
-        int i;
-        for (i = 0; i < blocks; i++)
+        int i,j;
+        for (i = 0; i < blocks*2; i += 2)
         {
             memmove(ctr + (i * WORDS_PER_BLOCK), iv_copy, BLOCK_SIZE/8);
+            memmove(ctr + (i * WORDS_PER_BLOCK + WORDS_PER_BLOCK), maskb, BLOCK_SIZE/8);
+            maskb += BLOCK_SIZE/8;
+            for (j = 0; j < 4; j++)
+            {
+                ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+            }
+
             INC_CTR(iv_copy,1);
         }
-        // this will fail
-        bs_cipher(ctr, NULL, rk);
+
+        bs_cipher(ctr,rk);
+
+        for (i = 0; i < blocks*2; i += 2)
+        {
+            for (j = 0; j < 4; j++)
+            {
+                ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+            }
+        }
+
         size -= chunk;
 
         uint8_t * ctr_p = (uint8_t *) ctr;
-        while(chunk--)
+        for (i = 0; i < blocks; i += 1)
         {
-            *outputb++ = *ctr_p++ ^ *inputb++;
+            int j = BLOCK_SIZE/8;
+            while(j--)
+            {
+                *outputb++ = *ctr_p++ ^ *inputb++;
+            }
+            // skip mask
+            ctr_p += BLOCK_SIZE/8;
         }
 
     }
