@@ -114,7 +114,9 @@ int cli_app(int argc, char * argv[])
 
     uint8_t * pt = (uint8_t *) malloc(amt);
     uint8_t * rt = (uint8_t *) malloc(amt);
-    uint8_t * ct = (uint8_t *) malloc(amt);
+    uint8_t * ct = (uint8_t *) malloc(amt+50);
+
+    printf("encrypting %ld bytes\n",amt);
 
     int ptlen = fread(pt, 1, amt, input);
     if (ptlen != amt)

@@ -15,50 +15,51 @@
 #error "endianness not supported"
 #endif
 
-word_t rands[]= {
-    (word_t)0x3f03303f300fc03f, (word_t)0xfc30c0f3cc3f03c0L, (word_t)0xccc3ff0fff0c0333L, (word_t)0x33f33f3033fcf30f, (word_t)0xc33fcff3ccf00c00L, (word_t)0x33c3ccc3cf0f3fc3, 
-    (word_t)0xc0c3fc0fcf3c3fc3L, (word_t)0xcc0f30f300c0c3fcL, (word_t)0x33c0c030ffff03f, (word_t)0xf3f330fcc030030, (word_t)0xf33c0c3ff3cc3fccL, (word_t)0xf03fcc30c0c0c300L, 
-    (word_t)0x3ccc00f0c3c33c30, (word_t)0x300f3f3cccfff0f0, (word_t)0xffffff0033c0300fL, (word_t)0xfcf330f30fcf00ccL, (word_t)0x333303f0303c333, (word_t)0x3fc00f0cc0fff00, 
-    (word_t)0xcf000f3f00ffc00cL, (word_t)0x3c030ffc0cc3cccc, (word_t)0x33fc330f330cf0ff, (word_t)0xccf0ffcf3c03c3f3L, (word_t)0x3c3c03fc3f0c3c00, (word_t)0xcc03fffcf33ccc00L, 
-    (word_t)0xf0cf00fcf303ff3cL, (word_t)0xfcc0ff0cc0cf3ff, (word_t)0x3c0c0f303033cf3c, (word_t)0xc33cf3ccffcf3fc0L, (word_t)0x333f0fcc030c3f00, (word_t)0xf03f30330cfccc30L, 
-    (word_t)0xc3003fc3ccf30f03L, (word_t)0xf3ff30003c0cf33, (word_t)0x300fffcf0c0303cc, (word_t)0xff3000cfccc0c3f0L, (word_t)0xff0300cf3003fccfL, (word_t)0x3ff333fccc00cff3, 
-    (word_t)0x303003c303c3c333, (word_t)0xf3f0033c0c0ccccfL, (word_t)0x3c0cc330ccf30300, (word_t)0xccf00ff333c0fcfcL, (word_t)0x3fff00003f333000, (word_t)0xcf3fffcccf0f3c0cL, 
-    (word_t)0xcf0f0fcf00cc30ffL, (word_t)0x3fff03330ccff3c3, (word_t)0xc0cc0033333ccfffL, (word_t)0x3f0c3f00ccc3ccc3, (word_t)0x3cf03333fc0f3ffc, (word_t)0xfccc0cc0ff3c333cL, 
-    (word_t)0xf003c3c3fccc3330L, (word_t)0x330f303f3fc0c3f0, (word_t)0xc0c3cffc3f3fc0c0L, (word_t)0x303f30cccff0c33c, (word_t)0x333f33f0f0fffcc, (word_t)0x300c030f0c03c0fc, 
-    (word_t)0x33ccff3c0c0333c0, (word_t)0xc3303030fc3ccc00L, (word_t)0xf03f3c0cccc3f0f3L, (word_t)0xf3cf330f30ffccc, (word_t)0xf3f0fcfc033cf3f0L, (word_t)0x33c33f0fc30cf0cf, 
-    (word_t)0xf033ffc0030c003fL, (word_t)0xff03f3ff00f3ffc, (word_t)0x303333cf3c3cf, (word_t)0xcc0f3f30c0fc333cL, (word_t)0x303333303fc3f33f, (word_t)0xc0ff03f33ff33ff0L, 
-    (word_t)0xc0ffc3f3c00ff0c0L, (word_t)0xc33c30c0c0c3c0fcL, (word_t)0xc0030fc00c033c3cL, (word_t)0xfc03f3c300c3f000L, (word_t)0x3f3c3303c3f33c03, (word_t)0xc33ff33c03c3300, 
-    (word_t)0xfccf33333c33cfc3L, (word_t)0xff3ff3fc003fcf3cL, (word_t)0xcccf3c0f30f33cfcL, (word_t)0xff0f0fcc0cc0fc3, (word_t)0xcc303cc03c000cccL, (word_t)0xc3ccfc30cc3fffccL, 
-    (word_t)0xccf3f3c0fccf003cL, (word_t)0xc3f0f0ff30ffc003L, (word_t)0x3330ff00ff3f00f3, (word_t)0x3c3300fc030cc3f, (word_t)0x3c33ff0c33fcff, (word_t)0x3f30cc00c330f0cf, 
-    (word_t)0xf0f3c00fc00f033cL, (word_t)0xff3330cf0fcc0cffL, (word_t)0xf00cffff000c3c30L, (word_t)0x3fccc0c300cc033f, (word_t)0xfc0f30ff00c0ff3, (word_t)0xf3fcc0ffc03000c3L, 
-    (word_t)0x3cff30f0333003c3, (word_t)0xfc30fc0c3f0ff0, (word_t)0x33c0030ffcfcc300, (word_t)0xfcf0ccfcc333cfc, (word_t)0x330f30c33cf0c3, (word_t)0x33333f0fc0c0ff0c, 
-    (word_t)0xf0f00cc03f0f33fcL, (word_t)0x3f3003c3cc0f3c0f, (word_t)0x3cc3f030cf03f3fc, (word_t)0x3333f30c00f303, (word_t)0x333cc33fffff3ccf, (word_t)0xff03f333f33030, 
-    (word_t)0x3000cfff033fc330, (word_t)0x30303cc0c030ff33, (word_t)0xf0c33cc0f033f33, (word_t)0xcfff3f0f33ffcff, (word_t)0x3ffc0fcc3ff3030c, (word_t)0x30c30cc03ccc3cc0, 
-    (word_t)0xf303fc3c030cccc0L, (word_t)0x30f0c30300ccc3c, (word_t)0xc0c3fcfff333f300L, (word_t)0x3cc3cf30003f00, (word_t)0xc3cf3000c3c0cfc, (word_t)0xfffc033cfcccc3cfL, 
-    (word_t)0xf3f030f303f30f, (word_t)0xc30c0c3cc03c, (word_t)0x3ccc0cfff03cfccf, (word_t)0xfff3030c3c3cc0f, (word_t)0xf3c03c33cfccfcc3L, (word_t)0x3030cf0f330330c0, 
-    (word_t)0xc000cc303cc3cffcL, (word_t)0x3300fc0f30f3f33f, (word_t)0xf0f0f03cffff0c30L, (word_t)0x3ffc3cc0f0f0cc3c, (word_t)0xf0fccf30cf3cfcf0L, (word_t)0xfccf33c3ff30cc0, 
-    (word_t)0xffcfc0c0f0f33f3, (word_t)0xffc3ffc0cc0c0c33L, (word_t)0xcccf00f03cffcff0L, (word_t)0xf33f30cfc30c33cfL, (word_t)0x3033033f33cc0c00, (word_t)0xf0c3330cf03f0033L, 
-    (word_t)0x30030ffc0f30303c, (word_t)0x300ff0cf3f3303f3, (word_t)0x303ff300f00f303c, (word_t)0xc00c00300c00fcc0L, (word_t)0x3c003f0cfccc30cc, (word_t)0xcfffcc0cf0f3333fL, 
-    (word_t)0xccc030030ffcc33fL, (word_t)0xcf3c03c00f000f3, (word_t)0x3f3cc3c30cffff3f, (word_t)0x3fc303ffcfcc03cc, (word_t)0xc3f00330033cf030L, (word_t)0x3f03030cccc0030, 
-    (word_t)0xfcfcf030ff00c000L, (word_t)0x30fccf0cc0f003f0, (word_t)0xc03303cfcc3033cfL, (word_t)0xf33c330fffc03ffcL, (word_t)0x33fc0f3c030f3c00, (word_t)0xf0cf33000cf330f3L, 
-    (word_t)0xcfffc3f0c03300c3L, (word_t)0x300cc000f0f3c333, (word_t)0x33f333cfcccff, (word_t)0xf303000ccc0c333cL, (word_t)0xc0cfffc3ff3cccccL, (word_t)0xfcc0cff003c00ccfL, 
-    (word_t)0x300c0fcc0cf03f0, (word_t)0xfc3fff0030ccf3f3L, (word_t)0x33f3ccffc3f030, (word_t)0xfcc3fccc00cfcc3, (word_t)0xf0c33c03cc0cc30cL, (word_t)0xf3fc3330cf33cf0cL, 
-    (word_t)0x3c0c033cf3c3cf33, (word_t)0x3ffc33fcfccf3f, (word_t)0x3f0fcf0c30fcfccf, (word_t)0xf033fc30c03ff0ffL, (word_t)0xf00ffc3c30cf03f, (word_t)0xf0fccf30f3cc0ffcL, 
-    (word_t)0x30c0ccf0c0cf3f00, (word_t)0xccf0333c0fcf30c3L, (word_t)0x3c3c03ffcfc3cc33, (word_t)0xfc3f0cc33c03fc0fL, (word_t)0x3000c30cc33ff0fc, (word_t)0xcfffcf0c33c0c3c0L, 
-    (word_t)0xffcf3f3ff3030f0, (word_t)0x3ffffcc03cf0c303, (word_t)0x33cf0f3c3f0330cc, (word_t)0xfcffc3c0f000ff0cL, (word_t)0xc330f30f3f330cccL, (word_t)0x3f03c0f0c3ccf30, 
-    (word_t)0xcf0fccf3c0333c00L, (word_t)0xcf3c300cfc03cfc, (word_t)0xf0fff33f000fcfc, (word_t)0x3fc3f3ccf0cfc0cf, (word_t)0xf33ff33033f3f300L, (word_t)0xccc03c3c0cf03333L, 
-    (word_t)0xfc3c3cc03300fc3, (word_t)0xccf3fcc0ccf00fc0L, (word_t)0xf03003ff0ccf0300L, (word_t)0xc33ff3f3c303cc0cL, (word_t)0x3f300ccc33c0c0c3, (word_t)0xf03fc3333fffc300L, 
-    (word_t)0xccc0ff30cc33f0f0L, (word_t)0x3300003c3fcfff33, (word_t)0x30f0c03f33cc03f0, (word_t)0xc000033f3fc0ccc3L, (word_t)0x3fff0003f3f3ffcc, (word_t)0xc3fccf0c3f0ffccfL, 
-    (word_t)0x3fc303fc0fcc3cfc, (word_t)0xcffff0c3f3c00c33L, (word_t)0xf3f3f030cf03c0f3L, (word_t)0xf00cff00ff3f3cc, (word_t)0xf33cc30f0f0f3cf0L, (word_t)0xff00cf000fccf000L, 
-    (word_t)0xff300cf0cc03fcf3L, (word_t)0xccf00fcc33c0c333L, (word_t)0xf33fcf3ffcf00000L, (word_t)0xc33f0f003cc303fcL, (word_t)0x33c3cc3c3c3fc00, (word_t)0xc33c0cfcf30cff0cL, 
-    (word_t)0x3c3f303fcffc000f, (word_t)0x30c33f03c3cff0f, (word_t)0x330f330303ffcc33, (word_t)0xf333ff3cccc3c3cfL, (word_t)0x3c03fc0cf00f3f03, (word_t)0xf333c3c3cfff30c0L, 
-    (word_t)0x303ff0c0ffc3330, (word_t)0xf03303000fff33cfL, (word_t)0x33c33fcccc33f00, (word_t)0xc30fc03cfc0ff0f0L, (word_t)0xc0cc3f00cffcc3cfL, (word_t)0xf0ffcc30cfcfc333L, 
-    (word_t)0xf0c33f33c0ff0cfcL, (word_t)0xfffcf0f0f0fcf333L, (word_t)0x33fc330cccf3cf, (word_t)0xff33f333c030f33cL, (word_t)0xc3f303f3f03c03f0L, (word_t)0xcfff03cc0330c300L, 
-    (word_t)0x3ff3c030c0f333c3, (word_t)0xff03f30cf30cff0fL, (word_t)0x3cccc3cf00cf33c0, (word_t)0xff0fc3033ccf0000L, (word_t)0x330fcfc3f3c303f3, (word_t)0xf3cc30cf0c3fc0c3L, 
-    (word_t)0xc03ff3c0f33cffcfL, (word_t)0xf30000f030cfc30fL, (word_t)0x3300030cc0f3cc0, (word_t)0xff3c033fcfccc30, (word_t)0x3fcc0c3c300f0fff, (word_t)0x33f00cf00300003c, 
-    (word_t)0xcfcfc003f3fcf3ccL, (word_t)0xff3fff3cfcf330, (word_t)0x30fccf0c33f030fc, (word_t)0x330c3fcccfccf0c, (word_t)0x303cf3fcfccccff, (word_t)0x3303cfff3cf3f03, 
-    (word_t)0xc3030c003c30fc33L, (word_t)0xccf30cf0fcc30f00L, (word_t)0x3333f000300cf3c, (word_t)0xfcf030c303f3c0c0L, (word_t)0xc3c0cc030fc00c00L, (word_t)0x33cccff3f3c03030, 
-};
+word_t rands[256]= 
+{(word_t)0xf3ccc0ccf3cf03c0ULL, (word_t)0xcc0cccc33ccc3f30ULL, (word_t)0x330cc0f3ccc33cffULL, (word_t)0xccf0f3fcfcff33f0ULL, (word_t)0x3f3ff0c3c03033cULL, (word_t)0x300333c030ccfULL, 
+(word_t)0x3f03c00fcfc3fffULL, (word_t)0xc3f3cc300cf00c3cULL, (word_t)0xfc33fffc0ff30cfULL, (word_t)0xf33f30fccc3c0ff0ULL, (word_t)0xff33c0303330c330ULL, (word_t)0x3030c3000033fc03ULL, 
+(word_t)0xf333fcc30c0fcf03ULL, (word_t)0xf3333cff03fc3f03ULL, (word_t)0x3cc0cfc0cf0ff3fcULL, (word_t)0xff3f3c00f0cc00c3ULL, (word_t)0xf033c3fc03ff300fULL, (word_t)0x330c3ccff330f0f3ULL, 
+(word_t)0xfc3c0fc303c3000ULL, (word_t)0xc330ffccf033ffc3ULL, (word_t)0xfcf00fcc3c3ff00fULL, (word_t)0xf0c3cf0c3cfcf0c0ULL, (word_t)0x3fccff303cf3c300ULL, (word_t)0xf0f3c3cf0f0f303fULL, 
+(word_t)0x3fc30fc03330ff0cULL, (word_t)0x3300f33c0000f00fULL, (word_t)0xf0033f0f300ff33cULL, (word_t)0x3fc0cc033f0f0f0cULL, (word_t)0x3fc3c00f03f3cf30ULL, (word_t)0xf0f0fc0f3fffffc3ULL, 
+(word_t)0xcf0033cff3ff303fULL, (word_t)0xc3fc30f3cf03f3ffULL, (word_t)0x30cfcc00fcccf30fULL, (word_t)0x3f0c0cc00f0cf0c0ULL, (word_t)0xff303ff03fccc3ccULL, (word_t)0x333cf0cc3f0c03f0ULL, 
+(word_t)0xf3ccf0fc0f33c0cfULL, (word_t)0xc33f3c0c030ffc0fULL, (word_t)0xc0f00cfcff300fffULL, (word_t)0xccff0303f3c030ffULL, (word_t)0x3f3300c3cfccf3fULL, (word_t)0xfc0c030ff03c0f33ULL, 
+(word_t)0x30c3c33c03fcfcf3ULL, (word_t)0x30330fc0300ff0ULL, (word_t)0xcfcf3fc033c0f30ULL, (word_t)0xcf0f3c33c0cc030cULL, (word_t)0xc3f00f33cff3c030ULL, (word_t)0xcfcc0fc0fcc00033ULL, 
+(word_t)0x3fcf0ffcf30c0fULL, (word_t)0xf03f3ff0f3033c0cULL, (word_t)0x3f33fff0cf0c03ccULL, (word_t)0xccc3c030cffcc0cULL, (word_t)0xcc3ccc0003cccfULL, (word_t)0xf0cccc0f00f30f03ULL, 
+(word_t)0xfccf3cc3fc3cf3cfULL, (word_t)0xfc0f3cf00f3f333fULL, (word_t)0xcfc000ccff0c3c0cULL, (word_t)0xf3300fff0ffc00fULL, (word_t)0xc0033cc03f0c3fccULL, (word_t)0x3fcc3003cc3cccULL, 
+(word_t)0xcf033c0cc0cfff3fULL, (word_t)0xf0f00f3fcff003ccULL, (word_t)0xcf00f3ff3c3cfffcULL, (word_t)0x300f3fc03fcf033cULL, (word_t)0xc3f0c0cf0c3cf0c3ULL, (word_t)0xfc30cffffcff300cULL, 
+(word_t)0x3f03f00c30c0f33ULL, (word_t)0xccfcf30f3ff0003cULL, (word_t)0xc00c33300c0fcffULL, (word_t)0xcf30ccf300ff3ff0ULL, (word_t)0x3f3f3f3f3ffc3003ULL, (word_t)0xf0f00f0ccc3fc3ULL, 
+(word_t)0xfccfcf30f3330f0ULL, (word_t)0xf3c3cf333ff0ffffULL, (word_t)0xfc33f3fff3f303f0ULL, (word_t)0xf0fc3cf3cf0ff033ULL, (word_t)0xc0fcc0cfcf0ff0fcULL, (word_t)0xccff3c3f30f00cc3ULL, 
+(word_t)0xcfff00c33f30f3f0ULL, (word_t)0x3f00c3f3fccff0ULL, (word_t)0x3cf3f3cff3ff303fULL, (word_t)0xc0c030cf0cff00ULL, (word_t)0xf3f3000cc030300fULL, (word_t)0xf0fcc030c3c33f3cULL, 
+(word_t)0xc00030033f00c3cULL, (word_t)0xfcfcf3ff0c30303fULL, (word_t)0xf33c30000f03f3f3ULL, (word_t)0x3cff3c3ff30fc300ULL, (word_t)0xf0f30f0c0f3cf003ULL, (word_t)0x3cf3c3f300330cf3ULL, 
+(word_t)0xfcfc00333ffc33ccULL, (word_t)0x3cfcfc303c33c33cULL, (word_t)0x3f3fc3c0fc0c33cULL, (word_t)0xc0ffc0cf330cf3cfULL, (word_t)0xf0c30333fcf03fc0ULL, (word_t)0xccc03f03033fcc3ULL, 
+(word_t)0xc3f3c3ff0f03f03cULL, (word_t)0xf0330cf00c000cf0ULL, (word_t)0xff00fcf0f33ccc00ULL, (word_t)0xc3c3c0003f3cc33fULL, (word_t)0xf3fcfc3ccfffcc03ULL, (word_t)0xf0cffc3fc3300f0fULL, 
+(word_t)0xc3c0cfcff03330cfULL, (word_t)0xf3f00f3300c0c03ULL, (word_t)0xf300c0f0fff30f0cULL, (word_t)0x3c0ff00c00cccff3ULL, (word_t)0xcccc03f0f3cf30fULL, (word_t)0xf033f33cf0c3f3cULL, 
+(word_t)0xffff00cccf333f0fULL, (word_t)0x3f0f0cf3cfff3c3fULL, (word_t)0xc0fcc3cfcf33cc0ULL, (word_t)0x33f0ccc3000c00c3ULL, (word_t)0xc3cccffcc0cf03fcULL, (word_t)0x30c33c33c0c3f00ULL, 
+(word_t)0xc3cc00cc00030cccULL, (word_t)0x3c0f33cf0c00f00ULL, (word_t)0xc00f3003030fcc0ULL, (word_t)0xf030c0f0f330f3cfULL, (word_t)0xcc00c0f3cc30000ULL, (word_t)0xc0f3ccc00cc0c3cULL, 
+(word_t)0xfff03cff3300003fULL, (word_t)0xcfcccc0030fcf03cULL, (word_t)0x3f0c33ff33f3ffcULL, (word_t)0x3ffffffcf3f0cf0cULL, (word_t)0xf333003003c30f3cULL, (word_t)0xfffcc00fc303cf30ULL, 
+(word_t)0xc0cf0c00c000fc0cULL, (word_t)0x3cfffcff3c30c3ffULL, (word_t)0x3ff3c00300030c00ULL, (word_t)0x30ffff0f0ccfff3cULL, (word_t)0x33c03cf3c003f033ULL, (word_t)0x33c3fc3003303c03ULL, 
+(word_t)0x3cff0f0c33fcfc30ULL, (word_t)0x3330333cf0c0ccf0ULL, (word_t)0xcffc0c3f0ffffc03ULL, (word_t)0x3003c3cc0303cccULL, (word_t)0x3fffccccf3033f00ULL, (word_t)0xc3c033030fcfccf0ULL, 
+(word_t)0xc3ff30fff3f3c3ULL, (word_t)0x33c3f0f3fcf030f3ULL, (word_t)0x3c0c3fffcf3033ULL, (word_t)0xf0f3ffc33ccc0fcfULL, (word_t)0xcfcc3fc003cfccc3ULL, (word_t)0xc3cfcfff0fcc003cULL, 
+(word_t)0xcc0cc0cccc3f330fULL, (word_t)0x3fc30cf0ffcfcc33ULL, (word_t)0x3f0c0fcf300fcc33ULL, (word_t)0xcc00c3ff0330ffcfULL, (word_t)0x303ff333ff33f0ccULL, (word_t)0xc30f3000c0cf3303ULL, 
+(word_t)0x33f3330fcc3fc0f3ULL, (word_t)0x300f3fcc3ccff0f0ULL, (word_t)0xf33f0cc00fccc030ULL, (word_t)0xcf33c0f0f0ff00cULL, (word_t)0xf0f3c0fcf03c33fcULL, (word_t)0xcc3c030c0c000ULL, 
+(word_t)0xc3ffcc333f3f0f00ULL, (word_t)0xffff33ffc00f3cf3ULL, (word_t)0xf0f00f0003ff0c00ULL, (word_t)0xc3fc3000c0ff30ccULL, (word_t)0xff03c0f033c00c03ULL, (word_t)0xc3fc00ff3cfccccULL, 
+(word_t)0x3c30cc00cffc330cULL, (word_t)0xcf330c0cc00f3c30ULL, (word_t)0xcf0f03f0c3c003f0ULL, (word_t)0xc003f00f3cf00033ULL, (word_t)0x3c0ffc0fff030c33ULL, (word_t)0xcc0c0ccc03f3fULL, 
+(word_t)0xf3cffcc0c0ffc0ccULL, (word_t)0xf03c0f0ffff30c03ULL, (word_t)0xc3c0fffc30ff0ffULL, (word_t)0xf0f0f3cc3f330fccULL, (word_t)0xc3c0c00f0f33f30ULL, (word_t)0xcf0f3c33000ffULL, 
+(word_t)0xc30fc300ff333c03ULL, (word_t)0xc0f333fc0c30cc3ULL, (word_t)0xc0cc0fff0330c033ULL, (word_t)0xf00f3fcf0cf0fcfULL, (word_t)0xfc03f030300f3ffULL, (word_t)0xcfc333fc00f0cfffULL, 
+(word_t)0x3fcf0ff0ff30c330ULL, (word_t)0xccfc0000fcccf330ULL, (word_t)0xcf0ff3ffc03c0fccULL, (word_t)0xc3cfff33ffc3033cULL, (word_t)0xc3fc3c3cc003fc0ULL, (word_t)0xcf0ccf333c3f3cfULL, 
+(word_t)0xf33cffcffc00003fULL, (word_t)0xf0ff30303f3c333ULL, (word_t)0xfcc033ccf33f3300ULL, (word_t)0xf0cfccffcffcc030ULL, (word_t)0xfccc0333f00c3fffULL, (word_t)0xc0cfc3303ff30300ULL, 
+(word_t)0xcf00f3f3330f30cULL, (word_t)0x3fccc030cc3cc0f0ULL, (word_t)0xccf0c3fc0c3c33ULL, (word_t)0xc00cf00cc03cfcccULL, (word_t)0x30c000cf0c3ccfULL, (word_t)0xc3f30033ffccc33ULL, 
+(word_t)0x3ff00cf0033ccc3cULL, (word_t)0x3f300cfc33f333cfULL, (word_t)0xffcfc0f30fcccc0ULL, (word_t)0xcf003303cf00ff3cULL, (word_t)0x33f3f333c3333ffULL, (word_t)0xffcf00f0fc0c03ULL, 
+(word_t)0xc0c0ffcc33ff0f33ULL, (word_t)0x3c30ffc0c3ccf330ULL, (word_t)0xfc33cc30ccfc0033ULL, (word_t)0xfcc33cfccf00333fULL, (word_t)0xcc000330ff00fc00ULL, (word_t)0xccff30f03cf3f033ULL, 
+(word_t)0xf03000fcc30ccc3ULL, (word_t)0xcc0cf0cc003ffccULL, (word_t)0xcc030fc0cf0c03f0ULL, (word_t)0xf030c3f0f0fc03f3ULL, (word_t)0xffc03f3cfff3f0c3ULL, (word_t)0xcccc3f3ff30330c0ULL, 
+(word_t)0x30003cccccc03f0ULL, (word_t)0x33cf0303f030fc3ULL, (word_t)0xfccc0c0c30cf3cccULL, (word_t)0xcffc3ccf3f0c3c0cULL, (word_t)0xfff3c0fc03cc0c3cULL, (word_t)0xccc03ff00fcf0cfULL, 
+(word_t)0xcccc3ccf0cf0fc0cULL, (word_t)0xcf00000c0fffffcULL, (word_t)0x3c00ffc030f030c0ULL, (word_t)0xccc0003f3f3f0033ULL, (word_t)0xfc3c0c000033300cULL, (word_t)0xc0300f33f3f3cccULL, 
+(word_t)0xfc3c3300cfff003cULL, (word_t)0x33f33033000c300ULL, (word_t)0xff0c3fc300fc3c03ULL, (word_t)0xcf0f33330c0f3c3fULL, (word_t)0xffcff00cccc0f0f0ULL, (word_t)0x3c3fccc0c3ff3cfULL, 
+(word_t)0xf3ff30fc0cf3c3f0ULL, (word_t)0xccf0c00030f0fccULL, (word_t)0xccccc0f0fcc0000ULL, (word_t)0xff030c00ccc303f3ULL, (word_t)0x3cc003030f303f30ULL, (word_t)0x3c0f3cff030ff0ffULL, 
+(word_t)0xccf3ccffffcfcfccULL, (word_t)0xf0f03f3f0c3fffcULL, (word_t)0x30c0f0f33fccf0ULL, (word_t)0x3ffcfccf0c3330ccULL, (word_t)0xcf3f3cfc33330f00ULL, (word_t)0x30cc3f333c0f0ffULL, 
+(word_t)0xc003fccff0cc333fULL, (word_t)0x333fc00f0ccccccfULL, (word_t)0xc3f3333cf300fULL, (word_t)0xcc0300f3f3f0c30cULL, (word_t)0xc33c0303f3003cf3ULL, (word_t)0x330003ffcfccf0cULL
+}
+;
 
 
 uint8_t bitswap[256] = {
@@ -101,6 +102,7 @@ void bs_apply_sbox(word_t * input)
 
 void bs_apply_sbox_rev(word_t * input)
 {
+
     int i;
     for(i=0; i < BLOCK_SIZE; i+=8)
     {
@@ -278,8 +280,7 @@ static int rand_indx = 0;
 
 static word_t SAND(word_t p, word_t q)
 {
-    word_t r1 = rands[((rand_indx++) & 0xff)];
-
+    word_t r1 = (rands[((rand_indx++) & 0xff)]);
     word_t n1 = p & q;
 
     word_t qswap = bitswap[(uint8_t)q]
@@ -529,6 +530,325 @@ void bs_transpose(word_t * blocks)
     memset(transpose, 0, sizeof(transpose));
     bs_transpose_dst(transpose,blocks);
     memmove(blocks,transpose,sizeof(transpose));
+}
+
+
+// returns the slice from end of pipeline
+// dst is WORD_SIZE blocks size
+// block is 128 bit block 
+/*#define BS_DATA_ROUNDS2 ((BS_DATA_ROUNDS)*3-1)*/
+void bs_get_slice(word_t * src, word_t * block, int BS_DATA_ROUNDS2)
+{
+#ifndef UNROLL_TRANSPOSE
+    int i;
+    for (i = 0; i < BLOCK_SIZE; i++)
+    {
+        word_t bit = (src[i] & (ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2);
+        /*block[i] = bit >> (BS_DATA_ROUNDS-1);*/
+        block[i/WORD_SIZE] ^=  (bit << (i % WORD_SIZE));
+    }
+#else
+    block[0 /WORD_SIZE] ^= ((src[0 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (0 % WORD_SIZE);
+    block[1 /WORD_SIZE] ^= ((src[1 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (1 % WORD_SIZE);
+    block[2 /WORD_SIZE] ^= ((src[2 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (2 % WORD_SIZE);
+    block[3 /WORD_SIZE] ^= ((src[3 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (3 % WORD_SIZE);
+    block[4 /WORD_SIZE] ^= ((src[4 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (4 % WORD_SIZE);
+    block[5 /WORD_SIZE] ^= ((src[5 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (5 % WORD_SIZE);
+    block[6 /WORD_SIZE] ^= ((src[6 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (6 % WORD_SIZE);
+    block[7 /WORD_SIZE] ^= ((src[7 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (7 % WORD_SIZE);
+    block[8 /WORD_SIZE] ^= ((src[8 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (8 % WORD_SIZE);
+    block[9 /WORD_SIZE] ^= ((src[9 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (9 % WORD_SIZE);
+    block[10/WORD_SIZE] ^= ((src[10] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (10% WORD_SIZE);
+    block[11/WORD_SIZE] ^= ((src[11] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (11% WORD_SIZE);
+    block[12/WORD_SIZE] ^= ((src[12] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (12% WORD_SIZE);
+    block[13/WORD_SIZE] ^= ((src[13] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (13% WORD_SIZE);
+    block[14/WORD_SIZE] ^= ((src[14] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (14% WORD_SIZE);
+    block[15/WORD_SIZE] ^= ((src[15] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (15% WORD_SIZE);
+    block[16/WORD_SIZE] ^= ((src[16] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (16% WORD_SIZE);
+    block[17/WORD_SIZE] ^= ((src[17] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (17% WORD_SIZE);
+    block[18/WORD_SIZE] ^= ((src[18] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (18% WORD_SIZE);
+    block[19/WORD_SIZE] ^= ((src[19] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (19% WORD_SIZE);
+    block[20/WORD_SIZE] ^= ((src[20] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (20% WORD_SIZE);
+    block[21/WORD_SIZE] ^= ((src[21] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (21% WORD_SIZE);
+    block[22/WORD_SIZE] ^= ((src[22] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (22% WORD_SIZE);
+    block[23/WORD_SIZE] ^= ((src[23] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (23% WORD_SIZE);
+    block[24/WORD_SIZE] ^= ((src[24] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (24% WORD_SIZE);
+    block[25/WORD_SIZE] ^= ((src[25] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (25% WORD_SIZE);
+    block[26/WORD_SIZE] ^= ((src[26] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (26% WORD_SIZE);
+    block[27/WORD_SIZE] ^= ((src[27] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (27% WORD_SIZE);
+    block[28/WORD_SIZE] ^= ((src[28] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (28% WORD_SIZE);
+    block[29/WORD_SIZE] ^= ((src[29] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (29% WORD_SIZE);
+    block[30/WORD_SIZE] ^= ((src[30] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (30% WORD_SIZE);
+    block[31/WORD_SIZE] ^= ((src[31] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (31% WORD_SIZE);
+    block[32/WORD_SIZE] ^= ((src[32] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (32% WORD_SIZE);
+    block[33/WORD_SIZE] ^= ((src[33] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (33% WORD_SIZE);
+    block[34/WORD_SIZE] ^= ((src[34] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (34% WORD_SIZE);
+    block[35/WORD_SIZE] ^= ((src[35] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (35% WORD_SIZE);
+    block[36/WORD_SIZE] ^= ((src[36] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (36% WORD_SIZE);
+    block[37/WORD_SIZE] ^= ((src[37] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (37% WORD_SIZE);
+    block[38/WORD_SIZE] ^= ((src[38] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (38% WORD_SIZE);
+    block[39/WORD_SIZE] ^= ((src[39] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (39% WORD_SIZE);
+    block[40/WORD_SIZE] ^= ((src[40] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (40% WORD_SIZE);
+    block[41/WORD_SIZE] ^= ((src[41] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (41% WORD_SIZE);
+    block[42/WORD_SIZE] ^= ((src[42] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (42% WORD_SIZE);
+    block[43/WORD_SIZE] ^= ((src[43] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (43% WORD_SIZE);
+    block[44/WORD_SIZE] ^= ((src[44] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (44% WORD_SIZE);
+    block[45/WORD_SIZE] ^= ((src[45] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (45% WORD_SIZE);
+    block[46/WORD_SIZE] ^= ((src[46] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (46% WORD_SIZE);
+    block[47/WORD_SIZE] ^= ((src[47] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (47% WORD_SIZE);
+    block[48/WORD_SIZE] ^= ((src[48] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (48% WORD_SIZE);
+    block[49/WORD_SIZE] ^= ((src[49] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (49% WORD_SIZE);
+    block[50/WORD_SIZE] ^= ((src[50] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (50% WORD_SIZE);
+    block[51/WORD_SIZE] ^= ((src[51] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (51% WORD_SIZE);
+    block[52/WORD_SIZE] ^= ((src[52] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (52% WORD_SIZE);
+    block[53/WORD_SIZE] ^= ((src[53] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (53% WORD_SIZE);
+    block[54/WORD_SIZE] ^= ((src[54] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (54% WORD_SIZE);
+    block[55/WORD_SIZE] ^= ((src[55] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (55% WORD_SIZE);
+    block[56/WORD_SIZE] ^= ((src[56] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (56% WORD_SIZE);
+    block[57/WORD_SIZE] ^= ((src[57] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (57% WORD_SIZE);
+    block[58/WORD_SIZE] ^= ((src[58] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (58% WORD_SIZE);
+    block[59/WORD_SIZE] ^= ((src[59] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (59% WORD_SIZE);
+    block[60/WORD_SIZE] ^= ((src[60] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (60% WORD_SIZE);
+    block[61/WORD_SIZE] ^= ((src[61] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (61% WORD_SIZE);
+    block[62/WORD_SIZE] ^= ((src[62] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (62% WORD_SIZE);
+    block[63/WORD_SIZE] ^= ((src[63] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (63% WORD_SIZE);
+    block[64 /WORD_SIZE] ^= ((src[64 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (64 % WORD_SIZE);
+    block[65 /WORD_SIZE] ^= ((src[65 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (65 % WORD_SIZE);
+    block[66 /WORD_SIZE] ^= ((src[66 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (66 % WORD_SIZE);
+    block[67 /WORD_SIZE] ^= ((src[67 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (67 % WORD_SIZE);
+    block[68 /WORD_SIZE] ^= ((src[68 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (68 % WORD_SIZE);
+    block[69 /WORD_SIZE] ^= ((src[69 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (69 % WORD_SIZE);
+    block[70 /WORD_SIZE] ^= ((src[70 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (70 % WORD_SIZE);
+    block[71 /WORD_SIZE] ^= ((src[71 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (71 % WORD_SIZE);
+    block[72 /WORD_SIZE] ^= ((src[72 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (72 % WORD_SIZE);
+    block[73 /WORD_SIZE] ^= ((src[73 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (73 % WORD_SIZE);
+    block[74 /WORD_SIZE] ^= ((src[74 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (74 % WORD_SIZE);
+    block[75 /WORD_SIZE] ^= ((src[75 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (75 % WORD_SIZE);
+    block[76 /WORD_SIZE] ^= ((src[76 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (76 % WORD_SIZE);
+    block[77 /WORD_SIZE] ^= ((src[77 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (77 % WORD_SIZE);
+    block[78 /WORD_SIZE] ^= ((src[78 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (78 % WORD_SIZE);
+    block[79 /WORD_SIZE] ^= ((src[79 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (79 % WORD_SIZE);
+    block[80 /WORD_SIZE] ^= ((src[80 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (80 % WORD_SIZE);
+    block[81 /WORD_SIZE] ^= ((src[81 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (81 % WORD_SIZE);
+    block[82 /WORD_SIZE] ^= ((src[82 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (82 % WORD_SIZE);
+    block[83 /WORD_SIZE] ^= ((src[83 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (83 % WORD_SIZE);
+    block[84 /WORD_SIZE] ^= ((src[84 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (84 % WORD_SIZE);
+    block[85 /WORD_SIZE] ^= ((src[85 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (85 % WORD_SIZE);
+    block[86 /WORD_SIZE] ^= ((src[86 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (86 % WORD_SIZE);
+    block[87 /WORD_SIZE] ^= ((src[87 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (87 % WORD_SIZE);
+    block[88 /WORD_SIZE] ^= ((src[88 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (88 % WORD_SIZE);
+    block[89 /WORD_SIZE] ^= ((src[89 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (89 % WORD_SIZE);
+    block[90 /WORD_SIZE] ^= ((src[90 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (90 % WORD_SIZE);
+    block[91 /WORD_SIZE] ^= ((src[91 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (91 % WORD_SIZE);
+    block[92 /WORD_SIZE] ^= ((src[92 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (92 % WORD_SIZE);
+    block[93 /WORD_SIZE] ^= ((src[93 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (93 % WORD_SIZE);
+    block[94 /WORD_SIZE] ^= ((src[94 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (94 % WORD_SIZE);
+    block[95 /WORD_SIZE] ^= ((src[95 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (95 % WORD_SIZE);
+    block[96 /WORD_SIZE] ^= ((src[96 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (96 % WORD_SIZE);
+    block[97 /WORD_SIZE] ^= ((src[97 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (97 % WORD_SIZE);
+    block[98 /WORD_SIZE] ^= ((src[98 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (98 % WORD_SIZE);
+    block[99 /WORD_SIZE] ^= ((src[99 ] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (99 % WORD_SIZE);
+    block[100/WORD_SIZE] ^= ((src[100] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (100% WORD_SIZE);
+    block[101/WORD_SIZE] ^= ((src[101] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (101% WORD_SIZE);
+    block[102/WORD_SIZE] ^= ((src[102] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (102% WORD_SIZE);
+    block[103/WORD_SIZE] ^= ((src[103] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (103% WORD_SIZE);
+    block[104/WORD_SIZE] ^= ((src[104] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (104% WORD_SIZE);
+    block[105/WORD_SIZE] ^= ((src[105] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (105% WORD_SIZE);
+    block[106/WORD_SIZE] ^= ((src[106] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (106% WORD_SIZE);
+    block[107/WORD_SIZE] ^= ((src[107] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (107% WORD_SIZE);
+    block[108/WORD_SIZE] ^= ((src[108] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (108% WORD_SIZE);
+    block[109/WORD_SIZE] ^= ((src[109] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (109% WORD_SIZE);
+    block[110/WORD_SIZE] ^= ((src[110] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (110% WORD_SIZE);
+    block[111/WORD_SIZE] ^= ((src[111] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (111% WORD_SIZE);
+    block[112/WORD_SIZE] ^= ((src[112] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (112% WORD_SIZE);
+    block[113/WORD_SIZE] ^= ((src[113] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (113% WORD_SIZE);
+    block[114/WORD_SIZE] ^= ((src[114] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (114% WORD_SIZE);
+    block[115/WORD_SIZE] ^= ((src[115] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (115% WORD_SIZE);
+    block[116/WORD_SIZE] ^= ((src[116] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (116% WORD_SIZE);
+    block[117/WORD_SIZE] ^= ((src[117] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (117% WORD_SIZE);
+    block[118/WORD_SIZE] ^= ((src[118] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (118% WORD_SIZE);
+    block[119/WORD_SIZE] ^= ((src[119] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (119% WORD_SIZE);
+    block[120/WORD_SIZE] ^= ((src[120] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (120% WORD_SIZE);
+    block[121/WORD_SIZE] ^= ((src[121] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (121% WORD_SIZE);
+    block[122/WORD_SIZE] ^= ((src[122] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (122% WORD_SIZE);
+    block[123/WORD_SIZE] ^= ((src[123] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (123% WORD_SIZE);
+    block[124/WORD_SIZE] ^= ((src[124] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (124% WORD_SIZE);
+    block[125/WORD_SIZE] ^= ((src[125] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (125% WORD_SIZE);
+    block[126/WORD_SIZE] ^= ((src[126] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (126% WORD_SIZE);
+    block[127/WORD_SIZE] ^= ((src[127] & ( ONE << (BS_DATA_ROUNDS2))) >> (BS_DATA_ROUNDS2)) << (127% WORD_SIZE);
+#endif
+
+}
+
+void bs_add_slice(word_t * dst, word_t * block)
+{
+
+#ifndef UNROLL_TRANSPOSE
+    int i;
+    if (block != NULL)
+    {
+        word_t cmask = ~(1<<0);
+        for (i = 0; i < BLOCK_SIZE; i++)
+        {
+            dst[i] <<= 1;
+            dst[i] &= cmask;
+            int shift = i % WORD_SIZE;
+            dst[i] |= ((block[i / WORD_SIZE] & (ONE << shift)) >> shift) << 0;
+        }
+    }
+    else
+    {
+        for (i = 0; i < BLOCK_SIZE; i++)
+        {
+            dst[i] <<= 1;
+        }
+    }
+#endif
+#ifdef UNROLL_TRANSPOSE
+    int i;
+    word_t cmask = ~(1<<0);
+    for (i = 0; i < BLOCK_SIZE; i++)
+    {
+        dst[i] <<= 1;
+        dst[i] &= cmask;
+    }
+
+    if (block == NULL)
+        return;
+
+#define UNROLLED_ADD_SLICE(j)\
+    dst[j] |= ((block[j / WORD_SIZE] & (ONE << (j % WORD_SIZE))) >> (j % WORD_SIZE)) << 0;
+
+    UNROLLED_ADD_SLICE(0  );
+    UNROLLED_ADD_SLICE(1  );
+    UNROLLED_ADD_SLICE(2  );
+    UNROLLED_ADD_SLICE(3  );
+    UNROLLED_ADD_SLICE(4  );
+    UNROLLED_ADD_SLICE(5  );
+    UNROLLED_ADD_SLICE(6  );
+    UNROLLED_ADD_SLICE(7  );
+    UNROLLED_ADD_SLICE(8  );
+    UNROLLED_ADD_SLICE(9  );
+    UNROLLED_ADD_SLICE(10 );
+    UNROLLED_ADD_SLICE(11 );
+    UNROLLED_ADD_SLICE(12 );
+    UNROLLED_ADD_SLICE(13 );
+    UNROLLED_ADD_SLICE(14 );
+    UNROLLED_ADD_SLICE(15 );
+    UNROLLED_ADD_SLICE(16 );
+    UNROLLED_ADD_SLICE(17 );
+    UNROLLED_ADD_SLICE(18 );
+    UNROLLED_ADD_SLICE(19 );
+    UNROLLED_ADD_SLICE(20 );
+    UNROLLED_ADD_SLICE(21 );
+    UNROLLED_ADD_SLICE(22 );
+    UNROLLED_ADD_SLICE(23 );
+    UNROLLED_ADD_SLICE(24 );
+    UNROLLED_ADD_SLICE(25 );
+    UNROLLED_ADD_SLICE(26 );
+    UNROLLED_ADD_SLICE(27 );
+    UNROLLED_ADD_SLICE(28 );
+    UNROLLED_ADD_SLICE(29 );
+    UNROLLED_ADD_SLICE(30 );
+    UNROLLED_ADD_SLICE(31 );
+    UNROLLED_ADD_SLICE(32 );
+    UNROLLED_ADD_SLICE(33 );
+    UNROLLED_ADD_SLICE(34 );
+    UNROLLED_ADD_SLICE(35 );
+    UNROLLED_ADD_SLICE(36 );
+    UNROLLED_ADD_SLICE(37 );
+    UNROLLED_ADD_SLICE(38 );
+    UNROLLED_ADD_SLICE(39 );
+    UNROLLED_ADD_SLICE(40 );
+    UNROLLED_ADD_SLICE(41 );
+    UNROLLED_ADD_SLICE(42 );
+    UNROLLED_ADD_SLICE(43 );
+    UNROLLED_ADD_SLICE(44 );
+    UNROLLED_ADD_SLICE(45 );
+    UNROLLED_ADD_SLICE(46 );
+    UNROLLED_ADD_SLICE(47 );
+    UNROLLED_ADD_SLICE(48 );
+    UNROLLED_ADD_SLICE(49 );
+    UNROLLED_ADD_SLICE(50 );
+    UNROLLED_ADD_SLICE(51 );
+    UNROLLED_ADD_SLICE(52 );
+    UNROLLED_ADD_SLICE(53 );
+    UNROLLED_ADD_SLICE(54 );
+    UNROLLED_ADD_SLICE(55 );
+    UNROLLED_ADD_SLICE(56 );
+    UNROLLED_ADD_SLICE(57 );
+    UNROLLED_ADD_SLICE(58 );
+    UNROLLED_ADD_SLICE(59 );
+    UNROLLED_ADD_SLICE(60 );
+    UNROLLED_ADD_SLICE(61 );
+    UNROLLED_ADD_SLICE(62 );
+    UNROLLED_ADD_SLICE(63 );
+    UNROLLED_ADD_SLICE(64 );
+    UNROLLED_ADD_SLICE(65 );
+    UNROLLED_ADD_SLICE(66 );
+    UNROLLED_ADD_SLICE(67 );
+    UNROLLED_ADD_SLICE(68 );
+    UNROLLED_ADD_SLICE(69 );
+    UNROLLED_ADD_SLICE(70 );
+    UNROLLED_ADD_SLICE(71 );
+    UNROLLED_ADD_SLICE(72 );
+    UNROLLED_ADD_SLICE(73 );
+    UNROLLED_ADD_SLICE(74 );
+    UNROLLED_ADD_SLICE(75 );
+    UNROLLED_ADD_SLICE(76 );
+    UNROLLED_ADD_SLICE(77 );
+    UNROLLED_ADD_SLICE(78 );
+    UNROLLED_ADD_SLICE(79 );
+    UNROLLED_ADD_SLICE(80 );
+    UNROLLED_ADD_SLICE(81 );
+    UNROLLED_ADD_SLICE(82 );
+    UNROLLED_ADD_SLICE(83 );
+    UNROLLED_ADD_SLICE(84 );
+    UNROLLED_ADD_SLICE(85 );
+    UNROLLED_ADD_SLICE(86 );
+    UNROLLED_ADD_SLICE(87 );
+    UNROLLED_ADD_SLICE(88 );
+    UNROLLED_ADD_SLICE(89 );
+    UNROLLED_ADD_SLICE(90 );
+    UNROLLED_ADD_SLICE(91 );
+    UNROLLED_ADD_SLICE(92 );
+    UNROLLED_ADD_SLICE(93 );
+    UNROLLED_ADD_SLICE(94 );
+    UNROLLED_ADD_SLICE(95 );
+    UNROLLED_ADD_SLICE(96 );
+    UNROLLED_ADD_SLICE(97 );
+    UNROLLED_ADD_SLICE(98 );
+    UNROLLED_ADD_SLICE(99 );
+    UNROLLED_ADD_SLICE(100);
+    UNROLLED_ADD_SLICE(101);
+    UNROLLED_ADD_SLICE(102);
+    UNROLLED_ADD_SLICE(103);
+    UNROLLED_ADD_SLICE(104);
+    UNROLLED_ADD_SLICE(105);
+    UNROLLED_ADD_SLICE(106);
+    UNROLLED_ADD_SLICE(107);
+    UNROLLED_ADD_SLICE(108);
+    UNROLLED_ADD_SLICE(109);
+    UNROLLED_ADD_SLICE(110);
+    UNROLLED_ADD_SLICE(111);
+    UNROLLED_ADD_SLICE(112);
+    UNROLLED_ADD_SLICE(113);
+    UNROLLED_ADD_SLICE(114);
+    UNROLLED_ADD_SLICE(115);
+    UNROLLED_ADD_SLICE(116);
+    UNROLLED_ADD_SLICE(117);
+    UNROLLED_ADD_SLICE(118);
+    UNROLLED_ADD_SLICE(119);
+    UNROLLED_ADD_SLICE(120);
+    UNROLLED_ADD_SLICE(121);
+    UNROLLED_ADD_SLICE(122);
+    UNROLLED_ADD_SLICE(123);
+    UNROLLED_ADD_SLICE(124);
+    UNROLLED_ADD_SLICE(125);
+    UNROLLED_ADD_SLICE(126);
+    UNROLLED_ADD_SLICE(127);
+
+#endif
 }
 
 void bs_transpose_dst(word_t * transpose, word_t * blocks)
@@ -964,9 +1284,144 @@ void bs_shiftmix(word_t * B)
     memmove(B,Bp_space,sizeof(Bp_space));
 }
 
-
-
 void bs_mixcolumns(word_t * B)
+{
+    word_t Bp_space[BLOCK_SIZE];
+    word_t * Bp = Bp_space;
+
+    int i;
+
+    /*for ( i = 0; i < BLOCK_SIZE; i++)*/
+    /*{*/
+        /*Bp_space[i] = B[i] & (~BS_DATA_MASK);*/
+    /*}*/
+
+    // to understand this, see
+    // https://en.wikipedia.org/wiki/Rijndael_mix_columns
+    
+    for (i = 0; i < 4; i++)
+    {
+    //  of = A0 ^ A1;
+    //  A0 = A0 ^ (0x1b & ((signed char)of>>7));
+
+    //// 2 * A0
+    //  A0 = A0 ^ (A0 << 1)
+
+    //// + 3 * A1
+    //  A0 = A0 ^ (A1)
+    //  A0 = A0 ^ (A1<<1)
+
+    //// + A2 + A3
+    //  A0 = A0 ^ (A2)
+    //  A0 = A0 ^ (A3)
+    //          A0.7    A1.7
+    word_t of = B[A0+7] ^ B[A1+7];
+
+    //          2*A0     2*A1          A1      A2           A3
+    Bp[A0+0] = ((                    B[A1+0] ^ B[A2+0] ^ B[A3+0] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+0]);
+    Bp[A0+1] = ((B[A0+0] ^ B[A1+0] ^ B[A1+1] ^ B[A2+1] ^ B[A3+1] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+1]);
+    Bp[A0+2] = ((B[A0+1] ^ B[A1+1] ^ B[A1+2] ^ B[A2+2] ^ B[A3+2]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+2]);
+    Bp[A0+3] = ((B[A0+2] ^ B[A1+2] ^ B[A1+3] ^ B[A2+3] ^ B[A3+3] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+3]);
+    Bp[A0+4] = ((B[A0+3] ^ B[A1+3] ^ B[A1+4] ^ B[A2+4] ^ B[A3+4] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+4]);
+    Bp[A0+5] = ((B[A0+4] ^ B[A1+4] ^ B[A1+5] ^ B[A2+5] ^ B[A3+5]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+5]);
+    Bp[A0+6] = ((B[A0+5] ^ B[A1+5] ^ B[A1+6] ^ B[A2+6] ^ B[A3+6]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+6]);
+    Bp[A0+7] = ((B[A0+6] ^ B[A1+6] ^ B[A1+7] ^ B[A2+7] ^ B[A3+7]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A0+7]);
+
+
+
+    //  of = A1 ^ A2
+    //  A1 = A1 ^ (0x1b & ((signed char)of>>7));
+
+    //// A0
+    //  A1 = A1 ^ (A0)
+
+    //// + 2 * A1
+    //  A1 = A1 ^ (A1 << 1)
+
+    //// + 3 * A2
+    //  A1 = A1 ^ (A2)
+    //  A1 = A1 ^ (A2<<1)
+
+    //// + A3
+    //  A1 = A1 ^ (A3)
+
+    of = B[A1+7] ^ B[A2+7];
+
+    //          A0      2*A1        2*A2      A2        A3
+    Bp[A1+0] = ((B[A0+0]                     ^ B[A2+0] ^ B[A3+0] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+0]);
+    Bp[A1+1] = ((B[A0+1] ^ B[A1+0] ^ B[A2+0] ^ B[A2+1] ^ B[A3+1] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+1]);
+    Bp[A1+2] = ((B[A0+2] ^ B[A1+1] ^ B[A2+1] ^ B[A2+2] ^ B[A3+2]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+2]);
+    Bp[A1+3] = ((B[A0+3] ^ B[A1+2] ^ B[A2+2] ^ B[A2+3] ^ B[A3+3] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+3]);
+    Bp[A1+4] = ((B[A0+4] ^ B[A1+3] ^ B[A2+3] ^ B[A2+4] ^ B[A3+4] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+4]);
+    Bp[A1+5] = ((B[A0+5] ^ B[A1+4] ^ B[A2+4] ^ B[A2+5] ^ B[A3+5]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+5]);
+    Bp[A1+6] = ((B[A0+6] ^ B[A1+5] ^ B[A2+5] ^ B[A2+6] ^ B[A3+6]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+6]);
+    Bp[A1+7] = ((B[A0+7] ^ B[A1+6] ^ B[A2+6] ^ B[A2+7] ^ B[A3+7]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A1+7]);
+    
+
+    //  of = A2 ^ A3
+    //  A2 = A2 ^ (0x1b & ((signed char)of>>7));
+
+    //// A0 + A1
+    //  A2 = A2 ^ (A0)
+    //  A2 = A2 ^ (A1)
+
+    //// + 2 * A2
+    //  A2 = A2 ^ (A2 << 1)
+
+    //// + 3 * A3
+    //  A2 = A2 ^ (A3)
+    //  A2 = A2 ^ (A3<<1)
+
+
+    of = B[A2+7] ^ B[A3+7];
+
+    //          A0      A1          2*A2       2*A3         A3
+    Bp[A2+0] = ((B[A0+0] ^ B[A1+0]                     ^ B[A3+0] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+0]);
+    Bp[A2+1] = ((B[A0+1] ^ B[A1+1] ^ B[A2+0] ^ B[A3+0] ^ B[A3+1] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+1]);
+    Bp[A2+2] = ((B[A0+2] ^ B[A1+2] ^ B[A2+1] ^ B[A3+1] ^ B[A3+2]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+2]);
+    Bp[A2+3] = ((B[A0+3] ^ B[A1+3] ^ B[A2+2] ^ B[A3+2] ^ B[A3+3] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+3]);
+    Bp[A2+4] = ((B[A0+4] ^ B[A1+4] ^ B[A2+3] ^ B[A3+3] ^ B[A3+4] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+4]);
+    Bp[A2+5] = ((B[A0+5] ^ B[A1+5] ^ B[A2+4] ^ B[A3+4] ^ B[A3+5]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+5]);
+    Bp[A2+6] = ((B[A0+6] ^ B[A1+6] ^ B[A2+5] ^ B[A3+5] ^ B[A3+6]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+6]);
+    Bp[A2+7] = ((B[A0+7] ^ B[A1+7] ^ B[A2+6] ^ B[A3+6] ^ B[A3+7]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A2+7]);
+    
+
+    //  A3 = A0 ^ A332
+    //  A3 = A3 ^ (0x1b & ((signed char)of>>7));
+
+    //// 3 * A0
+    //  A3 = A3 ^ (A0)
+    //  A3 = A3 ^ (A0 << 1)
+
+    //// + A1 + A2
+    //  A3 = A3 ^ A1
+    //  A3 = A3 ^ A2
+
+    //// + 2 * A3
+    //  A3 = A3 ^ (A3<<1)
+
+    of = B[A0+7] ^ B[A3+7];
+
+    //        2*A0       A0         A1         A2       2*A3
+    Bp[A3+0] = ((B[A0+0] ^           B[A1+0] ^ B[A2+0]           ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+0]);
+    Bp[A3+1] = ((B[A0+1] ^ B[A0+0] ^ B[A1+1] ^ B[A2+1] ^ B[A3+0] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+1]);
+    Bp[A3+2] = ((B[A0+2] ^ B[A0+1] ^ B[A1+2] ^ B[A2+2] ^ B[A3+1]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+2]);
+    Bp[A3+3] = ((B[A0+3] ^ B[A0+2] ^ B[A1+3] ^ B[A2+3] ^ B[A3+2] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+3]);
+    Bp[A3+4] = ((B[A0+4] ^ B[A0+3] ^ B[A1+4] ^ B[A2+4] ^ B[A3+3] ^ of) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+4]);
+    Bp[A3+5] = ((B[A0+5] ^ B[A0+4] ^ B[A1+5] ^ B[A2+5] ^ B[A3+4]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+5]);
+    Bp[A3+6] = ((B[A0+6] ^ B[A0+5] ^ B[A1+6] ^ B[A2+6] ^ B[A3+5]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+6]);
+    Bp[A3+7] = ((B[A0+7] ^ B[A0+6] ^ B[A1+7] ^ B[A2+7] ^ B[A3+6]     ) & BS_DATA_MASK) | ((~BS_DATA_MASK)&B[A3+7]);
+    
+
+    //
+    Bp += BLOCK_SIZE/4;
+    B  += BLOCK_SIZE/4;
+    }
+
+    memmove(B - BLOCK_SIZE,Bp - BLOCK_SIZE,sizeof(Bp_space));
+}
+
+void bs_mixcolumns_old(word_t * B)
 {
     word_t Bp_space[BLOCK_SIZE];
     word_t * Bp = Bp_space;

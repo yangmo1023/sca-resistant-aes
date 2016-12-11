@@ -28,7 +28,7 @@ print 'random sliced (8-64 bit):'
 s = '{'
 for i in range(0, 256/6):
     for j in range(0,6):
-        s += '(word_t)'+str(hex(randslice())) + ', '
+        s += '(word_t)'+str(hex(randslice())).replace('L','') + 'ULL, '
     s += '\n'
 s += '}'
 
