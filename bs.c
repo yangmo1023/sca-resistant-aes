@@ -16,23 +16,50 @@
 #endif
 
 word_t rands[]= {
-    0x33f0c3c, 0xfcc00f03, 0xc30cff30, 0x30f30ffc, 0xff00cccc, 0xfcc033f0, 0xc03c33fc, 0xf33c0fcc, 0xc000f03c, 0x3ffff3cc, 0x30f0300, 0x33300f3f, 0x3c0fc303, 0xc3fc30f0, 0x3cc030f, 0x3ff0f03f, 
-    0xf3303f, 0xcc033cf, 0xfff3033, 0xf0ccccf3, 0xc30c000c, 0xc33fc3c3, 0xfc3f3fc3, 0x3cf303cc, 0xcc03ccf0, 0x3f33fcc3, 0xff30cc3, 0xff3fc3ff, 0xff3f0003, 0xfccf3f0, 0xc330303f, 0x30ff3300, 
-    0xc0fcc3f, 0xf3030c0f, 0x3f33fffc, 0xcc0c03f, 0xf00fcf3, 0xf0000c03, 0xc00ccc0f, 0x30c3033, 0xfcff3c, 0xcfc330f0, 0x3c00300f, 0xc3f03cc, 0xcf3f303f, 0xf303333c, 0x3c03cfcc, 0xcf3303ff, 
-    0x33c03030, 0xc3003003, 0x3f003c0c, 0x3f3f0ff3, 0x3f3000, 0xcff3cc3c, 0xcfc3f3fc, 0xf0033c33, 0xcfc0f3cc, 0xf33c00cc, 0xf3f3300c, 0xcccc3f33, 0x33cfcffc, 0xf0333c33, 0x3cc3cf3c, 0x3ffcf0c3, 
-    0xcc3c0cf0, 0xc0fc0cfc, 0xcc3cc, 0x30c33003, 0xc3cf3c0f, 0xcccf3fc, 0x3ccf3fff, 0xccf3cc30, 0xc33cccf3, 0xcc30c33f, 0x3030f00f, 0x3c0cfcc3, 0x3cf0cc03, 0xcf30f33, 0xff30c0f3, 0xc300f0ff, 
-    0xc0c0cfcc, 0xf000cc0f, 0xf0000c0c, 0xcc30cff, 0x3ff0fcff, 0x3f3cc3c0, 0xcc0300cf, 0xf3c30f33, 0xff33cfc3, 0x33c33c3c, 0x3fccfcff, 0xc0c3f33, 0xff3c0c3c, 0x30ff3cc, 0xff0c0c3c, 0xcf033f, 
-    0xf3cf03f0, 0x3f0cf3c3, 0x30f0f3, 0xc3fcc0f3, 0xf3cff3cc, 0xc033ff30, 0xc300000c, 0x330fffcf, 0xfcc00c0, 0x33ff3000, 0xc3ffc030, 0xcfcfc3cf, 0x3c30ccff, 0xfcc00c3c, 0x3f00fc33, 0xf3f00cf, 
-    0xcf030f3, 0xcf00fc, 0xcffcf0c, 0x3f03c30f, 0x3f303ccc, 0xf300c333, 0xfccc3cf, 0xfcfcfc, 0xf330c3, 0xc3000f0c, 0xc3ccffc, 0x303f00c3, 0x3ff00f30, 0x33c33ff, 0xfffcc3fc, 0xc0c0ff00, 
-    0x3303fcc, 0xc3303303, 0xfcff030f, 0x33f3ffc0, 0xfc0c0cf3, 0xc33cff33, 0xc0ccc3c0, 0x300f300c, 0xf03f00c3, 0xccf303cc, 0xfc3fff3f, 0xc30f33, 0x333f0c, 0x30f3003c, 0xcf0033fc, 0xccc3cc30, 
-    0x330ccf0, 0xcffff0c3, 0xf30f0f0, 0xcc30ccf0, 0xf3f33f0f, 0xc3c3fcc, 0xfc300c0c, 0x33ffc3c, 0xccf3c00f, 0xf3ccf3f, 0xffccfcff, 0xfcf0300f, 0xc300c3f, 0xf0ff0f30, 0xf00ffff3, 0xcc00030f, 
-    0xcc03cfff, 0x3000c0, 0x33c000c3, 0x3c3ccc3f, 0x30f0c30f, 0xcff33f3f, 0xfccf3fc0, 0x3030cfc3, 0x33cfc0cf, 0xfff03ff3, 0xff3f3c30, 0xcffffccf, 0xc0f3303c, 0xcfc0cfc3, 0x3030c3c3, 0xc3ffc0f3, 
-    0xc03fccf0, 0xf0cc3fc, 0x333ccffc, 0xfcf030c0, 0x300ffc3, 0xf03ff3f0, 0xf3cfff3f, 0x300ffc3, 0x3c03cfcf, 0xfcfc3003, 0xc3f3fcf3, 0xf30030f, 0xf3c0fc0, 0xff0cfc3c, 0x33f3ffcf, 0x3f330f00, 
-    0x3fc3003c, 0x300cfc03, 0xcc33cfc0, 0xcc3fc3ff, 0xf33c330c, 0x3c30ffff, 0x3c0cf0fc, 0x30c0033c, 0xcf00cc3f, 0x33cc0330, 0x3f3303cf, 0xc3303f33, 0x3c00cffc, 0xffcc003c, 0xf0c3030, 0x3c0cf0f3, 
-    0x3f0fcfcc, 0xffff03cf, 0x303ff3cf, 0xccc0fcf, 0x303cc33f, 0xc0303f30, 0xc3003cc0, 0xff3cfc0f, 0xccf3cff0, 0x33fcc00c, 0xc3f3cc03, 0xf300f000, 0xfcffc00, 0xf30c3fff, 0xc03cf30, 0xf0c033f3, 
-    0xc0cc303, 0xcfffc3f3, 0xcfcff00f, 0xff0ccc00, 0xc3c3fc3f, 0xc00330cf, 0x3000fc3c, 0x3fcccf0f, 0x30ccff03, 0x3c3f03ff, 0xf0cf3ccf, 0xf0fcf, 0xc3f3cfff, 0xc3cfc0fc, 0xf00330c, 0x3ff0c330, 
-    0xcf0ffc00, 0xf3f3f3cc, 0xcf00330f, 0xf0ff0cf0, 0xfc00f0ff, 0xfc0f30, 0xcff00ccf, 0xf3f3fff3, 0x33f30f0, 0xccf3333c, 0xcc0f0cc0, 0x3ff300ff, 0xffffc333, 0x3c3f030, 0x3fcc0303, 0xccfc0f0f
+    (word_t)0x3f03303f300fc03f, (word_t)0xfc30c0f3cc3f03c0L, (word_t)0xccc3ff0fff0c0333L, (word_t)0x33f33f3033fcf30f, (word_t)0xc33fcff3ccf00c00L, (word_t)0x33c3ccc3cf0f3fc3, 
+    (word_t)0xc0c3fc0fcf3c3fc3L, (word_t)0xcc0f30f300c0c3fcL, (word_t)0x33c0c030ffff03f, (word_t)0xf3f330fcc030030, (word_t)0xf33c0c3ff3cc3fccL, (word_t)0xf03fcc30c0c0c300L, 
+    (word_t)0x3ccc00f0c3c33c30, (word_t)0x300f3f3cccfff0f0, (word_t)0xffffff0033c0300fL, (word_t)0xfcf330f30fcf00ccL, (word_t)0x333303f0303c333, (word_t)0x3fc00f0cc0fff00, 
+    (word_t)0xcf000f3f00ffc00cL, (word_t)0x3c030ffc0cc3cccc, (word_t)0x33fc330f330cf0ff, (word_t)0xccf0ffcf3c03c3f3L, (word_t)0x3c3c03fc3f0c3c00, (word_t)0xcc03fffcf33ccc00L, 
+    (word_t)0xf0cf00fcf303ff3cL, (word_t)0xfcc0ff0cc0cf3ff, (word_t)0x3c0c0f303033cf3c, (word_t)0xc33cf3ccffcf3fc0L, (word_t)0x333f0fcc030c3f00, (word_t)0xf03f30330cfccc30L, 
+    (word_t)0xc3003fc3ccf30f03L, (word_t)0xf3ff30003c0cf33, (word_t)0x300fffcf0c0303cc, (word_t)0xff3000cfccc0c3f0L, (word_t)0xff0300cf3003fccfL, (word_t)0x3ff333fccc00cff3, 
+    (word_t)0x303003c303c3c333, (word_t)0xf3f0033c0c0ccccfL, (word_t)0x3c0cc330ccf30300, (word_t)0xccf00ff333c0fcfcL, (word_t)0x3fff00003f333000, (word_t)0xcf3fffcccf0f3c0cL, 
+    (word_t)0xcf0f0fcf00cc30ffL, (word_t)0x3fff03330ccff3c3, (word_t)0xc0cc0033333ccfffL, (word_t)0x3f0c3f00ccc3ccc3, (word_t)0x3cf03333fc0f3ffc, (word_t)0xfccc0cc0ff3c333cL, 
+    (word_t)0xf003c3c3fccc3330L, (word_t)0x330f303f3fc0c3f0, (word_t)0xc0c3cffc3f3fc0c0L, (word_t)0x303f30cccff0c33c, (word_t)0x333f33f0f0fffcc, (word_t)0x300c030f0c03c0fc, 
+    (word_t)0x33ccff3c0c0333c0, (word_t)0xc3303030fc3ccc00L, (word_t)0xf03f3c0cccc3f0f3L, (word_t)0xf3cf330f30ffccc, (word_t)0xf3f0fcfc033cf3f0L, (word_t)0x33c33f0fc30cf0cf, 
+    (word_t)0xf033ffc0030c003fL, (word_t)0xff03f3ff00f3ffc, (word_t)0x303333cf3c3cf, (word_t)0xcc0f3f30c0fc333cL, (word_t)0x303333303fc3f33f, (word_t)0xc0ff03f33ff33ff0L, 
+    (word_t)0xc0ffc3f3c00ff0c0L, (word_t)0xc33c30c0c0c3c0fcL, (word_t)0xc0030fc00c033c3cL, (word_t)0xfc03f3c300c3f000L, (word_t)0x3f3c3303c3f33c03, (word_t)0xc33ff33c03c3300, 
+    (word_t)0xfccf33333c33cfc3L, (word_t)0xff3ff3fc003fcf3cL, (word_t)0xcccf3c0f30f33cfcL, (word_t)0xff0f0fcc0cc0fc3, (word_t)0xcc303cc03c000cccL, (word_t)0xc3ccfc30cc3fffccL, 
+    (word_t)0xccf3f3c0fccf003cL, (word_t)0xc3f0f0ff30ffc003L, (word_t)0x3330ff00ff3f00f3, (word_t)0x3c3300fc030cc3f, (word_t)0x3c33ff0c33fcff, (word_t)0x3f30cc00c330f0cf, 
+    (word_t)0xf0f3c00fc00f033cL, (word_t)0xff3330cf0fcc0cffL, (word_t)0xf00cffff000c3c30L, (word_t)0x3fccc0c300cc033f, (word_t)0xfc0f30ff00c0ff3, (word_t)0xf3fcc0ffc03000c3L, 
+    (word_t)0x3cff30f0333003c3, (word_t)0xfc30fc0c3f0ff0, (word_t)0x33c0030ffcfcc300, (word_t)0xfcf0ccfcc333cfc, (word_t)0x330f30c33cf0c3, (word_t)0x33333f0fc0c0ff0c, 
+    (word_t)0xf0f00cc03f0f33fcL, (word_t)0x3f3003c3cc0f3c0f, (word_t)0x3cc3f030cf03f3fc, (word_t)0x3333f30c00f303, (word_t)0x333cc33fffff3ccf, (word_t)0xff03f333f33030, 
+    (word_t)0x3000cfff033fc330, (word_t)0x30303cc0c030ff33, (word_t)0xf0c33cc0f033f33, (word_t)0xcfff3f0f33ffcff, (word_t)0x3ffc0fcc3ff3030c, (word_t)0x30c30cc03ccc3cc0, 
+    (word_t)0xf303fc3c030cccc0L, (word_t)0x30f0c30300ccc3c, (word_t)0xc0c3fcfff333f300L, (word_t)0x3cc3cf30003f00, (word_t)0xc3cf3000c3c0cfc, (word_t)0xfffc033cfcccc3cfL, 
+    (word_t)0xf3f030f303f30f, (word_t)0xc30c0c3cc03c, (word_t)0x3ccc0cfff03cfccf, (word_t)0xfff3030c3c3cc0f, (word_t)0xf3c03c33cfccfcc3L, (word_t)0x3030cf0f330330c0, 
+    (word_t)0xc000cc303cc3cffcL, (word_t)0x3300fc0f30f3f33f, (word_t)0xf0f0f03cffff0c30L, (word_t)0x3ffc3cc0f0f0cc3c, (word_t)0xf0fccf30cf3cfcf0L, (word_t)0xfccf33c3ff30cc0, 
+    (word_t)0xffcfc0c0f0f33f3, (word_t)0xffc3ffc0cc0c0c33L, (word_t)0xcccf00f03cffcff0L, (word_t)0xf33f30cfc30c33cfL, (word_t)0x3033033f33cc0c00, (word_t)0xf0c3330cf03f0033L, 
+    (word_t)0x30030ffc0f30303c, (word_t)0x300ff0cf3f3303f3, (word_t)0x303ff300f00f303c, (word_t)0xc00c00300c00fcc0L, (word_t)0x3c003f0cfccc30cc, (word_t)0xcfffcc0cf0f3333fL, 
+    (word_t)0xccc030030ffcc33fL, (word_t)0xcf3c03c00f000f3, (word_t)0x3f3cc3c30cffff3f, (word_t)0x3fc303ffcfcc03cc, (word_t)0xc3f00330033cf030L, (word_t)0x3f03030cccc0030, 
+    (word_t)0xfcfcf030ff00c000L, (word_t)0x30fccf0cc0f003f0, (word_t)0xc03303cfcc3033cfL, (word_t)0xf33c330fffc03ffcL, (word_t)0x33fc0f3c030f3c00, (word_t)0xf0cf33000cf330f3L, 
+    (word_t)0xcfffc3f0c03300c3L, (word_t)0x300cc000f0f3c333, (word_t)0x33f333cfcccff, (word_t)0xf303000ccc0c333cL, (word_t)0xc0cfffc3ff3cccccL, (word_t)0xfcc0cff003c00ccfL, 
+    (word_t)0x300c0fcc0cf03f0, (word_t)0xfc3fff0030ccf3f3L, (word_t)0x33f3ccffc3f030, (word_t)0xfcc3fccc00cfcc3, (word_t)0xf0c33c03cc0cc30cL, (word_t)0xf3fc3330cf33cf0cL, 
+    (word_t)0x3c0c033cf3c3cf33, (word_t)0x3ffc33fcfccf3f, (word_t)0x3f0fcf0c30fcfccf, (word_t)0xf033fc30c03ff0ffL, (word_t)0xf00ffc3c30cf03f, (word_t)0xf0fccf30f3cc0ffcL, 
+    (word_t)0x30c0ccf0c0cf3f00, (word_t)0xccf0333c0fcf30c3L, (word_t)0x3c3c03ffcfc3cc33, (word_t)0xfc3f0cc33c03fc0fL, (word_t)0x3000c30cc33ff0fc, (word_t)0xcfffcf0c33c0c3c0L, 
+    (word_t)0xffcf3f3ff3030f0, (word_t)0x3ffffcc03cf0c303, (word_t)0x33cf0f3c3f0330cc, (word_t)0xfcffc3c0f000ff0cL, (word_t)0xc330f30f3f330cccL, (word_t)0x3f03c0f0c3ccf30, 
+    (word_t)0xcf0fccf3c0333c00L, (word_t)0xcf3c300cfc03cfc, (word_t)0xf0fff33f000fcfc, (word_t)0x3fc3f3ccf0cfc0cf, (word_t)0xf33ff33033f3f300L, (word_t)0xccc03c3c0cf03333L, 
+    (word_t)0xfc3c3cc03300fc3, (word_t)0xccf3fcc0ccf00fc0L, (word_t)0xf03003ff0ccf0300L, (word_t)0xc33ff3f3c303cc0cL, (word_t)0x3f300ccc33c0c0c3, (word_t)0xf03fc3333fffc300L, 
+    (word_t)0xccc0ff30cc33f0f0L, (word_t)0x3300003c3fcfff33, (word_t)0x30f0c03f33cc03f0, (word_t)0xc000033f3fc0ccc3L, (word_t)0x3fff0003f3f3ffcc, (word_t)0xc3fccf0c3f0ffccfL, 
+    (word_t)0x3fc303fc0fcc3cfc, (word_t)0xcffff0c3f3c00c33L, (word_t)0xf3f3f030cf03c0f3L, (word_t)0xf00cff00ff3f3cc, (word_t)0xf33cc30f0f0f3cf0L, (word_t)0xff00cf000fccf000L, 
+    (word_t)0xff300cf0cc03fcf3L, (word_t)0xccf00fcc33c0c333L, (word_t)0xf33fcf3ffcf00000L, (word_t)0xc33f0f003cc303fcL, (word_t)0x33c3cc3c3c3fc00, (word_t)0xc33c0cfcf30cff0cL, 
+    (word_t)0x3c3f303fcffc000f, (word_t)0x30c33f03c3cff0f, (word_t)0x330f330303ffcc33, (word_t)0xf333ff3cccc3c3cfL, (word_t)0x3c03fc0cf00f3f03, (word_t)0xf333c3c3cfff30c0L, 
+    (word_t)0x303ff0c0ffc3330, (word_t)0xf03303000fff33cfL, (word_t)0x33c33fcccc33f00, (word_t)0xc30fc03cfc0ff0f0L, (word_t)0xc0cc3f00cffcc3cfL, (word_t)0xf0ffcc30cfcfc333L, 
+    (word_t)0xf0c33f33c0ff0cfcL, (word_t)0xfffcf0f0f0fcf333L, (word_t)0x33fc330cccf3cf, (word_t)0xff33f333c030f33cL, (word_t)0xc3f303f3f03c03f0L, (word_t)0xcfff03cc0330c300L, 
+    (word_t)0x3ff3c030c0f333c3, (word_t)0xff03f30cf30cff0fL, (word_t)0x3cccc3cf00cf33c0, (word_t)0xff0fc3033ccf0000L, (word_t)0x330fcfc3f3c303f3, (word_t)0xf3cc30cf0c3fc0c3L, 
+    (word_t)0xc03ff3c0f33cffcfL, (word_t)0xf30000f030cfc30fL, (word_t)0x3300030cc0f3cc0, (word_t)0xff3c033fcfccc30, (word_t)0x3fcc0c3c300f0fff, (word_t)0x33f00cf00300003c, 
+    (word_t)0xcfcfc003f3fcf3ccL, (word_t)0xff3fff3cfcf330, (word_t)0x30fccf0c33f030fc, (word_t)0x330c3fcccfccf0c, (word_t)0x303cf3fcfccccff, (word_t)0x3303cfff3cf3f03, 
+    (word_t)0xc3030c003c30fc33L, (word_t)0xccf30cf0fcc30f00L, (word_t)0x3333f000300cf3c, (word_t)0xfcf030c303f3c0c0L, (word_t)0xc3c0cc030fc00c00L, (word_t)0x33cccff3f3c03030, 
 };
+
 
 uint8_t bitswap[256] = {
     0x0, 0x2, 0x1, 0x3, 0x8, 0xa, 0x9, 0xb, 0x4, 0x6, 0x5, 0x7, 0xc, 0xe, 0xd, 0xf, 
@@ -249,17 +276,27 @@ void bs_sbox_rev(word_t U[8])
 
 static int rand_indx = 0;
 
-word_t SAND(word_t p, word_t q)
+static word_t SAND(word_t p, word_t q)
 {
     word_t r1 = rands[((rand_indx++) & 0xff)];
 
     word_t n1 = p & q;
 
-    word_t qswap = bitswap[(uint8_t)q] |
-                    (bitswap[(uint8_t)(q>>8)] << 8)|
-                    (bitswap[(uint8_t)(q>>16)] << 16) |
-                    (bitswap[(uint8_t)(q>>24)] << 24);
-
+    word_t qswap = bitswap[(uint8_t)q]
+#if WORD_SIZE > 8
+                   | ((word_t)bitswap[(uint8_t)(q>>8)] << 8)
+#endif
+#if WORD_SIZE > 16
+                   | ((word_t)bitswap[(uint8_t)(q>>16)] << 16)
+                   | ((word_t)bitswap[(uint8_t)(q>>24)] << 24)
+#endif
+#if WORD_SIZE > 32
+                   | ((word_t)bitswap[(uint8_t)(q>>32)] << 32)
+                   | ((word_t)bitswap[(uint8_t)(q>>40)] << 40)
+                   | ((word_t)bitswap[(uint8_t)(q>>48)] << 48)
+                   | ((word_t)bitswap[(uint8_t)(q>>56)] << 56)
+#endif
+    ;
     word_t n3 = p & qswap;
     word_t n4 = r1 ^ n1;
     word_t z = n3 ^ n4;
@@ -267,223 +304,223 @@ word_t SAND(word_t p, word_t q)
     return z;
 }
 
-void bs_sbox(word_t Up1[8])
+void bs_sbox(word_t U[8])
 {
     word_t S[8];
     word_t
-        T1p1,T2p1,T3p1,T4p1,T5p1,T6p1,T7p1,T8p1,
-        T9p1,T10p1,T11p1,T12p1,T13p1,T14p1,T15p1,T16p1,
-        T17p1,T18p1,T19p1,T20p1,T21p1,T22p1,T23p1,T24p1,
-        T25p1, T26p1, T27p1;
+        T1,T2,T3,T4,T5,T6,T7,T8,
+        T9,T10,T11,T12,T13,T14,T15,T16,
+        T17,T18,T19,T20,T21,T22,T23,T24,
+        T25, T26, T27;
 
 
     word_t
-        M1p1,M2p1,M3p1,M4p1,M5p1,M6p1,M7p1,M8p1,
-        M9p1,M10p1,M11p1,M12p1,M13p1,M14p1,M15p1,
-        M16p1,M17p1,M18p1,M19p1,M20p1,M21p1,M22p1,
-        M23p1,M24p1,M25p1,M26p1,M27p1,M28p1,M29p1,
-        M30p1,M31p1,M32p1,M33p1,M34p1,M35p1,M36p1,
-        M37p1,M38p1,M39p1,M40p1,M41p1,M42p1,M43p1,
-        M44p1,M45p1,M46p1,M47p1,M48p1,M49p1,M50p1,
-        M51p1,M52p1,M53p1,M54p1,M55p1,M56p1,M57p1,
-        M58p1,M59p1,M60p1,M61p1,M62p1,M63p1;
+        M1,M2,M3,M4,M5,M6,M7,M8,
+        M9,M10,M11,M12,M13,M14,M15,
+        M16,M17,M18,M19,M20,M21,M22,
+        M23,M24,M25,M26,M27,M28,M29,
+        M30,M31,M32,M33,M34,M35,M36,
+        M37,M38,M39,M40,M41,M42,M43,
+        M44,M45,M46,M47,M48,M49,M50,
+        M51,M52,M53,M54,M55,M56,M57,
+        M58,M59,M60,M61,M62,M63;
 
     word_t
-        L0p1,L1p1,L2p1,L3p1,L4p1,L5p1,L6p1,L7p1,L8p1,
-        L9p1,L10p1,L11p1,L12p1,L13p1,L14p1,
-        L15p1,L16p1,L17p1,L18p1,L19p1,L20p1,
-        L21p1,L22p1,L23p1,L24p1,L25p1,L26p1,
-        L27p1,L28p1,L29p1;
+        L0,L1,L2,L3,L4,L5,L6,L7,L8,
+        L9,L10,L11,L12,L13,L14,
+        L15,L16,L17,L18,L19,L20,
+        L21,L22,L23,L24,L25,L26,
+        L27,L28,L29;
 
 
 
-    T1p1 = Up1[7] ^ Up1[4];
-    T2p1 = Up1[7] ^ Up1[2];
-    T3p1 = Up1[7] ^ Up1[1];
-    T4p1 = Up1[4] ^ Up1[2];
-    T5p1 = Up1[3] ^ Up1[1];
-    T6p1 = T1p1 ^ T5p1;
-    T7p1 = Up1[6] ^ Up1[5];
-    T8p1 = Up1[0] ^ T6p1;
-    T9p1 = Up1[0] ^ T7p1;
-    T10p1 = T6p1 ^ T7p1;
-    T11p1 = Up1[6] ^ Up1[2];
-    T12p1 = Up1[5] ^ Up1[2];
-    T13p1 = T3p1 ^ T4p1;
-    T14p1 = T6p1 ^ T11p1;
-    T15p1 = T5p1 ^ T11p1;
-    T16p1 = T5p1 ^ T12p1;
-    T17p1 = T9p1 ^ T16p1;
-    T18p1 = Up1[4] ^ Up1[0];
-    T19p1 = T7p1 ^ T18p1;
-    T20p1 = T1p1 ^ T19p1;
-    T21p1 = Up1[1] ^ Up1[0];
-    T22p1 = T7p1 ^ T21p1;
-    T23p1 = T2p1 ^ T22p1;
-    T24p1 = T2p1 ^ T10p1;
-    T25p1 = T20p1 ^ T17p1;
-    T26p1 = T3p1 ^ T16p1;
-    T27p1 = T1p1 ^ T12p1;
+    T1 = U[7] ^ U[4];
+    T2 = U[7] ^ U[2];
+    T3 = U[7] ^ U[1];
+    T4 = U[4] ^ U[2];
+    T5 = U[3] ^ U[1];
+    T6 = T1 ^ T5;
+    T7 = U[6] ^ U[5];
+    T8 = U[0] ^ T6;
+    T9 = U[0] ^ T7;
+    T10 = T6 ^ T7;
+    T11 = U[6] ^ U[2];
+    T12 = U[5] ^ U[2];
+    T13 = T3 ^ T4;
+    T14 = T6 ^ T11;
+    T15 = T5 ^ T11;
+    T16 = T5 ^ T12;
+    T17 = T9 ^ T16;
+    T18 = U[4] ^ U[0];
+    T19 = T7 ^ T18;
+    T20 = T1 ^ T19;
+    T21 = U[1] ^ U[0];
+    T22 = T7 ^ T21;
+    T23 = T2 ^ T22;
+    T24 = T2 ^ T10;
+    T25 = T20 ^ T17;
+    T26 = T3 ^ T16;
+    T27 = T1 ^ T12;
 
-    /*M1p1 = T13p1 & T6p1;*/
-    M1p1 = SAND(T13p1,T6p1);
+    /*M1 = T13 & T6;*/
+    M1 = SAND(T13,T6);
 
-    /*M2p1 = T23p1 & T8p1;*/
-    M2p1 = SAND(T23p1,T8p1);
+    /*M2 = T23 & T8;*/
+    M2 = SAND(T23,T8);
 
-    M3p1 = T14p1 ^ M1p1;
+    M3 = T14 ^ M1;
 
-    /*M4p1 = T19p1 & Up1[0];*/
-    M4p1 = SAND(T19p1,Up1[0]);
+    /*M4 = T19 & U[0];*/
+    M4 = SAND(T19,U[0]);
 
-    M5p1 = M4p1 ^ M1p1;
+    M5 = M4 ^ M1;
 
-    /*M6p1 = T3p1 & T16p1;*/
-    M6p1 = SAND(T3p1,T16p1);
-    /*M7p1 = T22p1 & T9p1;*/
-    M7p1 = SAND(T22p1,T9p1);
+    /*M6 = T3 & T16;*/
+    M6 = SAND(T3,T16);
+    /*M7 = T22 & T9;*/
+    M7 = SAND(T22,T9);
     
-    M8p1 = T26p1 ^ M6p1;
+    M8 = T26 ^ M6;
 
-    /*M9p1 = T20p1 & T17p1;*/
-    M9p1 = SAND(T20p1,T17p1);
+    /*M9 = T20 & T17;*/
+    M9 = SAND(T20,T17);
 
-    M10p1 = M9p1 ^ M6p1;
+    M10 = M9 ^ M6;
 
-    /*M11p1 = T1p1 & T15p1;*/
-    M11p1 = SAND(T1p1,T15p1);
-    /*M12p1 = T4p1 & T27p1;*/
-    M12p1 = SAND(T4p1,T27p1);
+    /*M11 = T1 & T15;*/
+    M11 = SAND(T1,T15);
+    /*M12 = T4 & T27;*/
+    M12 = SAND(T4,T27);
 
-    M13p1 = M12p1 ^ M11p1;
+    M13 = M12 ^ M11;
 
-    /*M14p1 = T2p1 & T10p1;*/
-    M14p1 = SAND(T2p1,T10p1);
+    /*M14 = T2 & T10;*/
+    M14 = SAND(T2,T10);
 
-    M15p1 = M14p1 ^ M11p1;
-    M16p1 = M3p1 ^ M2p1;
-    M17p1 = M5p1 ^ T24p1;
-    M18p1 = M8p1 ^ M7p1;
-    M19p1 = M10p1 ^ M15p1;
-    M20p1 = M16p1 ^ M13p1;
-    M21p1 = M17p1 ^ M15p1;
-    M22p1 = M18p1 ^ M13p1;
-    M23p1 = M19p1 ^ T25p1;
-    M24p1 = M22p1 ^ M23p1;
+    M15 = M14 ^ M11;
+    M16 = M3 ^ M2;
+    M17 = M5 ^ T24;
+    M18 = M8 ^ M7;
+    M19 = M10 ^ M15;
+    M20 = M16 ^ M13;
+    M21 = M17 ^ M15;
+    M22 = M18 ^ M13;
+    M23 = M19 ^ T25;
+    M24 = M22 ^ M23;
 
-    /*M25p1 = M22p1 & M20p1;*/
-    M25p1 = SAND(M22p1,M20p1);
+    /*M25 = M22 & M20;*/
+    M25 = SAND(M22,M20);
     
-    M26p1 = M21p1 ^ M25p1;
-    M27p1 = M20p1 ^ M21p1;
-    M28p1 = M23p1 ^ M25p1;
+    M26 = M21 ^ M25;
+    M27 = M20 ^ M21;
+    M28 = M23 ^ M25;
 
-    /*M29p1 = M28p1 & M27p1;*/
-    M29p1 = SAND(M28p1,M27p1);
-    /*M30p1 = M26p1 & M24p1;*/
-    M30p1 = SAND(M26p1,M24p1);
-    /*M31p1 = M20p1 & M23p1;*/
-    M31p1 = SAND(M20p1,M23p1);
-    /*M32p1 = M27p1 & M31p1;*/
-    M32p1 = SAND(M27p1,M31p1);
+    /*M29 = M28 & M27;*/
+    M29 = SAND(M28,M27);
+    /*M30 = M26 & M24;*/
+    M30 = SAND(M26,M24);
+    /*M31 = M20 & M23;*/
+    M31 = SAND(M20,M23);
+    /*M32 = M27 & M31;*/
+    M32 = SAND(M27,M31);
 
-    M33p1 = M27p1 ^ M25p1;
+    M33 = M27 ^ M25;
 
-    /*M34p1 = M21p1 & M22p1;*/
-    M34p1 = SAND(M21p1,M22p1);
-    /*M35p1 = M24p1 & M34p1;*/
-    M35p1 = SAND(M24p1,M34p1);
+    /*M34 = M21 & M22;*/
+    M34 = SAND(M21,M22);
+    /*M35 = M24 & M34;*/
+    M35 = SAND(M24,M34);
 
-    M36p1 = M24p1 ^ M25p1;
-    M37p1 = M21p1 ^ M29p1;
-    M38p1 = M32p1 ^ M33p1;
-    M39p1 = M23p1 ^ M30p1;
-    M40p1 = M35p1 ^ M36p1;
-    M41p1 = M38p1 ^ M40p1;
-    M42p1 = M37p1 ^ M39p1;
-    M43p1 = M37p1 ^ M38p1;
-    M44p1 = M39p1 ^ M40p1;
-    M45p1 = M42p1 ^ M41p1;
+    M36 = M24 ^ M25;
+    M37 = M21 ^ M29;
+    M38 = M32 ^ M33;
+    M39 = M23 ^ M30;
+    M40 = M35 ^ M36;
+    M41 = M38 ^ M40;
+    M42 = M37 ^ M39;
+    M43 = M37 ^ M38;
+    M44 = M39 ^ M40;
+    M45 = M42 ^ M41;
 
-    /*M46p1 = M44p1 & T6p1;*/
-    M46p1 = SAND(M44p1,T6p1);
-    /*M47p1 = M40p1 & T8p1;*/
-    M47p1 = SAND(M40p1,T8p1);
-    /*M48p1 = M39p1 & Up1[0];*/
-    M48p1 = SAND(M39p1,Up1[0]);
-    /*M49p1 = M43p1 & T16p1;*/
-    M49p1 = SAND(M43p1,T16p1);
-    /*M50p1 = M38p1 & T9p1;*/
-    M50p1 = SAND(M38p1,T9p1);
-    /*M51p1 = M37p1 & T17p1;*/
-    M51p1 = SAND(M37p1,T17p1);
-    /*M52p1 = M42p1 & T15p1;*/
-    M52p1 = SAND(M42p1,T15p1);
-    /*M53p1 = M45p1 & T27p1;*/
-    M53p1 = SAND(M45p1,T27p1);
-    /*M54p1 = M41p1 & T10p1;*/
-    M54p1 = SAND(M41p1,T10p1);
-    /*M55p1 = M44p1 & T13p1;*/
-    M55p1 = SAND(M44p1,T13p1);
-    /*M56p1 = M40p1 & T23p1;*/
-    M56p1 = SAND(M40p1,T23p1);
-    /*M57p1 = M39p1 & T19p1;*/
-    M57p1 = SAND(M39p1,T19p1);
-    /*M58p1 = M43p1 & T3p1;*/
-    M58p1 = SAND(M43p1,T3p1);
-    /*M59p1 = M38p1 & T22p1;*/
-    M59p1 = SAND(M38p1,T22p1);
-    /*M60p1 = M37p1 & T20p1;*/
-    M60p1 = SAND(M37p1,T20p1);
-    /*M61p1 = M42p1 & T1p1;*/
-    M61p1 = SAND(M42p1,T1p1);
-    /*M62p1 = M45p1 & T4p1;*/
-    M62p1 = SAND(M45p1,T4p1);
-    /*M63p1 = M41p1 & T2p1;*/
-    M63p1 = SAND(M41p1,T2p1);
+    /*M46 = M44 & T6;*/
+    M46 = SAND(M44,T6);
+    /*M47 = M40 & T8;*/
+    M47 = SAND(M40,T8);
+    /*M48 = M39 & U[0];*/
+    M48 = SAND(M39,U[0]);
+    /*M49 = M43 & T16;*/
+    M49 = SAND(M43,T16);
+    /*M50 = M38 & T9;*/
+    M50 = SAND(M38,T9);
+    /*M51 = M37 & T17;*/
+    M51 = SAND(M37,T17);
+    /*M52 = M42 & T15;*/
+    M52 = SAND(M42,T15);
+    /*M53 = M45 & T27;*/
+    M53 = SAND(M45,T27);
+    /*M54 = M41 & T10;*/
+    M54 = SAND(M41,T10);
+    /*M55 = M44 & T13;*/
+    M55 = SAND(M44,T13);
+    /*M56 = M40 & T23;*/
+    M56 = SAND(M40,T23);
+    /*M57 = M39 & T19;*/
+    M57 = SAND(M39,T19);
+    /*M58 = M43 & T3;*/
+    M58 = SAND(M43,T3);
+    /*M59 = M38 & T22;*/
+    M59 = SAND(M38,T22);
+    /*M60 = M37 & T20;*/
+    M60 = SAND(M37,T20);
+    /*M61 = M42 & T1;*/
+    M61 = SAND(M42,T1);
+    /*M62 = M45 & T4;*/
+    M62 = SAND(M45,T4);
+    /*M63 = M41 & T2;*/
+    M63 = SAND(M41,T2);
 
-    L0p1 = M61p1 ^ M62p1;
-    L1p1 = M50p1 ^ M56p1;
-    L2p1 = M46p1 ^ M48p1;
-    L3p1 = M47p1 ^ M55p1;
-    L4p1 = M54p1 ^ M58p1;
-    L5p1 = M49p1 ^ M61p1;
-    L6p1 = M62p1 ^ L5p1;
-    L7p1 = M46p1 ^ L3p1;
-    L8p1 = M51p1 ^ M59p1;
-    L9p1 = M52p1 ^ M53p1;
-    L10p1 = M53p1 ^ L4p1;
-    L11p1 = M60p1 ^ L2p1;
-    L12p1 = M48p1 ^ M51p1;
-    L13p1 = M50p1 ^ L0p1;
-    L14p1 = M52p1 ^ M61p1;
-    L15p1 = M55p1 ^ L1p1;
-    L16p1 = M56p1 ^ L0p1;
-    L17p1 = M57p1 ^ L1p1;
-    L18p1 = M58p1 ^ L8p1;
-    L19p1 = M63p1 ^ L4p1;
-    L20p1 = L0p1 ^ L1p1;
-    L21p1 = L1p1 ^ L7p1;
-    L22p1 = L3p1 ^ L12p1;
-    L23p1 = L18p1 ^ L2p1;
-    L24p1 = L15p1 ^ L9p1;
-    L25p1 = L6p1 ^ L10p1;
-    L26p1 = L7p1 ^ L9p1;
-    L27p1 = L8p1 ^ L10p1;
-    L28p1 = L11p1 ^ L14p1;
-    L29p1 = L11p1 ^ L17p1;
-    Up1[7] = L6p1 ^ L24p1;
-    /*Up1[6] = ~(L16p1 ^ L26p1);*/
-    Up1[6] = 0x55555555 ^ (L16p1 ^ L26p1);
-    /*Up1[5] = ~(L19p1 ^ L28p1);*/
-    Up1[5] = 0x55555555 ^ (L19p1 ^ L28p1);
-    Up1[4] = L6p1 ^ L21p1;
-    Up1[3] = L20p1 ^ L22p1;
-    Up1[2] = L25p1 ^ L29p1;
-    /*Up1[1] = ~(L13p1 ^ L27p1);*/
-    Up1[1] = 0x55555555 ^ (L13p1 ^ L27p1);
-    /*Up1[0] = ~(L6p1 ^ L23p1);*/
-    Up1[0] = 0x55555555 ^ (L6p1 ^ L23p1);
+    L0 = M61 ^ M62;
+    L1 = M50 ^ M56;
+    L2 = M46 ^ M48;
+    L3 = M47 ^ M55;
+    L4 = M54 ^ M58;
+    L5 = M49 ^ M61;
+    L6 = M62 ^ L5;
+    L7 = M46 ^ L3;
+    L8 = M51 ^ M59;
+    L9 = M52 ^ M53;
+    L10 = M53 ^ L4;
+    L11 = M60 ^ L2;
+    L12 = M48 ^ M51;
+    L13 = M50 ^ L0;
+    L14 = M52 ^ M61;
+    L15 = M55 ^ L1;
+    L16 = M56 ^ L0;
+    L17 = M57 ^ L1;
+    L18 = M58 ^ L8;
+    L19 = M63 ^ L4;
+    L20 = L0 ^ L1;
+    L21 = L1 ^ L7;
+    L22 = L3 ^ L12;
+    L23 = L18 ^ L2;
+    L24 = L15 ^ L9;
+    L25 = L6 ^ L10;
+    L26 = L7 ^ L9;
+    L27 = L8 ^ L10;
+    L28 = L11 ^ L14;
+    L29 = L11 ^ L17;
+    U[7] = L6 ^ L24;
+    /*U[6] = ~(L16 ^ L26);*/
+    U[6] = 0x55555555 ^ (L16 ^ L26);
+    /*U[5] = ~(L19 ^ L28);*/
+    U[5] = 0x55555555 ^ (L19 ^ L28);
+    U[4] = L6 ^ L21;
+    U[3] = L20 ^ L22;
+    U[2] = L25 ^ L29;
+    /*U[1] = ~(L13 ^ L27);*/
+    U[1] = 0x55555555 ^ (L13 ^ L27);
+    /*U[0] = ~(L6 ^ L23);*/
+    U[0] = 0x55555555 ^ (L6 ^ L23);
 }
 
 void bs_transpose(word_t * blocks)
@@ -1181,7 +1218,7 @@ void bs_expand_key(word_t (* rk)[BLOCK_SIZE], uint8_t * _key)
     memmove(key,_key,BLOCK_SIZE/8);
     expand_key(key);
 
-    int i, j = 0, k, l;
+    int i, j = 0, k;
     for (i = 0; i < KEY_SCHEDULE_SIZE; i += (BLOCK_SIZE/8))
     {
         for (k = 0; k < WORD_SIZE; k += 2)
@@ -1189,7 +1226,6 @@ void bs_expand_key(word_t (* rk)[BLOCK_SIZE], uint8_t * _key)
 
             memmove(rk[j] + k * WORDS_PER_BLOCK, key + i, BLOCK_SIZE / 8);
             memset(rk[j] + (k+1) * WORDS_PER_BLOCK, 0, BLOCK_SIZE / 8);
-
         }
         bs_transpose(rk[j]);
         j++;

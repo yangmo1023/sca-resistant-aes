@@ -1,8 +1,8 @@
 src = $(wildcard *.c)
 obj = $(src:.c=.o)
 
-LDFLAGS = -Wl,--gc-sections
-CFLAGS = -g3 -O3 -fdata-sections -ffunction-sections -DUNROLL_TRANSPOSE
+LDFLAGS = -pg -Wl,--gc-sections
+CFLAGS = -O3 -fdata-sections -ffunction-sections -DUNROLL_TRANSPOSE
 
 CC=gcc
 #CC=sparc-elf-gcc

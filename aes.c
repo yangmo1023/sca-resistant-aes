@@ -30,7 +30,7 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
                 maskb += BLOCK_SIZE/8;
                 inputb += BLOCK_SIZE/8;
 
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < WORDS_PER_BLOCK; j++)
                 {
                     input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
                 }
@@ -41,7 +41,7 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
 
             for(i = 0; i < WORD_SIZE; i += 2)
             {
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < WORDS_PER_BLOCK; j++)
                 {
                     input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
                 }
@@ -62,7 +62,7 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
                 maskb += BLOCK_SIZE/8;
                 inputb += BLOCK_SIZE/8;
 
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < WORDS_PER_BLOCK; j++)
                 {
                     input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
                 }
@@ -74,13 +74,11 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
             state += BS_BLOCK_SIZE;
             for(i = 0; i < WORD_SIZE; i += 2)
             {
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < WORDS_PER_BLOCK; j++)
                 {
                     input_space[ i * WORDS_PER_BLOCK + j] ^= input_space[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
                 }
             }
-
-
         }
 
     }
@@ -159,7 +157,7 @@ void aesm_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
             memmove(ctr + (i * WORDS_PER_BLOCK), iv_copy, BLOCK_SIZE/8);
             memmove(ctr + (i * WORDS_PER_BLOCK + WORDS_PER_BLOCK), maskb, BLOCK_SIZE/8);
             maskb += BLOCK_SIZE/8;
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < WORDS_PER_BLOCK; j++)
             {
                 ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
             }
@@ -171,7 +169,7 @@ void aesm_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
 
         for (i = 0; i < blocks*2; i += 2)
         {
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < WORDS_PER_BLOCK; j++)
             {
                 ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
             }
@@ -182,10 +180,13 @@ void aesm_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
         uint8_t * ctr_p = (uint8_t *) ctr;
         for (i = 0; i < blocks; i += 1)
         {
-            int j = BLOCK_SIZE/8;
+            int j = WORDS_PER_BLOCK;
             while(j--)
             {
-                *outputb++ = *ctr_p++ ^ *inputb++;
+                *((word_t*)outputb) = *((word_t*)ctr_p) ^ *((word_t*)inputb);
+                outputb += WORD_SIZE/8;
+                ctr_p += WORD_SIZE/8;
+                inputb += WORD_SIZE/8;
             }
             // skip mask
             ctr_p += BLOCK_SIZE/8;

@@ -43,18 +43,19 @@ int cli_app(int argc, char * argv[])
 
     int keylen, ivlen;
 
-    if (argc != 5)
+    if (argc != 6)
     {
         fprintf(stderr, 
-                "Bitsliced AES-CTR\n"
-                "usage: %s <key-hex> <iv-hex> <input-file> <output-file>\n", argv[0]);
+                "Bitsliced AESM-CTR\n"
+                "usage: %s <key-hex> <iv-hex> <input-file> <random-file> <output-file>\n", argv[0]);
         exit(1);
     }
 
     unsigned char * key_s = argv[1];
     unsigned char * iv_s = argv[2];
     unsigned char * input_name = argv[3];
-    unsigned char * output_name = argv[4];
+    unsigned char * rand_name = argv[4];
+    unsigned char * output_name = argv[5];
 
     FILE * input = fopen(input_name, "r");
     if (input == NULL)
@@ -62,6 +63,14 @@ int cli_app(int argc, char * argv[])
         perror("fopen");
         exit(2);
     }
+    
+    FILE * rand = fopen(rand_name, "r");
+    if (rand == NULL)
+    {
+        perror("fopen");
+        exit(2);
+    }
+
 
     FILE * output = fopen(output_name, "w+");
     if (output == NULL)
@@ -104,6 +113,7 @@ int cli_app(int argc, char * argv[])
     fseek(input, 0L, SEEK_SET);
 
     uint8_t * pt = (uint8_t *) malloc(amt);
+    uint8_t * rt = (uint8_t *) malloc(amt);
     uint8_t * ct = (uint8_t *) malloc(amt);
 
     int ptlen = fread(pt, 1, amt, input);
@@ -113,10 +123,20 @@ int cli_app(int argc, char * argv[])
         exit(2);
     }
 
+
+    int rlen = fread(rt, 1, amt, rand);
+    if (rlen != amt)
+    {
+        fprintf(stderr,"not enough random bits in input file\n");
+        exit(2);
+    }
+
+
+
     struct timespec tstart,tend;
     clock_gettime(CLOCK_MONOTONIC, &tstart);
     {
-        aes_ctr_encrypt(ct, pt, amt, key, iv);
+        aesm_ctr_encrypt(ct, pt, rt, amt, key, iv);
     }
     clock_gettime(CLOCK_MONOTONIC, &tend);
 
