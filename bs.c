@@ -15,50 +15,51 @@
 #error "endianness not supported"
 #endif
 
-word_t rands[]= {
-    (word_t)0x3f03303f300fc03f, (word_t)0xfc30c0f3cc3f03c0L, (word_t)0xccc3ff0fff0c0333L, (word_t)0x33f33f3033fcf30f, (word_t)0xc33fcff3ccf00c00L, (word_t)0x33c3ccc3cf0f3fc3, 
-    (word_t)0xc0c3fc0fcf3c3fc3L, (word_t)0xcc0f30f300c0c3fcL, (word_t)0x33c0c030ffff03f, (word_t)0xf3f330fcc030030, (word_t)0xf33c0c3ff3cc3fccL, (word_t)0xf03fcc30c0c0c300L, 
-    (word_t)0x3ccc00f0c3c33c30, (word_t)0x300f3f3cccfff0f0, (word_t)0xffffff0033c0300fL, (word_t)0xfcf330f30fcf00ccL, (word_t)0x333303f0303c333, (word_t)0x3fc00f0cc0fff00, 
-    (word_t)0xcf000f3f00ffc00cL, (word_t)0x3c030ffc0cc3cccc, (word_t)0x33fc330f330cf0ff, (word_t)0xccf0ffcf3c03c3f3L, (word_t)0x3c3c03fc3f0c3c00, (word_t)0xcc03fffcf33ccc00L, 
-    (word_t)0xf0cf00fcf303ff3cL, (word_t)0xfcc0ff0cc0cf3ff, (word_t)0x3c0c0f303033cf3c, (word_t)0xc33cf3ccffcf3fc0L, (word_t)0x333f0fcc030c3f00, (word_t)0xf03f30330cfccc30L, 
-    (word_t)0xc3003fc3ccf30f03L, (word_t)0xf3ff30003c0cf33, (word_t)0x300fffcf0c0303cc, (word_t)0xff3000cfccc0c3f0L, (word_t)0xff0300cf3003fccfL, (word_t)0x3ff333fccc00cff3, 
-    (word_t)0x303003c303c3c333, (word_t)0xf3f0033c0c0ccccfL, (word_t)0x3c0cc330ccf30300, (word_t)0xccf00ff333c0fcfcL, (word_t)0x3fff00003f333000, (word_t)0xcf3fffcccf0f3c0cL, 
-    (word_t)0xcf0f0fcf00cc30ffL, (word_t)0x3fff03330ccff3c3, (word_t)0xc0cc0033333ccfffL, (word_t)0x3f0c3f00ccc3ccc3, (word_t)0x3cf03333fc0f3ffc, (word_t)0xfccc0cc0ff3c333cL, 
-    (word_t)0xf003c3c3fccc3330L, (word_t)0x330f303f3fc0c3f0, (word_t)0xc0c3cffc3f3fc0c0L, (word_t)0x303f30cccff0c33c, (word_t)0x333f33f0f0fffcc, (word_t)0x300c030f0c03c0fc, 
-    (word_t)0x33ccff3c0c0333c0, (word_t)0xc3303030fc3ccc00L, (word_t)0xf03f3c0cccc3f0f3L, (word_t)0xf3cf330f30ffccc, (word_t)0xf3f0fcfc033cf3f0L, (word_t)0x33c33f0fc30cf0cf, 
-    (word_t)0xf033ffc0030c003fL, (word_t)0xff03f3ff00f3ffc, (word_t)0x303333cf3c3cf, (word_t)0xcc0f3f30c0fc333cL, (word_t)0x303333303fc3f33f, (word_t)0xc0ff03f33ff33ff0L, 
-    (word_t)0xc0ffc3f3c00ff0c0L, (word_t)0xc33c30c0c0c3c0fcL, (word_t)0xc0030fc00c033c3cL, (word_t)0xfc03f3c300c3f000L, (word_t)0x3f3c3303c3f33c03, (word_t)0xc33ff33c03c3300, 
-    (word_t)0xfccf33333c33cfc3L, (word_t)0xff3ff3fc003fcf3cL, (word_t)0xcccf3c0f30f33cfcL, (word_t)0xff0f0fcc0cc0fc3, (word_t)0xcc303cc03c000cccL, (word_t)0xc3ccfc30cc3fffccL, 
-    (word_t)0xccf3f3c0fccf003cL, (word_t)0xc3f0f0ff30ffc003L, (word_t)0x3330ff00ff3f00f3, (word_t)0x3c3300fc030cc3f, (word_t)0x3c33ff0c33fcff, (word_t)0x3f30cc00c330f0cf, 
-    (word_t)0xf0f3c00fc00f033cL, (word_t)0xff3330cf0fcc0cffL, (word_t)0xf00cffff000c3c30L, (word_t)0x3fccc0c300cc033f, (word_t)0xfc0f30ff00c0ff3, (word_t)0xf3fcc0ffc03000c3L, 
-    (word_t)0x3cff30f0333003c3, (word_t)0xfc30fc0c3f0ff0, (word_t)0x33c0030ffcfcc300, (word_t)0xfcf0ccfcc333cfc, (word_t)0x330f30c33cf0c3, (word_t)0x33333f0fc0c0ff0c, 
-    (word_t)0xf0f00cc03f0f33fcL, (word_t)0x3f3003c3cc0f3c0f, (word_t)0x3cc3f030cf03f3fc, (word_t)0x3333f30c00f303, (word_t)0x333cc33fffff3ccf, (word_t)0xff03f333f33030, 
-    (word_t)0x3000cfff033fc330, (word_t)0x30303cc0c030ff33, (word_t)0xf0c33cc0f033f33, (word_t)0xcfff3f0f33ffcff, (word_t)0x3ffc0fcc3ff3030c, (word_t)0x30c30cc03ccc3cc0, 
-    (word_t)0xf303fc3c030cccc0L, (word_t)0x30f0c30300ccc3c, (word_t)0xc0c3fcfff333f300L, (word_t)0x3cc3cf30003f00, (word_t)0xc3cf3000c3c0cfc, (word_t)0xfffc033cfcccc3cfL, 
-    (word_t)0xf3f030f303f30f, (word_t)0xc30c0c3cc03c, (word_t)0x3ccc0cfff03cfccf, (word_t)0xfff3030c3c3cc0f, (word_t)0xf3c03c33cfccfcc3L, (word_t)0x3030cf0f330330c0, 
-    (word_t)0xc000cc303cc3cffcL, (word_t)0x3300fc0f30f3f33f, (word_t)0xf0f0f03cffff0c30L, (word_t)0x3ffc3cc0f0f0cc3c, (word_t)0xf0fccf30cf3cfcf0L, (word_t)0xfccf33c3ff30cc0, 
-    (word_t)0xffcfc0c0f0f33f3, (word_t)0xffc3ffc0cc0c0c33L, (word_t)0xcccf00f03cffcff0L, (word_t)0xf33f30cfc30c33cfL, (word_t)0x3033033f33cc0c00, (word_t)0xf0c3330cf03f0033L, 
-    (word_t)0x30030ffc0f30303c, (word_t)0x300ff0cf3f3303f3, (word_t)0x303ff300f00f303c, (word_t)0xc00c00300c00fcc0L, (word_t)0x3c003f0cfccc30cc, (word_t)0xcfffcc0cf0f3333fL, 
-    (word_t)0xccc030030ffcc33fL, (word_t)0xcf3c03c00f000f3, (word_t)0x3f3cc3c30cffff3f, (word_t)0x3fc303ffcfcc03cc, (word_t)0xc3f00330033cf030L, (word_t)0x3f03030cccc0030, 
-    (word_t)0xfcfcf030ff00c000L, (word_t)0x30fccf0cc0f003f0, (word_t)0xc03303cfcc3033cfL, (word_t)0xf33c330fffc03ffcL, (word_t)0x33fc0f3c030f3c00, (word_t)0xf0cf33000cf330f3L, 
-    (word_t)0xcfffc3f0c03300c3L, (word_t)0x300cc000f0f3c333, (word_t)0x33f333cfcccff, (word_t)0xf303000ccc0c333cL, (word_t)0xc0cfffc3ff3cccccL, (word_t)0xfcc0cff003c00ccfL, 
-    (word_t)0x300c0fcc0cf03f0, (word_t)0xfc3fff0030ccf3f3L, (word_t)0x33f3ccffc3f030, (word_t)0xfcc3fccc00cfcc3, (word_t)0xf0c33c03cc0cc30cL, (word_t)0xf3fc3330cf33cf0cL, 
-    (word_t)0x3c0c033cf3c3cf33, (word_t)0x3ffc33fcfccf3f, (word_t)0x3f0fcf0c30fcfccf, (word_t)0xf033fc30c03ff0ffL, (word_t)0xf00ffc3c30cf03f, (word_t)0xf0fccf30f3cc0ffcL, 
-    (word_t)0x30c0ccf0c0cf3f00, (word_t)0xccf0333c0fcf30c3L, (word_t)0x3c3c03ffcfc3cc33, (word_t)0xfc3f0cc33c03fc0fL, (word_t)0x3000c30cc33ff0fc, (word_t)0xcfffcf0c33c0c3c0L, 
-    (word_t)0xffcf3f3ff3030f0, (word_t)0x3ffffcc03cf0c303, (word_t)0x33cf0f3c3f0330cc, (word_t)0xfcffc3c0f000ff0cL, (word_t)0xc330f30f3f330cccL, (word_t)0x3f03c0f0c3ccf30, 
-    (word_t)0xcf0fccf3c0333c00L, (word_t)0xcf3c300cfc03cfc, (word_t)0xf0fff33f000fcfc, (word_t)0x3fc3f3ccf0cfc0cf, (word_t)0xf33ff33033f3f300L, (word_t)0xccc03c3c0cf03333L, 
-    (word_t)0xfc3c3cc03300fc3, (word_t)0xccf3fcc0ccf00fc0L, (word_t)0xf03003ff0ccf0300L, (word_t)0xc33ff3f3c303cc0cL, (word_t)0x3f300ccc33c0c0c3, (word_t)0xf03fc3333fffc300L, 
-    (word_t)0xccc0ff30cc33f0f0L, (word_t)0x3300003c3fcfff33, (word_t)0x30f0c03f33cc03f0, (word_t)0xc000033f3fc0ccc3L, (word_t)0x3fff0003f3f3ffcc, (word_t)0xc3fccf0c3f0ffccfL, 
-    (word_t)0x3fc303fc0fcc3cfc, (word_t)0xcffff0c3f3c00c33L, (word_t)0xf3f3f030cf03c0f3L, (word_t)0xf00cff00ff3f3cc, (word_t)0xf33cc30f0f0f3cf0L, (word_t)0xff00cf000fccf000L, 
-    (word_t)0xff300cf0cc03fcf3L, (word_t)0xccf00fcc33c0c333L, (word_t)0xf33fcf3ffcf00000L, (word_t)0xc33f0f003cc303fcL, (word_t)0x33c3cc3c3c3fc00, (word_t)0xc33c0cfcf30cff0cL, 
-    (word_t)0x3c3f303fcffc000f, (word_t)0x30c33f03c3cff0f, (word_t)0x330f330303ffcc33, (word_t)0xf333ff3cccc3c3cfL, (word_t)0x3c03fc0cf00f3f03, (word_t)0xf333c3c3cfff30c0L, 
-    (word_t)0x303ff0c0ffc3330, (word_t)0xf03303000fff33cfL, (word_t)0x33c33fcccc33f00, (word_t)0xc30fc03cfc0ff0f0L, (word_t)0xc0cc3f00cffcc3cfL, (word_t)0xf0ffcc30cfcfc333L, 
-    (word_t)0xf0c33f33c0ff0cfcL, (word_t)0xfffcf0f0f0fcf333L, (word_t)0x33fc330cccf3cf, (word_t)0xff33f333c030f33cL, (word_t)0xc3f303f3f03c03f0L, (word_t)0xcfff03cc0330c300L, 
-    (word_t)0x3ff3c030c0f333c3, (word_t)0xff03f30cf30cff0fL, (word_t)0x3cccc3cf00cf33c0, (word_t)0xff0fc3033ccf0000L, (word_t)0x330fcfc3f3c303f3, (word_t)0xf3cc30cf0c3fc0c3L, 
-    (word_t)0xc03ff3c0f33cffcfL, (word_t)0xf30000f030cfc30fL, (word_t)0x3300030cc0f3cc0, (word_t)0xff3c033fcfccc30, (word_t)0x3fcc0c3c300f0fff, (word_t)0x33f00cf00300003c, 
-    (word_t)0xcfcfc003f3fcf3ccL, (word_t)0xff3fff3cfcf330, (word_t)0x30fccf0c33f030fc, (word_t)0x330c3fcccfccf0c, (word_t)0x303cf3fcfccccff, (word_t)0x3303cfff3cf3f03, 
-    (word_t)0xc3030c003c30fc33L, (word_t)0xccf30cf0fcc30f00L, (word_t)0x3333f000300cf3c, (word_t)0xfcf030c303f3c0c0L, (word_t)0xc3c0cc030fc00c00L, (word_t)0x33cccff3f3c03030, 
-};
+word_t rands[256]= 
+{(word_t)0x3ff3f30fffcfffc0ULL, (word_t)0xfcc3cfffffcfcc00ULL, (word_t)0xfcc330c30c0fff33ULL, (word_t)0xc3fccff033ccccc3ULL, (word_t)0xfcc0f0cf3c30c00cULL, (word_t)0xcf3300303f00300fULL, 
+    (word_t)0xf0c3cf3cfc03cf0ULL, (word_t)0xc330f0fc333ff3f3ULL, (word_t)0xf3c003c3ccfff00fULL, (word_t)0x333fff30ff0033fULL, (word_t)0x3330f0f3c3f03f0fULL, (word_t)0xcc00030ff3303cc3ULL, 
+    (word_t)0x3cfc03ccc033f00fULL, (word_t)0x30fc0fff0ffccf00ULL, (word_t)0x3fcfc3fcf0ffcfffULL, (word_t)0x3030ff00f0ccc3ULL, (word_t)0xcf0fccff30cc030ULL, (word_t)0x3ff3cc3cc00fc303ULL, 
+    (word_t)0xcf333330cf0f03cULL, (word_t)0x3c3fff3ff0c033f3ULL, (word_t)0xff00fccf33c3c3ULL, (word_t)0xc0000f3f0c00cffcULL, (word_t)0xc0fff0c00c3f0ULL, (word_t)0xccc3ccc33c03ccfcULL, 
+    (word_t)0xff0cffccff000030ULL, (word_t)0xf30c0333c3c30f3ULL, (word_t)0x3ccff3f03ff3ccf0ULL, (word_t)0xc0c3c0c00f3f0cf0ULL, (word_t)0xccfcf0c333cfcfccULL, (word_t)0xcf3fccfcfcfcccc3ULL, 
+    (word_t)0x30f00c0ccff30cfULL, (word_t)0xfcc33cc00c0330cfULL, (word_t)0xf00f3333c0f33fULL, (word_t)0xf30ff0f0c3cc3c3cULL, (word_t)0x3c3c3c333c30f030ULL, (word_t)0xcff33ff3c3330cfcULL, 
+    (word_t)0xf330cf0fc330c3cfULL, (word_t)0x3c00cff0cffc0ffcULL, (word_t)0xc0030003cc300cc3ULL, (word_t)0x303000c3fc3f03fcULL, (word_t)0xc3f03fff3c3033c3ULL, (word_t)0x3cff0f00fcf3c3fULL, 
+    (word_t)0x30f0333c0c03c0cfULL, (word_t)0xf030f0033f03cf03ULL, (word_t)0xc03c3333cf3cff30ULL, (word_t)0xc00c033cf3cf33cfULL, (word_t)0xcf033c0fccf3f03cULL, (word_t)0xc0fc33f30f0c030fULL, 
+    (word_t)0xcf3ccfcf330330f0ULL, (word_t)0xff33f0c0fff3c33ULL, (word_t)0xff03c0f3ccf30c33ULL, (word_t)0xfcffc3fffc33cfcfULL, (word_t)0xc0fcc0f3cff30f00ULL, (word_t)0xc0f3fccff3c33003ULL, 
+    (word_t)0xff0c0ccff0cc0f3cULL, (word_t)0xc0c3cffcc3033fULL, (word_t)0xffccc3cfc3f03c00ULL, (word_t)0x3c0c3c00cc3c0fULL, (word_t)0x330ff3c3fff303cULL, (word_t)0xf0cccffc033f0f0fULL, 
+    (word_t)0xc0cf0c3303c3f3fULL, (word_t)0x3f33fc0cf0cfcfffULL, (word_t)0xf0f0cc3fc3f00fULL, (word_t)0xc3f030f0ffc333c3ULL, (word_t)0xf03c0fc3c00ffcc3ULL, (word_t)0xcc0c0ffccc0c0fc3ULL, 
+    (word_t)0x33ff00000f33fc0cULL, (word_t)0x33c000f3ff0033c3ULL, (word_t)0xcc0c0ff003c3fcc0ULL, (word_t)0xccfc0033c00f0c30ULL, (word_t)0x3030f333cf30c303ULL, (word_t)0xcc3cc3f00330c3ccULL, 
+    (word_t)0xfc3fc0f0c0f0cf33ULL, (word_t)0xfcfff3ffcc3c030cULL, (word_t)0xf00303fc0fffccffULL, (word_t)0xfcf3f0c00f3fcccfULL, (word_t)0xcff3c0f0f030f0ULL, (word_t)0xf3c00c000f00033fULL, 
+    (word_t)0xcc00cf3cf03fc3c3ULL, (word_t)0xfcc00cffff0f0fcULL, (word_t)0x333303cf0f0f3f3cULL, (word_t)0xff0033f00030fc33ULL, (word_t)0x3c030fc3c0303cc0ULL, (word_t)0xc33f0f00c0c330c3ULL, 
+    (word_t)0x3fcc00fcc33c0c3cULL, (word_t)0xcffccf0fccc3f30cULL, (word_t)0xcc3000cc3cc33f3fULL, (word_t)0x30f3ff3f3c0c0c00ULL, (word_t)0x30f3fcccf3ff00ULL, (word_t)0xcc330c0fc3fc3c0ULL, 
+    (word_t)0xccc3fcccf0cfcff3ULL, (word_t)0xcccf000030f30ffULL, (word_t)0xc33f0f0c0c3033fULL, (word_t)0xc00c00ffc3cf3ff0ULL, (word_t)0x30f03f0ff3ffcffcULL, (word_t)0xf333ffc3f3fc3f03ULL, 
+    (word_t)0x33f30ff00f3f3ff3ULL, (word_t)0xff0fc00fc30f3cccULL, (word_t)0x3f3cc3cf03cccf3ULL, (word_t)0x33c0c03f303c3cf3ULL, (word_t)0xff33ff3cf3c3fc03ULL, (word_t)0xc033c3ff300fc03fULL, 
+    (word_t)0xcc3cf3f3f0cc30ccULL, (word_t)0xfffc3ccffffffc33ULL, (word_t)0xfff3c3cff0f03333ULL, (word_t)0xf3cf3cfc000033f3ULL, (word_t)0x30c0303cc0f3cfULL, (word_t)0x30fcf00f30cfff30ULL, 
+    (word_t)0x30cff3300f330f0cULL, (word_t)0xcc3f0c03f0f0cff3ULL, (word_t)0xc300c330ccff03cULL, (word_t)0xf0f333f3000f300cULL, (word_t)0x3fc3ffcf0000cfffULL, (word_t)0xc03f03cc33030c0ULL, 
+    (word_t)0x3c3cf30fc33f0f03ULL, (word_t)0x30cffffc3f300f0ULL, (word_t)0xf0f0c0c3ccf33f0fULL, (word_t)0xfc0cf0c30c33f30cULL, (word_t)0xff0ffc33c03cfff0ULL, (word_t)0xfffc3ffc3ff00ffULL, 
+    (word_t)0xfc00c3ccfccc30cfULL, (word_t)0xc033cfff0ccffULL, (word_t)0xf0cff000ff300c00ULL, (word_t)0xc0f0333cc00f0f0ULL, (word_t)0x3fc3ffff3033cc03ULL, (word_t)0xfcffff3c03fcccf3ULL, 
+    (word_t)0x3f0c30ccf0f033c0ULL, (word_t)0x3fcccf00f303ffffULL, (word_t)0xc300fcfffccc3303ULL, (word_t)0x33ccfc3ff3fc000fULL, (word_t)0xccf003fc003fcfcfULL, (word_t)0x3cf0f0ccc3cc3cccULL, 
+    (word_t)0x30ff30f000fff03cULL, (word_t)0xcf33f330cc30ffffULL, (word_t)0xccf3f0c03030c3c0ULL, (word_t)0x30c30ffcfcff0c30ULL, (word_t)0xccfff3fff0c033ULL, (word_t)0xf3c03ff00c033003ULL, 
+    (word_t)0x3c3cffccf0f3330fULL, (word_t)0x3c0f0ffc3cf30fccULL, (word_t)0x3300300c0cff3303ULL, (word_t)0x33ffcc0ff3f0c330ULL, (word_t)0x3ff0c330ffccc00cULL, (word_t)0xff30c3333f0f0cULL, 
+    (word_t)0xfccff0fff333300fULL, (word_t)0x3ccf0300303c0fccULL, (word_t)0xcf0fcfff33c03ULL, (word_t)0x3c033000fcfcc333ULL, (word_t)0xfc3ccc3cc03cULL, (word_t)0xccf03cc00f33f3ffULL, 
+    (word_t)0xf00f03fc03000033ULL, (word_t)0x3c0f3fc3003fc333ULL, (word_t)0xf30fccf3fcc0f3ccULL, (word_t)0xff33ff0ccc0c003cULL, (word_t)0xff3c0fff00030fc3ULL, (word_t)0xf330f00030cf3ff3ULL, 
+    (word_t)0x30ff30cf3cfc0fcfULL, (word_t)0xcfffff3f03c0ffc0ULL, (word_t)0xff30030c33fcc30cULL, (word_t)0xf300f3cc3c00fc3fULL, (word_t)0xfc03c000f0f00f33ULL, (word_t)0xc3f03cf3000fcc0fULL, 
+    (word_t)0x3ff0ff0c333030ccULL, (word_t)0x3cfff300ffff0f3fULL, (word_t)0x3ff03c3cf33f3cc3ULL, (word_t)0xffcf3000fcfff3c0ULL, (word_t)0xc3300c00cf333f30ULL, (word_t)0xc0ccf0c033cc33cfULL, 
+    (word_t)0xc3cfcc0cffccc0f0ULL, (word_t)0xcffc00c3c03f03fULL, (word_t)0xfccf3300033c0c3cULL, (word_t)0x3f0c0303003c3c3cULL, (word_t)0xf03fff3ccf0ccc3fULL, (word_t)0x33cc0c330f0ff0fcULL, 
+    (word_t)0x330f03ff03fc3c3fULL, (word_t)0xfff30cf30f33f0fcULL, (word_t)0xc33303c03ff0ffcfULL, (word_t)0xf3fc03ff0fc3c0fULL, (word_t)0xc30300cf3ccff3c0ULL, (word_t)0x3c3f0f3f003f0fc3ULL, 
+    (word_t)0xcf3c3cf3cffff0fcULL, (word_t)0xf003f3c0cf30f00ULL, (word_t)0xc3c3c300c3fcffULL, (word_t)0xfc0fc0ff03f0fcc0ULL, (word_t)0x30cc3c3c3cfff300ULL, (word_t)0x33f3ccc3fc3fc00cULL, 
+    (word_t)0xfff3c0cc30333c3fULL, (word_t)0xccff0fcfc0c03cc3ULL, (word_t)0xccfc3c3f3fccffc3ULL, (word_t)0xf30cc3f33fff0330ULL, (word_t)0xc03cc330cc0003ffULL, (word_t)0x3fffffc333003033ULL, 
+    (word_t)0xffcc33ff3ffcfc3cULL, (word_t)0xcf30c3ffcf0ccccULL, (word_t)0xc0ff0c3cf3c3033fULL, (word_t)0xc33f3c03fcf3cff3ULL, (word_t)0xf00f3c0f03f30c03ULL, (word_t)0xc3fc3333f0c33030ULL, 
+    (word_t)0xf33f3f3fffc30000ULL, (word_t)0x3f3fff3c3ccc0f0ULL, (word_t)0x3c330c30cf0c0ULL, (word_t)0xc00ccf0ccc3000ccULL, (word_t)0xccf33cf0cc330ccfULL, (word_t)0xf03fffc03fc0ff0fULL, 
+    (word_t)0x330000f0ff003030ULL, (word_t)0xfccc00ccfc3300fULL, (word_t)0x33f03f0c000030f3ULL, (word_t)0xf30000fcc3c03c3cULL, (word_t)0x30330fcc0c0c0033ULL, (word_t)0xcff00fff00cc0c3fULL, 
+    (word_t)0xff3fcc33c3cfc3ffULL, (word_t)0xcff3fc3c0ccf00c3ULL, (word_t)0xc00cf033fcff30ffULL, (word_t)0xcff00c03fc3300c3ULL, (word_t)0x3c300f0fc0f30ffULL, (word_t)0xc00fcf3cf3cc3ffULL, 
+    (word_t)0xfc3f33cccf030f3cULL, (word_t)0xfccc0fccfc303c33ULL, (word_t)0x3cc3300cc33300c0ULL, (word_t)0xf0f0f30c03f0c003ULL, (word_t)0xfff0003f30f00f3fULL, (word_t)0xc0f3c0cf30003fffULL, 
+    (word_t)0xff0fcf30cc3c0330ULL, (word_t)0xcfccc3ccffcc03f0ULL, (word_t)0x3033cf0fcff0fcfULL, (word_t)0x3f3f00fffc3ff03cULL, (word_t)0x3fff033f0ff300ULL, (word_t)0x3cfc33f0cff30c0cULL, 
+    (word_t)0xfcccf3c303ff0000ULL, (word_t)0xc33f30cfff000c30ULL, (word_t)0x3c3fcf3f0c03333fULL, (word_t)0xcc03c33cffc303fcULL, (word_t)0x3030c0f3c3fc0300ULL, (word_t)0x3cc0c0ccc3ff03c3ULL, 
+    (word_t)0x3f0c3cfc0fc0fc0cULL, (word_t)0xcf3c333f3f3f0ccfULL, (word_t)0xffcffc333f03cf3fULL, (word_t)0x3c33f0cc303cf00cULL, (word_t)0xc0f03f30c303cc30ULL, (word_t)0xc3c3003c330c033ULL, 
+    (word_t)0xcf3000033333f0fULL, (word_t)0xcccff0c30f303cc0ULL, (word_t)0xcc0cc303fc3cc3f0ULL, (word_t)0xfc303330c03f0ff3ULL, (word_t)0x30f03c0000c0030cULL, (word_t)0xf00cccf3333f30cfULL, 
+    (word_t)0xccff3c00c330fff0ULL, (word_t)0xffcf3cf03c0f0300ULL, (word_t)0xfc0c3fc0f3cc3c30ULL, (word_t)0xcc0330000c0f3ff0ULL, (word_t)0xcc3fcf03ccf303f3ULL, (word_t)0xccff0f0f0ffc033fULL, 
+}
+;
 
 
 uint8_t bitswap[256] = {
@@ -274,35 +275,83 @@ void bs_sbox_rev(word_t U[8])
     U[0] = P9 ^ P16;
 }
 
-static int rand_indx = 0;
+volatile int rand_indx = 0;
 
-static word_t SAND(word_t p, word_t q)
-{
-    word_t r1 = rands[((rand_indx++) & 0xff)];
+/*word_t __attribute__ ((noinline)) SAND(word_t p, word_t q)*/
+/*{*/
+    /*word_t r1 = rands[((rand_indx++) & 0xff)];*/
 
-    word_t n1 = p & q;
+    /*word_t n1 = p & q;*/
 
-    word_t qswap = bitswap[(uint8_t)q]
-#if WORD_SIZE > 8
-                   | ((word_t)bitswap[(uint8_t)(q>>8)] << 8)
-#endif
-#if WORD_SIZE > 16
-                   | ((word_t)bitswap[(uint8_t)(q>>16)] << 16)
-                   | ((word_t)bitswap[(uint8_t)(q>>24)] << 24)
-#endif
-#if WORD_SIZE > 32
-                   | ((word_t)bitswap[(uint8_t)(q>>32)] << 32)
-                   | ((word_t)bitswap[(uint8_t)(q>>40)] << 40)
-                   | ((word_t)bitswap[(uint8_t)(q>>48)] << 48)
-                   | ((word_t)bitswap[(uint8_t)(q>>56)] << 56)
-#endif
-    ;
-    word_t n3 = p & qswap;
-    word_t n4 = r1 ^ n1;
-    word_t z = n3 ^ n4;
+    /*word_t qswap = bitswap[(uint8_t)q]*/
+/*#if WORD_SIZE > 8*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>8)] << 8)*/
+/*#endif*/
+/*#if WORD_SIZE > 16*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>16)] << 16)*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>24)] << 24)*/
+/*#endif*/
+/*#if WORD_SIZE > 32*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>32)] << 32)*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>40)] << 40)*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>48)] << 48)*/
+                   /*| ((word_t)bitswap[(uint8_t)(q>>56)] << 56)*/
+/*#endif*/
+    /*;*/
+    /*word_t n3 = p & qswap;*/
+    /*word_t n4 = r1 ^ n1;*/
+    /*word_t z = n3 ^ n4;*/
 
-    return z;
-}
+    /*return z;*/
+/*}*/
+
+extern word_t SAND(word_t p, word_t q);
+asm(
+"SAND:\n"
+"	save	%sp, -96, %sp	!\n"
+"	sethi	%hi(rand_indx), %g1	!, tmp113\n"
+"	ld	[%g1+%lo(rand_indx)], %g2	! rand_indx, rand_indx.3\n"
+"	and	%g2, 255, %g3	! rand_indx.3,, tmp116\n"
+"	srl	%i1, 8, %o4	! q,, tmp126\n"
+"	sll	%g3, 2, %g3	! tmp116,, tmp117\n"
+"	and	%o4, 0xff, %o4	! tmp126, tmp127\n"
+"	srl	%i1, 24, %o5	! q,, tmp148\n"
+"	and	%i1, 0xff, %o2	! q, q\n"
+"	sethi	%hi(rands), %g4	!, tmp115\n"
+"	or	%g4, %lo(rands), %g4	! tmp115,, tmp114\n"
+"	ld	[%g4+%g3], %g4	! rands, r1\n"
+"	sethi	%hi(bitswap), %g3	!, tmp125\n"
+"	or	%g3, %lo(bitswap), %g3	! tmp125,, tmp124\n"
+"	ldub	[%g3+%o4], %o3	! bitswap, tmp128\n"
+"	ldub	[%g3+%o5], %o5	! bitswap, tmp149\n"
+"	srl	%i1, 16, %o4	! q,, tmp133\n"
+"	and	%o4, 0xff, %o4	! tmp133, tmp134\n"
+"	ldub	[%g3+%o4], %o4	! bitswap, tmp135\n"
+"	ldub	[%g3+%o2], %g3	! bitswap, tmp142\n"
+"	add	%g2, 1, %g2	! rand_indx.3,, tmp120\n"
+"	sll	%o3, 8, %o3	! tmp128,, tmp130\n"
+"	sll	%o5, 24, %o5	! tmp149,, tmp151\n"
+"	st	%g2, [%g1+%lo(rand_indx)]	! tmp120, rand_indx\n"
+"	sll	%o4, 16, %o4	! tmp135,, tmp137\n"
+"	or	%o3, %o4, %o4	! tmp130, tmp137, tmp138\n"
+"	or	%o4, %g3, %g3	! tmp138, tmp142, tmp144\n"
+"	or	%g3, %o5, %g3	! tmp144, tmp151, tmp152\n"
+"	and	%g3, %i0, %g3	! tmp152, p, tmp153\n"
+"	and	%i1, %i0, %i0	! q, p, tmp122\n"
+"	xor	%i0, %g4, %i0	! tmp122, r1, tmp123\n"
+"mov 0, %l0\n"
+"	xor	%i0, %g3, %l0	! tmp123, tmp153,\n"
+"mov 0, %i0\n"
+"mov %l0, %i0\n"
+"	jmp	%i7+8\n"
+"	 restore\n"
+"	.size	SAND, .-SAND\n"
+"	.section	\".text.bs_sbox\",#alloc,#execinstr\n"
+"	.align 4\n"
+"	.global bs_sbox\n"
+"	.type	bs_sbox, #function\n"
+"	.proc	020\n"
+);
 
 void bs_sbox(word_t U[8])
 {

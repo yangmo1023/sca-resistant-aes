@@ -4,17 +4,20 @@ obj = $(src:.c=.o)
 LDFLAGS = -pg -Wl,--gc-sections
 CFLAGS = -O3 -fdata-sections -ffunction-sections -DUNROLL_TRANSPOSE
 
-CC=gcc
-#CC=sparc-elf-gcc
+#CC=gcc
+CC=sparc-elf-gcc
 
 name = bitslice
+OBJD=sparc-elf-objdump
 
 $(name):  _testbench $(obj)
 	$(CC) $(LDFLAGS) -o $@ $(obj) $(LDFLAGS)
+	$(OBJD) -D $@ -S -l > $@.lst
 
 
 test: _test $(obj)
 	$(CC) $(LDFLAGS) -o $(name) $(obj) $(LDFLAGS)
+	$(OBJD) -D $(name)  > $@.lst
 
 footprint: _footprint $(obj)
 	$(CC) $(LDFLAGS) -o $(name) $(obj) $(LDFLAGS)
