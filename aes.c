@@ -1,6 +1,5 @@
 
 #include <string.h>
-#include <assert.h>
 #include "aes.h"
 #include "bs.h"
 #include "utils.h"
@@ -130,147 +129,71 @@ static void INC_CTR(uint8_t * ctr, uint8_t i)
     }
 }
 
-void get_masked_slice(word_t * dst, word_t * src, int bit)
-{
-    // data
-    bs_get_slice(src, dst, bit);
-    // mask
-    bs_get_slice(src, dst, bit + 1);
-}
-
-void expand_key_pipeline(word_t * rk, uint8_t * _key)
-{
-    // TODO integrate this better
-    uint8_t key[KEY_SCHEDULE_SIZE];
-    word_t zero[WORDS_PER_BLOCK];
-    memmove(key,_key,BLOCK_SIZE/8);
-    memset(zero,0,sizeof(zero));
-    memset(rk,0,BLOCK_SIZE * WORD_SIZE / 8);
-
-    expand_key(key);
-
-    word_t * rk1 = (word_t *) (key + 16);
-    word_t * rk2 = (word_t *) (key + 32);
-    word_t * rk3 = (word_t *) (key + 48);
-    word_t * rk4 = (word_t *) (key + 64);
-    word_t * rk5 = (word_t *) (key + 80);
-    word_t * rk6 = (word_t *) (key + 96);
-    word_t * rk7 = (word_t *) (key + 112);
-    word_t * rk8 = (word_t *) (key + 128);
-    word_t * rk9 = (word_t *) (key + 144);
-    word_t * rk10 = (word_t *) (key + 160);
-
-    /*bs_add_slice(rk,NULL);*/
-    bs_add_slice(rk,rk10);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk9);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk8);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk7);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk6);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk5);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk4);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk3);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk2);
-    bs_add_slice(rk,NULL);
-    bs_add_slice(rk,rk1);
-}
-
 void aesm_ctr_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size_t size, uint8_t * key, uint8_t * iv)
 {
-    word_t rk[BLOCK_SIZE];
-    word_t iv_copy[WORDS_PER_BLOCK];
-    word_t state[BLOCK_SIZE];
+    word_t rk[11][BLOCK_SIZE];
+    word_t ctr[BLOCK_SIZE];
+    uint8_t iv_copy[BLOCK_SIZE/8];
     
     memset(outputb,0,size);
+    memset(ctr,0,sizeof(ctr));
     memmove(iv_copy,iv,BLOCK_SIZE/8);
 
-    expand_key_pipeline(rk, key);
+    word_t * state = (word_t *)outputb;
+    bs_expand_key(rk, key);
 
-    int offset = 0;
-
-    int blocks = size / (BLOCK_SIZE/8);
-    memset(state, 0, sizeof(state));
-    if (size % (BLOCK_SIZE/8))
+    do
     {
-        blocks++;
-    }
-
-    int i,j = 0;
-
-    // run pipeline
-    for (i = 0; i < blocks; i++)
-    {
-
-        if (i > (BS_DATA_ROUNDS-1))
+        int chunk = MIN(size, BS_BLOCK_SIZE/2);
+        int blocks = chunk / (BLOCK_SIZE/8);
+        if (chunk % (BLOCK_SIZE/8))
         {
-            get_masked_slice((word_t*)(outputb + offset), state, 18);
-            offset += 16;
+            blocks++;
         }
 
-        bs_add_slice(state, (word_t*)maskb);
-
-        for (j=0; j < WORDS_PER_BLOCK; j++)
+        int i,j;
+        for (i = 0; i < blocks*2; i += 2)
         {
-            ((word_t*)maskb)[j] ^= iv_copy[j] ^ ((word_t*)key)[j];
-        }
-        INC_CTR((uint8_t *)iv_copy,1);
+            memmove(ctr + (i * WORDS_PER_BLOCK), iv_copy, BLOCK_SIZE/8);
+            memmove(ctr + (i * WORDS_PER_BLOCK + WORDS_PER_BLOCK), maskb, BLOCK_SIZE/8);
+            maskb += BLOCK_SIZE/8;
+            for (j = 0; j < WORDS_PER_BLOCK; j++)
+            {
+                ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+            }
 
-        bs_add_slice(state, (word_t*)maskb);
-
-        maskb += BLOCK_SIZE/8;
-
-        bs_apply_sbox(state);
-        bs_shiftrows(state);
-        bs_mixcolumns(state);
-
-        bs_addroundkey(state,rk);
-
-    }
-
-    int leftover = MIN(i,BS_DATA_ROUNDS);
-
-    // advance pipeline if it is not full
-    for (; i < BS_DATA_ROUNDS; i++)
-    {
-        bs_add_slice(state, NULL);
-        bs_add_slice(state, NULL);
-
-        bs_apply_sbox(state);
-        bs_shiftrows(state);
-        bs_mixcolumns(state);
-
-        bs_addroundkey(state,rk);
-    }
-
-    while(leftover--)
-    {
-        {
-            get_masked_slice((word_t*)(outputb + offset), state, 18);
-            offset += 16;
+            INC_CTR(iv_copy,1);
         }
 
-        bs_add_slice(state, NULL);
-        bs_add_slice(state, NULL);
+        bs_cipher(ctr,rk);
 
-        bs_apply_sbox(state);
-        bs_shiftrows(state);
-        bs_mixcolumns(state);
-        bs_addroundkey(state,rk);
+        for (i = 0; i < blocks*2; i += 2)
+        {
+            for (j = 0; j < WORDS_PER_BLOCK; j++)
+            {
+                ctr[ i * WORDS_PER_BLOCK + j] ^= ctr[ i * WORDS_PER_BLOCK + WORDS_PER_BLOCK + j];
+            }
+        }
+
+        size -= chunk;
+
+        uint8_t * ctr_p = (uint8_t *) ctr;
+        for (i = 0; i < blocks; i += 1)
+        {
+            int j = WORDS_PER_BLOCK;
+            while(j--)
+            {
+                *((word_t*)outputb) = *((word_t*)ctr_p) ^ *((word_t*)inputb);
+                outputb += WORD_SIZE/8;
+                ctr_p += WORD_SIZE/8;
+                inputb += WORD_SIZE/8;
+            }
+            // skip mask
+            ctr_p += BLOCK_SIZE/8;
+        }
 
     }
-
-
-    while(offset--)
-    {
-        outputb[offset] ^= inputb[offset];
-    }
+    while(size);
 
 }
 

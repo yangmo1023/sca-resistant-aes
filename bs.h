@@ -5,12 +5,9 @@
 
 #define BLOCK_SIZE          128
 #define KEY_SCHEDULE_SIZE   176
-#define WORD_SIZE           64
+#define WORD_SIZE           32
 #define BS_BLOCK_SIZE       (BLOCK_SIZE * WORD_SIZE / 8)
 #define WORDS_PER_BLOCK     (BLOCK_SIZE / WORD_SIZE)
-
-#define BS_DATA_ROUNDS 10
-#define BS_DATA_MASK (0x3ffff)
 
 #if (WORD_SIZE==64)
     typedef uint64_t    word_t;
@@ -71,8 +68,5 @@ void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE]);
 
 
 void bs_cipher_rev(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE]);
-
-void bs_add_slice(word_t * dst, word_t * block);
-void bs_get_slice(word_t * src, word_t * block, int BS_DATA_ROUNDS2);
 
 #endif
