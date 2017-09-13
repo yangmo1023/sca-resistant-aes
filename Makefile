@@ -5,10 +5,10 @@ LDFLAGS = -pg -Wl,--gc-sections
 CFLAGS = -O3 -fdata-sections -ffunction-sections -DUNROLL_TRANSPOSE
 
 #CC=gcc
-CC=sparc-elf-gcc
+CC=gcc
 
 name = bitslice
-OBJD=sparc-elf-objdump
+OBJD=objdump
 
 $(name):  _testbench $(obj)
 	$(CC) $(LDFLAGS) -o $@ $(obj) $(LDFLAGS)

@@ -6,8 +6,8 @@
 #define BLOCK_SIZE          128
 #define KEY_SCHEDULE_SIZE   176
 #define WORD_SIZE           32
-#define BS_BLOCK_SIZE       (BLOCK_SIZE * WORD_SIZE / 8)
-#define WORDS_PER_BLOCK     (BLOCK_SIZE / WORD_SIZE)
+#define BS_BLOCK_SIZE       (BLOCK_SIZE * WORD_SIZE / 8)  //total # of bytes (32*16)
+#define WORDS_PER_BLOCK     (BLOCK_SIZE / WORD_SIZE)  //4
 
 #if (WORD_SIZE==64)
     typedef uint64_t    word_t;

@@ -24,11 +24,11 @@ int main(int argc, char * argv[])
     aes_ecb_test();
 #endif
     // not tested for masking
-    aes_ctr_test();
+    //aes_ctr_test();
 
 #else
 
-    cli_app(argc,argv);
+    //cli_app(argc,argv);
 
 #endif
 

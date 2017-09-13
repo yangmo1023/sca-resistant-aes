@@ -1,7 +1,7 @@
 
 #include <string.h>
 #include "bs.h"
-#include "../app.h"
+#include "testbench/app.h"
 
 #if (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) ||\
         defined(__amd64__) || defined(__amd32__)|| defined(__amd16__)
@@ -277,35 +277,35 @@ void bs_sbox_rev(word_t U[8])
 
 volatile int rand_indx = 0;
 
-/*word_t __attribute__ ((noinline)) SAND(word_t p, word_t q)*/
-/*{*/
-    /*word_t r1 = rands[((rand_indx++) & 0xff)];*/
+word_t __attribute__ ((noinline)) SAND(word_t p, word_t q)
+{
+    word_t r1 = rands[((rand_indx++) & 0xff)];
 
-    /*word_t n1 = p & q;*/
+    word_t n1 = p & q;
 
-    /*word_t qswap = bitswap[(uint8_t)q]*/
-/*#if WORD_SIZE > 8*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>8)] << 8)*/
-/*#endif*/
-/*#if WORD_SIZE > 16*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>16)] << 16)*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>24)] << 24)*/
-/*#endif*/
-/*#if WORD_SIZE > 32*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>32)] << 32)*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>40)] << 40)*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>48)] << 48)*/
-                   /*| ((word_t)bitswap[(uint8_t)(q>>56)] << 56)*/
-/*#endif*/
-    /*;*/
-    /*word_t n3 = p & qswap;*/
-    /*word_t n4 = r1 ^ n1;*/
-    /*word_t z = n3 ^ n4;*/
+    word_t qswap = bitswap[(uint8_t)q]
+#if WORD_SIZE > 8
+                   | ((word_t)bitswap[(uint8_t)(q>>8)] << 8)
+#endif
+#if WORD_SIZE > 16
+                   | ((word_t)bitswap[(uint8_t)(q>>16)] << 16)
+                   | ((word_t)bitswap[(uint8_t)(q>>24)] << 24)
+#endif
+#if WORD_SIZE > 32
+                   | ((word_t)bitswap[(uint8_t)(q>>32)] << 32)
+                   | ((word_t)bitswap[(uint8_t)(q>>40)] << 40)
+                   | ((word_t)bitswap[(uint8_t)(q>>48)] << 48)
+                   | ((word_t)bitswap[(uint8_t)(q>>56)] << 56)
+#endif
+    ;
+    word_t n3 = p & qswap;
+    word_t n4 = r1 ^ n1;
+    word_t z = n3 ^ n4;
 
-    /*return z;*/
-/*}*/
+    return z;
+}
 
-extern word_t SAND(word_t p, word_t q);
+/*extern word_t SAND(word_t p, word_t q);
 asm(
 "SAND:\n"
 "	save	%sp, -96, %sp	!\n"
@@ -351,7 +351,7 @@ asm(
 "	.global bs_sbox\n"
 "	.type	bs_sbox, #function\n"
 "	.proc	020\n"
-);
+);*/
 
 void bs_sbox(word_t U[8])
 {
