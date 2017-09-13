@@ -1,7 +1,8 @@
-
 #include <string.h>
 #include "bs.h"
-#include "testbench/app.h"
+//#include "testbench/app.h"
+//#include <stdio.h>  //mo debug
+#include "utils.h"  //mo debug
 
 #if (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) ||\
         defined(__amd64__) || defined(__amd32__)|| defined(__amd16__)
@@ -15,7 +16,8 @@
 #error "endianness not supported"
 #endif
 
-word_t rands[256]= 
+word_t rands[256]
+/*= 
 {(word_t)0x3ff3f30fffcfffc0ULL, (word_t)0xfcc3cfffffcfcc00ULL, (word_t)0xfcc330c30c0fff33ULL, (word_t)0xc3fccff033ccccc3ULL, (word_t)0xfcc0f0cf3c30c00cULL, (word_t)0xcf3300303f00300fULL, 
     (word_t)0xf0c3cf3cfc03cf0ULL, (word_t)0xc330f0fc333ff3f3ULL, (word_t)0xf3c003c3ccfff00fULL, (word_t)0x333fff30ff0033fULL, (word_t)0x3330f0f3c3f03f0fULL, (word_t)0xcc00030ff3303cc3ULL, 
     (word_t)0x3cfc03ccc033f00fULL, (word_t)0x30fc0fff0ffccf00ULL, (word_t)0x3fcfc3fcf0ffcfffULL, (word_t)0x3030ff00f0ccc3ULL, (word_t)0xcf0fccff30cc030ULL, (word_t)0x3ff3cc3cc00fc303ULL, 
@@ -58,9 +60,12 @@ word_t rands[256]=
     (word_t)0x3f0c3cfc0fc0fc0cULL, (word_t)0xcf3c333f3f3f0ccfULL, (word_t)0xffcffc333f03cf3fULL, (word_t)0x3c33f0cc303cf00cULL, (word_t)0xc0f03f30c303cc30ULL, (word_t)0xc3c3003c330c033ULL, 
     (word_t)0xcf3000033333f0fULL, (word_t)0xcccff0c30f303cc0ULL, (word_t)0xcc0cc303fc3cc3f0ULL, (word_t)0xfc303330c03f0ff3ULL, (word_t)0x30f03c0000c0030cULL, (word_t)0xf00cccf3333f30cfULL, 
     (word_t)0xccff3c00c330fff0ULL, (word_t)0xffcf3cf03c0f0300ULL, (word_t)0xfc0c3fc0f3cc3c30ULL, (word_t)0xcc0330000c0f3ff0ULL, (word_t)0xcc3fcf03ccf303f3ULL, (word_t)0xccff0f0f0ffc033fULL, 
-}
+}*/
 ;
-
+//move m_vector to rands
+//word_t rands[256];
+//memmove(rands, m_vector+512, 1024);
+//dump_word(rands, 256);
 
 uint8_t bitswap[256] = {
     0x0, 0x2, 0x1, 0x3, 0x8, 0xa, 0x9, 0xb, 0x4, 0x6, 0x5, 0x7, 0xc, 0xe, 0xd, 0xf, 
@@ -1282,8 +1287,21 @@ void bs_expand_key(word_t (* rk)[BLOCK_SIZE], uint8_t * _key)
 
 }
 
-void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE])
+void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE], uint8_t* maskb)
 {
+    //add the rng for sand
+   // memset(rands,0,256);
+    memmove(rands, maskb+512, 1024);
+    //printf("maskb[1535]=%x \n", maskb[1535]);  
+    //printf("rands[255]=%x \n", rands[255]);  
+    //dump_word(rands, 256);
+    //for (int i=0; i<256; i++) 
+    //{
+    //    printf("%x\n",rands[i]);
+    //}
+
+
+
     int round;
     bs_transpose(state);
 

@@ -38,7 +38,7 @@ void aesm_ecb_encrypt(uint8_t * outputb, uint8_t * inputb, uint8_t * maskb, size
         }   //  |p+m|m|p+m|m|... p:certain byte of plaintext  
 
     }
-    bs_cipher(input_space, rk);
+    bs_cipher(input_space, rk, maskb);
 
     for(i = 0; i < WORD_SIZE; i += 2)
     {
