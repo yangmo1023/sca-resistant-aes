@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <string.h>
 #include "../utils.h"
 #include "../aes.h"
@@ -19,8 +19,8 @@
 
 void aes_ecb_test()
 {
-    uint8_t m_vector[1536];
-    uint8_t m_vector_tmp[1536];
+    uint8_t m_vector[1024];
+    uint8_t m_vector_tmp[1024];
     /*uint8_t m_vector[512] =  //this is already the maximum rng we need when 32 unmasked AES run in parallel
     {216, 217, 211, 129, 127, 201, 175, 140, 119, 171, 185, 223, 156, 38, 233, 207, 
         135, 212, 139, 41, 160, 234, 97, 195, 156, 223, 4, 52, 244, 167, 4, 167, 
@@ -71,15 +71,15 @@ void aes_ecb_test()
     }
 
 
-    memset(m_vector, 0, 1536);  //assign 0
-    //assign rng (16 bytes) to mask (1536 bytes)  96 cycle loop
-    for (i=0; i<96; i++) 
+    memset(m_vector, 0, 1024);  //assign 0
+    //assign rng (16 bytes) to mask (1024 bytes)  64 cycle loop
+    for (i=0; i<64; i++) 
     {
         memmove(m_vector_tmp+i*16, prng(0), 16);
     }
 
     /*****  instruction to skip  ******/
-    memmove(m_vector, m_vector_tmp, 1536);
+    memmove(m_vector, m_vector_tmp, 1024);
     /**********************************/
     //mo debug
     //dump_hex(m_vector, 1536);

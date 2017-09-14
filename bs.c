@@ -2,7 +2,7 @@
 #include "bs.h"
 //#include "testbench/app.h"
 //#include <stdio.h>  //mo debug
-#include "utils.h"  //mo debug
+//#include "utils.h"  //mo debug
 
 #if (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) ||\
         defined(__amd64__) || defined(__amd32__)|| defined(__amd16__)
@@ -16,7 +16,7 @@
 #error "endianness not supported"
 #endif
 
-word_t rands[256]
+word_t rands[256]  //rands has 256 words, each word need 16 bit rng or 2 byte. So in total 512 byte rng needed
 /*= 
 {(word_t)0x3ff3f30fffcfffc0ULL, (word_t)0xfcc3cfffffcfcc00ULL, (word_t)0xfcc330c30c0fff33ULL, (word_t)0xc3fccff033ccccc3ULL, (word_t)0xfcc0f0cf3c30c00cULL, (word_t)0xcf3300303f00300fULL, 
     (word_t)0xf0c3cf3cfc03cf0ULL, (word_t)0xc330f0fc333ff3f3ULL, (word_t)0xf3c003c3ccfff00fULL, (word_t)0x333fff30ff0033fULL, (word_t)0x3330f0f3c3f03f0fULL, (word_t)0xcc00030ff3303cc3ULL, 
@@ -1290,15 +1290,51 @@ void bs_expand_key(word_t (* rk)[BLOCK_SIZE], uint8_t * _key)
 void bs_cipher(word_t state[BLOCK_SIZE], word_t (* rk)[BLOCK_SIZE], uint8_t* maskb)
 {
     //add the rng for sand
-   // memset(rands,0,256);
-    memmove(rands, maskb+512, 1024);
+    //memset(rands,0,256);
+    
+    for (int i=512; i<1024; i+=2)
+    {
+        uint8_t tmp1 = *(maskb+i);
+        uint8_t tmp2 = *(maskb+i+1);
+        uint16_t tmp = ((uint16_t)tmp2 << 8) | tmp1;
+        word_t rng = 0;
+        for (int j=0; j<16; j++)
+        {
+            uint8_t a = ((tmp>>j) & 1);
+            rng |= a << j*2;
+            rng |= a << j*2+1;
+        }
+        int index = (i-512)/2;
+        rands[index] = rng;
+    }
+    
+    //memmove(rands, maskb+512, 1024);
+    //for (int i=0; i<256; i++)
+    //{   
+    //    rands[i] = 0x30003FFE;
+    //}
+    
     //printf("maskb[1535]=%x \n", maskb[1535]);  
     //printf("rands[255]=%x \n", rands[255]);  
     //dump_word(rands, 256);
     //for (int i=0; i<256; i++) 
-    //{
+    //{   
     //    printf("%x\n",rands[i]);
     //}
+    /*for (int i=0; i<256; i++) 
+    {   
+        word_t n = rands[i];
+        while (n) {
+            if (n & 1)
+                printf("1");
+            else
+                printf("0");
+
+            n >>= 1;
+        }
+        printf("\n");
+        //printf("%x\n",rands[i]);
+    }*/
 
 
 
